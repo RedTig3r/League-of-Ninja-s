@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace LeagueOfNinja.Model
 {
-    public class Ninja
+    interface NinjaRepository
     {
+        List<Ninja> getNinjas();
 
-        public int Id { get; set; }
-
-        public int Gold { get; set; }
-
-        public string Name { get; set; }
     }
 }
