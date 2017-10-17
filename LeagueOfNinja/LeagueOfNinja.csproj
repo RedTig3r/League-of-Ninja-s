@@ -108,12 +108,18 @@
       <DependentUpon>MyEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Dummies\NinjaRepository.cs" />
+    <Compile Include="ViewModel\VM\EquipmentVM\AddEquipmentVM.cs" />
+    <Compile Include="ViewModel\VM\EquipmentVM\EquipmentVM.cs.cs" />
+    <Compile Include="ViewModel\VM\EquipmentVM\UpdateEquipmentVM.cs" />
+    <Compile Include="ViewModel\VM\InventoryVM\AddInventoryVM.cs" />
+    <Compile Include="ViewModel\VM\InventoryVM\InventoryVM.cs" />
+    <Compile Include="ViewModel\VM\InventoryVM\UpdateInventoryVM.cs" />
     <Compile Include="View\AddEquipmentWindow.xaml.cs">
       <DependentUpon>AddEquipmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\AddNinjaVM.cs" />
-    <Compile Include="ViewModel\NinjaVM.cs" />
-    <Compile Include="ViewModel\UpdateNinjaVM.cs" />
+    <Compile Include="ViewModel\VM\NinjaVM\AddNinjaVM.cs" />
+    <Compile Include="ViewModel\VM\NinjaVM\NinjaVM.cs" />
+    <Compile Include="ViewModel\VM\NinjaVM\UpdateNinjaVM.cs" />
     <Compile Include="View\AddNinjaWindow.xaml.cs">
       <DependentUpon>AddNinjaWindow.xaml</DependentUpon>
     </Compile>
@@ -205,7 +211,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Skins\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

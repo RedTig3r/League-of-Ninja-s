@@ -4,5 +4,5 @@
     [Stats] NVARCHAR(50) NULL, 
     [Title] NVARCHAR(50) NULL, 
     [Price] INT NULL, 
-    [Categorie] NVARCHAR(50) NULL
+  
 )

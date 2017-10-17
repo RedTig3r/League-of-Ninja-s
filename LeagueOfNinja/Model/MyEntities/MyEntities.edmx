@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LeagueOfNinja.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LeagueOfNinja.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="Id" />
@@ -13,13 +13,39 @@
           <Property Name="Stats" Type="nvarchar" MaxLength="50" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="Price" Type="int" />
-          <Property Name="Categorie" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ninja">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfEquipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="LeagueOfNinjaDBModelStoreContainer">
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfEquipment" EntityType="Self.TypeOfEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfState" EntityType="Self.TypeOfState" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LeagueOfNinja.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -35,7 +61,35 @@
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="Inventories" EntityType="LeagueOfNinja.Model.Inventory" />
+          <EntitySet Name="Ninjas" EntityType="LeagueOfNinja.Model.Ninja" />
+          <EntitySet Name="TypeOfEquipments" EntityType="LeagueOfNinja.Model.TypeOfEquipment" />
+          <EntitySet Name="TypeOfStates" EntityType="LeagueOfNinja.Model.TypeOfState" />
         </EntityContainer>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ninja">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfEquipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -49,7 +103,34 @@
                 <ScalarProperty Name="Stats" ColumnName="Stats" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Categorie" ColumnName="Categorie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ninjas">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Ninja">
+              <MappingFragment StoreEntitySet="Ninja">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfEquipments">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.TypeOfEquipment">
+              <MappingFragment StoreEntitySet="TypeOfEquipment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfStates">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.TypeOfState">
+              <MappingFragment StoreEntitySet="TypeOfState">
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
