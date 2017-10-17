@@ -18,12 +18,16 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace LeagueOfNinja.ViewModel
 {
+
     /// <summary>
     /// This class contains static references to all the view models in the
     /// application and provides an entry point for the bindings.
     /// </summary>
     public class ViewModelLocator
     {
+
+        private NinjaVM _ninjaVM;
+
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
@@ -42,14 +46,18 @@ namespace LeagueOfNinja.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<MainVM>();
+            SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public MainVM Main
+        public NinjaVM Main
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainVM>();
+                if(_ninjaVM == null)
+                _ninjaVM = new NinjaVM();
+
+
+                return _ninjaVM;
             }
         }
         

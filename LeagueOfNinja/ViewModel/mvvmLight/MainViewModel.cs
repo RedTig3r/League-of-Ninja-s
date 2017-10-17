@@ -14,12 +14,12 @@ namespace LeagueOfNinja.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainVM : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainVM()
+        public MainViewModel()
         {
             ////if (IsInDesignMode)
             ////{

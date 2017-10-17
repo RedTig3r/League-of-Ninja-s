@@ -8,6 +8,8 @@ namespace LeagueOfNinja.ViewModel
     public class NinjaVM : ViewModelBase
     {
 
+        /*
+
         private Ninja _ninja;
 
         public int Id
@@ -27,6 +29,6 @@ namespace LeagueOfNinja.ViewModel
             get { return _ninja.Gold; }
             set { _ninja.Gold = value; RaisePropertyChanged("Gold"); }
         }
-        
+        */
     }
 }

@@ -24,9 +24,6 @@ namespace LeagueOfNinja.Model
         {
             throw new UnintentionalCodeFirstException();
         }
-    
-        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
-        public virtual DbSet<C__RefactorLog1> C__RefactorLog1 { get; set; }
         public virtual DbSet<Equipment> Equipment { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Ninja> Ninja { get; set; }
