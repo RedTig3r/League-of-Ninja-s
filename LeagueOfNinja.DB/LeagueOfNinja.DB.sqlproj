@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LeagueOfNinja.DB.publish.xml" />
-    <None Include="Seeds\Equipment.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="tables\Equipment.sql" />

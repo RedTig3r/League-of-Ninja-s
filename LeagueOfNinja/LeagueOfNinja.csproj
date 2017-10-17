@@ -83,38 +83,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Model1.cs">
+    <Compile Include="Model\Entities\C__RefactorLog.cs">
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Entities\Equipment.cs">
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Entities\Inventory.cs">
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Entities\Ninja.cs">
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Entities\NinjaEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>NinjaEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\NinjaRepository.cs" />
-    <Compile Include="Model\Equipment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\INinjaRepository.cs" />
-    <Compile Include="Model\Inventory.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model1.Context.cs">
+    <Compile Include="Model\Entities\NinjaEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MyEntities.Designer.cs">
+    <Compile Include="Model\Entities\NinjaEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyEntities.edmx</DependentUpon>
+      <DependentUpon>NinjaEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Ninja.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Model\Entities\Shop.cs">
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Shop.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Model\Entities\TypeOfEquipment.cs">
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\TypeOfEquipment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Model\Repository\NinjaRepository.cs" />
+    <Compile Include="Model\Repository\INinjaRepository.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NinjaViewModel\NinjaListVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -200,12 +203,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\MyEntities.edmx">
+    <EntityDeploy Include="Model\Entities\NinjaEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MyEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>NinjaEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\MyEntities.edmx.diagram">
-      <DependentUpon>MyEntities.edmx</DependentUpon>
+    <None Include="Model\Entities\NinjaEntities.edmx.diagram">
+      <DependentUpon>NinjaEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -215,7 +218,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -224,15 +229,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Model1.Context.tt">
+    <Content Include="Model\Entities\NinjaEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyEntities.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>NinjaEntities.edmx</DependentUpon>
+      <LastGenOutput>NinjaEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\Model1.tt">
+    <Content Include="Model\Entities\NinjaEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyEntities.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>NinjaEntities.edmx</DependentUpon>
+      <LastGenOutput>NinjaEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
