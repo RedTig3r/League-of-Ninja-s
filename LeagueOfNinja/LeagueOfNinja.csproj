@@ -83,39 +83,40 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Entities\Model1.cs">
+    <Compile Include="Model\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Repository\NinjaRepository.cs" />
-    <Compile Include="Model\Entities\Equipment.cs">
+    <Compile Include="Model\NinjaRepository.cs" />
+    <Compile Include="Model\Equipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Repository\INinjaRepository.cs" />
-    <Compile Include="Model\Entities\Inventory.cs">
+    <Compile Include="Model\INinjaRepository.cs" />
+    <Compile Include="Model\Inventory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\Model1.Context.cs">
+    <Compile Include="Model\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\MyEntities.Designer.cs">
+    <Compile Include="Model\MyEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\Ninja.cs">
+    <Compile Include="Model\Ninja.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\Shop.cs">
+    <Compile Include="Model\Shop.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\TypeOfEquipment.cs">
+    <Compile Include="Model\TypeOfEquipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NinjaViewModel\NinjaListVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\AddEquipmentVM.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\EquipmentVM.cs.cs" />
@@ -199,11 +200,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Entities\MyEntities.edmx">
+    <EntityDeploy Include="Model\MyEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MyEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Entities\MyEntities.edmx.diagram">
+    <None Include="Model\MyEntities.edmx.diagram">
       <DependentUpon>MyEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -223,12 +224,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Entities\Model1.Context.tt">
+    <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MyEntities.edmx</DependentUpon>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\Entities\Model1.tt">
+    <Content Include="Model\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MyEntities.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
