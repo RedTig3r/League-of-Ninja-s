@@ -83,6 +83,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\NinjaRepository.cs" />
     <Compile Include="Model\Equipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -111,6 +116,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NinjaViewModel\NinjaListVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\AddEquipmentVM.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\EquipmentVM.cs.cs" />
