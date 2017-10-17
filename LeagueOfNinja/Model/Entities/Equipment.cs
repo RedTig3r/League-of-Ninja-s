@@ -17,7 +17,6 @@ namespace LeagueOfNinja.Model.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Equipment()
         {
-            this.Shops = new HashSet<Shop>();
             this.Inventories = new HashSet<Inventory>();
         }
     
@@ -28,10 +27,10 @@ namespace LeagueOfNinja.Model.Entities
         public int Intelligence { get; set; }
         public int Agility { get; set; }
         public string Type { get; set; }
+        public int ShopId { get; set; }
     
+        public virtual Shop Shop { get; set; }
         public virtual TypeOfEquipment TypeOfEquipment { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shop> Shops { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventory> Inventories { get; set; }
     }

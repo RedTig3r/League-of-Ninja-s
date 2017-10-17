@@ -7,6 +7,7 @@
     [Intelligence] INT NOT NULL, 
     [Agility] INT NOT NULL, 
     [Type] NVARCHAR(50) NOT NULL, 
+    [ShopId] INT NOT NULL, 
     CONSTRAINT [FK_Equipment_TypeOfEquipment] FOREIGN KEY ([Type]) REFERENCES [dbo].[TypeOfEquipment]([TypeOfEquipmentId]), 
-
+	CONSTRAINT [FK_Equipment_Shop] FOREIGN KEY ([ShopId]) REFERENCES [dbo].[Shop]([ShopId])
 )

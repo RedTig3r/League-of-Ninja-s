@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Linq;
 using System;
+using LeagueOfNinja.Model.Entities;
 
 namespace LeagueOfNinja.ViewModel.NinjaViewModel
 {

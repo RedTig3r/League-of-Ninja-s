@@ -4,13 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LeagueOfNinja.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="LeagueOfNinja.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="EquipmentId" />
@@ -22,6 +16,7 @@
           <Property Name="Intelligence" Type="int" Nullable="false" />
           <Property Name="Agility" Type="int" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -47,6 +42,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Property Name="NinjaId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Money" Type="int" Nullable="false" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Shop">
           <Key>
@@ -54,7 +50,6 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           </Key>
           <Property Name="ShopId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="EquipmentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeOfEquipment">
           <Key>
@@ -62,6 +57,18 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           </Key>
           <Property Name="TypeOfEquipmentId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Equipment_Shop">
+          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ShopId" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Equipment_TypeOfEquipment">
           <End Role="TypeOfEquipment" Type="Self.TypeOfEquipment" Multiplicity="1" />
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
@@ -112,30 +119,17 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
         </Association>
         <Association Name="FK_Ninja_Shop">
           <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shop">
               <PropertyRef Name="ShopId" />
             </Principal>
             <Dependent Role="Ninja">
-              <PropertyRef Name="NinjaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Shop_Equipment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
-          <End Role="Shop" Type="Self.Shop" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="EquipmentId" />
-            </Principal>
-            <Dependent Role="Shop">
-              <PropertyRef Name="EquipmentId" />
+              <PropertyRef Name="ShopId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="LeagueOfNinjaDBModelStoreContainer">
-          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
@@ -147,6 +141,10 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
     [EquipmentInventory].[InventoryId] AS [InventoryId]
     FROM [dbo].[EquipmentInventory] AS [EquipmentInventory]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Equipment_Shop" Association="Self.FK_Equipment_Shop">
+            <End Role="Shop" EntitySet="Shop" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Equipment_TypeOfEquipment" Association="Self.FK_Equipment_TypeOfEquipment">
             <End Role="TypeOfEquipment" EntitySet="TypeOfEquipment" />
             <End Role="Equipment" EntitySet="Equipment" />
@@ -167,22 +165,11 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             <End Role="Shop" EntitySet="Shop" />
             <End Role="Ninja" EntitySet="Ninja" />
           </AssociationSet>
-          <AssociationSet Name="FK_Shop_Equipment" Association="Self.FK_Shop_Equipment">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="Shop" EntitySet="Shop" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LeagueOfNinja.DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="Guid" Nullable="false" />
-        </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="EquipmentId" />
@@ -194,8 +181,9 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Property Name="Intelligence" Type="Int32" Nullable="false" />
           <Property Name="Agility" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shop" Relationship="Self.FK_Equipment_Shop" FromRole="Equipment" ToRole="Shop" />
           <NavigationProperty Name="TypeOfEquipment" Relationship="Self.FK_Equipment_TypeOfEquipment" FromRole="Equipment" ToRole="TypeOfEquipment" />
-          <NavigationProperty Name="Shops" Relationship="Self.FK_Shop_Equipment" FromRole="Equipment" ToRole="Shop" />
           <NavigationProperty Name="Inventories" Relationship="Self.EquipmentInventory" FromRole="Equipment" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="Inventory">
@@ -215,7 +203,8 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Money" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Inventory" Relationship="Self.FK_Ninja_Inventory" FromRole="Ninja" ToRole="Inventory" />
-          <NavigationProperty Name="Shop" Relationship="Self.FK_Ninja_Shop" FromRole="Ninja" ToRole="Shop" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shop" Relationship="LeagueOfNinja.DBModel.FK_Ninja_Shop1" FromRole="Ninja" ToRole="Shop" />
         </EntityType>
         <EntityType Name="Shop">
           <Key>
@@ -223,9 +212,8 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           </Key>
           <Property Name="ShopId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Equipment" Relationship="Self.FK_Shop_Equipment" FromRole="Shop" ToRole="Equipment" />
-          <NavigationProperty Name="Ninja" Relationship="Self.FK_Ninja_Shop" FromRole="Shop" ToRole="Ninja" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_Shop" FromRole="Shop" ToRole="Equipment" />
+          <NavigationProperty Name="Ninjas" Relationship="LeagueOfNinja.DBModel.FK_Ninja_Shop1" FromRole="Shop" ToRole="Ninja" />
         </EntityType>
         <EntityType Name="TypeOfEquipment">
           <Key>
@@ -234,6 +222,18 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Property Name="TypeOfEquipmentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_TypeOfEquipment" FromRole="TypeOfEquipment" ToRole="Equipment" />
         </EntityType>
+        <Association Name="FK_Equipment_Shop">
+          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ShopId" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Equipment_TypeOfEquipment">
           <End Role="TypeOfEquipment" Type="Self.TypeOfEquipment" Multiplicity="1" />
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
@@ -243,18 +243,6 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             </Principal>
             <Dependent Role="Equipment">
               <PropertyRef Name="Type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Shop_Equipment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
-          <End Role="Shop" Type="Self.Shop" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="EquipmentId" />
-            </Principal>
-            <Dependent Role="Shop">
-              <PropertyRef Name="EquipmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -270,63 +258,55 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ninja_Shop">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Shop">
-              <PropertyRef Name="ShopId" />
-            </Principal>
-            <Dependent Role="Ninja">
-              <PropertyRef Name="NinjaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="EquipmentInventory">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
         </Association>
         <EntityContainer Name="NinjaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
           <EntitySet Name="Inventories" EntityType="Self.Inventory" />
           <EntitySet Name="Ninjas" EntityType="Self.Ninja" />
           <EntitySet Name="Shops" EntityType="Self.Shop" />
           <EntitySet Name="TypeOfEquipments" EntityType="Self.TypeOfEquipment" />
+          <AssociationSet Name="FK_Equipment_Shop" Association="Self.FK_Equipment_Shop">
+            <End Role="Shop" EntitySet="Shops" />
+            <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
           <AssociationSet Name="FK_Equipment_TypeOfEquipment" Association="Self.FK_Equipment_TypeOfEquipment">
             <End Role="TypeOfEquipment" EntitySet="TypeOfEquipments" />
             <End Role="Equipment" EntitySet="Equipments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Shop_Equipment" Association="Self.FK_Shop_Equipment">
-            <End Role="Equipment" EntitySet="Equipments" />
-            <End Role="Shop" EntitySet="Shops" />
-          </AssociationSet>
           <AssociationSet Name="FK_Ninja_Inventory" Association="Self.FK_Ninja_Inventory">
             <End Role="Inventory" EntitySet="Inventories" />
-            <End Role="Ninja" EntitySet="Ninjas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ninja_Shop" Association="Self.FK_Ninja_Shop">
-            <End Role="Shop" EntitySet="Shops" />
             <End Role="Ninja" EntitySet="Ninjas" />
           </AssociationSet>
           <AssociationSet Name="EquipmentInventory" Association="Self.EquipmentInventory">
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="Inventory" EntitySet="Inventories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Ninja_Shop1" Association="LeagueOfNinja.DBModel.FK_Ninja_Shop1">
+            <End Role="Shop" EntitySet="Shops" />
+            <End Role="Ninja" EntitySet="Ninjas" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Ninja_Shop1">
+          <End Type="LeagueOfNinja.DBModel.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="LeagueOfNinja.DBModel.Ninja" Role="Ninja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ShopId" />
+            </Principal>
+            <Dependent Role="Ninja">
+              <PropertyRef Name="ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LeagueOfNinjaDBModelStoreContainer" CdmEntityContainer="NinjaEntities">
-          <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.C__RefactorLog">
-              <MappingFragment StoreEntitySet="__RefactorLog">
-                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
             <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
@@ -337,6 +317,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
                 <ScalarProperty Name="Intelligence" ColumnName="Intelligence" />
                 <ScalarProperty Name="Agility" ColumnName="Agility" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -351,6 +332,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <EntitySetMapping Name="Ninjas">
             <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Ninja">
               <MappingFragment StoreEntitySet="Ninja">
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
                 <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Money" ColumnName="Money" />
@@ -362,7 +344,6 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
               <MappingFragment StoreEntitySet="Shop">
                 <ScalarProperty Name="ShopId" ColumnName="ShopId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
