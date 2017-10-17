@@ -14,6 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using LeagueOfNinja.ViewModel.NinjaViewModel;
 using Microsoft.Practices.ServiceLocation;
 
 namespace LeagueOfNinja.ViewModel

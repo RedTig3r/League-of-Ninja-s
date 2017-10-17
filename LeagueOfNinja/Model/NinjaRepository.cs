@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LeagueofNinja.Model
 {
-    class DummySongRepository : INinjaRepository
+    class NinjaRepository : INinjaRepository
     {
         public List<Ninja> GetNinjas()
         {

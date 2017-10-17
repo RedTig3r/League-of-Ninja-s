@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeagueOfNinja.ViewModel.VM.ItemVM
+namespace LeagueOfNinja.ViewModel.EquipmentViewModel
 {
     class AddEquipmentVM : ViewModelBase
     {

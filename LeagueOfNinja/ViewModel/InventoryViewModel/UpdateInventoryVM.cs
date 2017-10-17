@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeagueOfNinja.ViewModel.VM.InventoryVM
+namespace LeagueOfNinja.ViewModel.InventoryViewModel
 {
-    class AddInventoryVM : ViewModelBase
+    class UpdateInventoryVM : ViewModelBase
     {
     }
 }
