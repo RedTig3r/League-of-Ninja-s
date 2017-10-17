@@ -69,12 +69,8 @@
     <Build Include="Tables\Ninja.sql" />
     <Build Include="Tables\Inventory.sql" />
     <Build Include="Tables\TypeOfEquipment.sql" />
-    <Build Include="Tables\TypeOfState.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="LeagueOfNinja.DB.refactorlog" />
   </ItemGroup>
 </Project>

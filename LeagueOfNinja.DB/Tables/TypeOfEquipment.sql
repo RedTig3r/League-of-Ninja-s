@@ -1,4 +1,4 @@
 ﻿CREATE TABLE [dbo].[TypeOfEquipment]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[TypeOfEquipmentId] NVARCHAR(50) NOT NULL PRIMARY KEY
 )

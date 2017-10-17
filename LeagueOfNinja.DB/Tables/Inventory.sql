@@ -1,4 +1,4 @@
 ﻿CREATE TABLE [dbo].[Inventory]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[InventoryId] INT NOT NULL PRIMARY KEY
 )

@@ -14,10 +14,14 @@ namespace LeagueOfNinja.Model
     
     public partial class Equipment
     {
-        public int Id { get; set; }
-        public string Stats { get; set; }
+        public int EquipmentId { get; set; }
         public string Title { get; set; }
         public Nullable<int> Price { get; set; }
-        public string Categorie { get; set; }
+        public Nullable<int> Strength { get; set; }
+        public Nullable<int> Intelligence { get; set; }
+        public Nullable<int> Agility { get; set; }
+        public string Type { get; set; }
+    
+        public virtual TypeOfEquipment TypeOfEquipment { get; set; }
     }
 }

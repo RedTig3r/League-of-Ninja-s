@@ -62,6 +62,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -86,28 +87,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Dummies\DummyEquipmentRepo.cs" />
-    <Compile Include="Model\Dummies\DummyNinjaRepo.cs" />
-    <Compile Include="Model\MyEntities\Equipment.cs">
-      <DependentUpon>MyEntites.tt</DependentUpon>
+    <Compile Include="Model\Equipment.cs">
+      <DependentUpon>MyEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Dummies\EquipmentRepository.cs" />
-    <Compile Include="Model\MyEntities\MyEntites.Context.cs">
+    <Compile Include="Model\Inventory.cs">
+      <DependentUpon>MyEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MyEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyEntites.Context.tt</DependentUpon>
+      <DependentUpon>MyEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MyEntities\MyEntites.cs">
+    <Compile Include="Model\MyEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyEntites.tt</DependentUpon>
+      <DependentUpon>MyEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MyEntities\MyEntities.Designer.cs">
+    <Compile Include="Model\MyEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Dummies\NinjaRepository.cs" />
+    <Compile Include="Model\Ninja.cs">
+      <DependentUpon>MyEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TypeOfEquipment.cs">
+      <DependentUpon>MyEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\VM\EquipmentVM\AddEquipmentVM.cs" />
     <Compile Include="ViewModel\VM\EquipmentVM\EquipmentVM.cs.cs" />
     <Compile Include="ViewModel\VM\EquipmentVM\UpdateEquipmentVM.cs" />
@@ -152,7 +158,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Dummies\Ninja.cs" />
     <Compile Include="ViewModel\mvvmLight\MainVM.cs" />
     <Compile Include="ViewModel\mvvmLight\ViewModelLocator.cs" />
     <Compile Include="View\InventoryWindow.xaml.cs">
@@ -193,11 +198,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\MyEntities\MyEntities.edmx">
+    <EntityDeploy Include="Model\MyEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MyEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\MyEntities\MyEntities.edmx.diagram">
+    <None Include="Model\MyEntities.edmx.diagram">
       <DependentUpon>MyEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -217,15 +222,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\MyEntities\MyEntites.Context.tt">
+    <Content Include="Model\MyEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MyEntities.edmx</DependentUpon>
-      <LastGenOutput>MyEntites.Context.cs</LastGenOutput>
+      <LastGenOutput>MyEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\MyEntities\MyEntites.tt">
+    <Content Include="Model\MyEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MyEntities.edmx</DependentUpon>
-      <LastGenOutput>MyEntites.cs</LastGenOutput>
+      <LastGenOutput>MyEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
