@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Linq;
 using LeagueOfNinja.View;
 using LeagueofNinja.Model;
+using LeagueofNinja.Model.Repository;
 
 namespace LeagueOfNinja.ViewModel.NinjaViewModel
 {
