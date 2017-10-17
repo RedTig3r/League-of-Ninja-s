@@ -4,7 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LeagueOfNinja.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LeagueOfNinja.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="EquipmentId" />
@@ -30,6 +36,18 @@
           <Property Name="NinjaId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" />
           <Property Name="Money" Type="int" />
+        </EntityType>
+        <EntityType Name="NinjaGear">
+          <Key>
+            <PropertyRef Name="NinjaGearId" />
+          </Key>
+          <Property Name="NinjaGearId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeOfEquipment">
           <Key>
@@ -61,10 +79,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Ninja_NinjaGear">
+          <End Role="NinjaGear" Type="Self.NinjaGear" Multiplicity="1" />
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NinjaGear">
+              <PropertyRef Name="NinjaGearId" />
+            </Principal>
+            <Dependent Role="Ninja">
+              <PropertyRef Name="NinjaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="LeagueOfNinjaDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NinjaGear" EntityType="Self.NinjaGear" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfEquipment" EntityType="Self.TypeOfEquipment" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Equipment_TypeOfEquipment" Association="Self.FK_Equipment_TypeOfEquipment">
             <End Role="TypeOfEquipment" EntitySet="TypeOfEquipment" />
@@ -74,9 +107,12 @@
             <End Role="Inventory" EntitySet="Inventory" />
             <End Role="Ninja" EntitySet="Ninja" />
           </AssociationSet>
+          <AssociationSet Name="FK_Ninja_NinjaGear" Association="Self.FK_Ninja_NinjaGear">
+            <End Role="NinjaGear" EntitySet="NinjaGear" />
+            <End Role="Ninja" EntitySet="Ninja" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LeagueOfNinja.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -108,6 +144,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Money" Type="Int32" />
           <NavigationProperty Name="Inventory" Relationship="Self.FK_Ninja_Inventory" FromRole="Ninja" ToRole="Inventory" />
+          <NavigationProperty Name="NinjaGear" Relationship="LeagueOfNinja.Model.FK_Ninja_NinjaGear" FromRole="Ninja" ToRole="NinjaGear" />
         </EntityType>
         <EntityType Name="TypeOfEquipment">
           <Key>
@@ -153,7 +190,45 @@
             <End Role="Inventory" EntitySet="Inventories" />
             <End Role="Ninja" EntitySet="Ninjas" />
           </AssociationSet>
+          <EntitySet Name="C__RefactorLog" EntityType="LeagueOfNinja.Model.C__RefactorLog" />
+          <EntitySet Name="NinjaGears" EntityType="LeagueOfNinja.Model.NinjaGear" />
+          <EntitySet Name="Shops" EntityType="LeagueOfNinja.Model.Shop" />
+          <AssociationSet Name="FK_Ninja_NinjaGear" Association="LeagueOfNinja.Model.FK_Ninja_NinjaGear">
+            <End Role="NinjaGear" EntitySet="NinjaGears" />
+            <End Role="Ninja" EntitySet="Ninjas" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NinjaGear">
+          <Key>
+            <PropertyRef Name="NinjaGearId" />
+          </Key>
+          <Property Name="NinjaGearId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ninja" Relationship="LeagueOfNinja.Model.FK_Ninja_NinjaGear" FromRole="NinjaGear" ToRole="Ninja" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Ninja_NinjaGear">
+          <End Type="LeagueOfNinja.Model.NinjaGear" Role="NinjaGear" Multiplicity="1" />
+          <End Type="LeagueOfNinja.Model.Ninja" Role="Ninja" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NinjaGear">
+              <PropertyRef Name="NinjaGearId" />
+            </Principal>
+            <Dependent Role="Ninja">
+              <PropertyRef Name="NinjaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -193,6 +268,27 @@
             <EntityTypeMapping TypeName="LeagueOfNinja.Model.TypeOfEquipment">
               <MappingFragment StoreEntitySet="TypeOfEquipment">
                 <ScalarProperty Name="TypeOfEquipmentId" ColumnName="TypeOfEquipmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NinjaGears">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.NinjaGear">
+              <MappingFragment StoreEntitySet="NinjaGear">
+                <ScalarProperty Name="NinjaGearId" ColumnName="NinjaGearId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Shop">
+              <MappingFragment StoreEntitySet="Shop">
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

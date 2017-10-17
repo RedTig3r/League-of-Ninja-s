@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[Shop]
+(
+	[Id] INT NOT NULL PRIMARY KEY
+)
