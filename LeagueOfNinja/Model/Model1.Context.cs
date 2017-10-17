@@ -13,10 +13,10 @@ namespace LeagueOfNinja.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MyEntities : DbContext
+    public partial class NinjaEntities : DbContext
     {
-        public MyEntities()
-            : base("name=MyEntities")
+        public NinjaEntities()
+            : base("name=NinjaEntities")
         {
         }
     

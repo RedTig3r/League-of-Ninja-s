@@ -16,7 +16,7 @@ namespace LeagueOfNinja.Model
     {
         public int NinjaId { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Money { get; set; }
+        public int Money { get; set; }
     
         public virtual Inventory Inventory { get; set; }
         public virtual Shop Shop { get; set; }

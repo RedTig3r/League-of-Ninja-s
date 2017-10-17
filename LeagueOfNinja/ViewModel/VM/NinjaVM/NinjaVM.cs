@@ -2,20 +2,20 @@
 using LeagueOfNinja.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Linq;
+using System;
 
 namespace LeagueOfNinja.ViewModel
 {
     public class NinjaVM : ViewModelBase
     {
 
-        /*
-
         private Ninja _ninja;
 
         public int Id
         {
-            get { return _ninja.Id; }
-            set { _ninja.Id = value;  RaisePropertyChanged("Id"); }
+            get { return _ninja.NinjaId; }
+            set { _ninja.NinjaId = value;  RaisePropertyChanged("Id"); }
         }
 
         public string Name
@@ -26,9 +26,26 @@ namespace LeagueOfNinja.ViewModel
 
         public int Gold
         {
-            get { return _ninja.Gold; }
-            set { _ninja.Gold = value; RaisePropertyChanged("Gold"); }
+            get { return _ninja.Money; }
+            set { _ninja.Money = value; RaisePropertyChanged("Gold"); }
         }
-        */
+
+        internal Ninja ToModel()
+        {
+            return _ninja;
+        }
+
+       
+
+        public NinjaVM()
+        {
+            this._ninja = new Ninja();
+        }
+
+        public NinjaVM(Ninja ninja)
+        {
+            this._ninja = ninja;
+        }
+
     }
 }

@@ -83,9 +83,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DummyNinjaRepository.cs" />
     <Compile Include="Model\Equipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\INinjaRepository.cs" />
     <Compile Include="Model\Inventory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -109,7 +111,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\mvvmLight\MainViewModel.cs" />
-    <Compile Include="ViewModel\mvvmLight\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VM\EquipmentVM\AddEquipmentVM.cs" />
     <Compile Include="ViewModel\VM\EquipmentVM\EquipmentVM.cs.cs" />
     <Compile Include="ViewModel\VM\EquipmentVM\UpdateEquipmentVM.cs" />
