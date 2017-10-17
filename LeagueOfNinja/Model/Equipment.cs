@@ -14,6 +14,13 @@ namespace LeagueOfNinja.Model
     
     public partial class Equipment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Equipment()
+        {
+            this.Shop = new HashSet<Shop>();
+            this.Inventory = new HashSet<Inventory>();
+        }
+    
         public int EquipmentId { get; set; }
         public string Title { get; set; }
         public Nullable<int> Price { get; set; }
@@ -21,9 +28,11 @@ namespace LeagueOfNinja.Model
         public Nullable<int> Intelligence { get; set; }
         public Nullable<int> Agility { get; set; }
         public string Type { get; set; }
-        public int Shop_ShopId { get; set; }
     
         public virtual TypeOfEquipment TypeOfEquipment { get; set; }
-        public virtual Shop Shop { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shop> Shop { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventory> Inventory { get; set; }
     }
 }

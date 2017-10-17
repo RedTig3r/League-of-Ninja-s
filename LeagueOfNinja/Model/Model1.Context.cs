@@ -26,11 +26,11 @@ namespace LeagueOfNinja.Model
         }
     
         public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
-        public virtual DbSet<Equipment> Equipments { get; set; }
-        public virtual DbSet<Inventory> Inventories { get; set; }
-        public virtual DbSet<Ninja> Ninjas { get; set; }
-        public virtual DbSet<Shop> Shops { get; set; }
-        public virtual DbSet<TypeOfEquipment> TypeOfEquipments { get; set; }
-        public virtual DbSet<EquipmentInventory> EquipmentInventories { get; set; }
+        public virtual DbSet<C__RefactorLog1> C__RefactorLog1 { get; set; }
+        public virtual DbSet<Equipment> Equipment { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
+        public virtual DbSet<Ninja> Ninja { get; set; }
+        public virtual DbSet<Shop> Shop { get; set; }
+        public virtual DbSet<TypeOfEquipment> TypeOfEquipment { get; set; }
     }
 }

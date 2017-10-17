@@ -14,20 +14,11 @@ namespace LeagueOfNinja.Model
     
     public partial class Shop
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Shop()
-        {
-            this.Equipments = new HashSet<Equipment>();
-            this.Ninjas = new HashSet<Ninja>();
-        }
-    
         public int ShopId { get; set; }
-        public string ShopName { get; set; }
+        public string Name { get; set; }
         public int EquipmentId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ninja> Ninjas { get; set; }
+        public virtual Equipment Equipment { get; set; }
+        public virtual Ninja Ninja { get; set; }
     }
 }
