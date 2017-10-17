@@ -86,11 +86,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\DummyEquipmentRepo.cs" />
-    <Compile Include="Model\DummyNinjaRepo.cs" />
-    <Compile Include="Model\Equipment.cs" />
-    <Compile Include="Model\EquipmentRepository.cs" />
-    <Compile Include="Model\NinjaRepository.cs" />
+    <Compile Include="Model\Dummies\DummyEquipmentRepo.cs" />
+    <Compile Include="Model\Dummies\DummyNinjaRepo.cs" />
+    <Compile Include="Model\MyEntities\Equipment.cs">
+      <DependentUpon>MyEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Dummies\EquipmentRepository.cs" />
+    <Compile Include="Model\MyEntities\MyEntites.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyEntites.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MyEntities\MyEntites.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MyEntities\MyEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Dummies\NinjaRepository.cs" />
     <Compile Include="View\AddEquipmentWindow.xaml.cs">
       <DependentUpon>AddEquipmentWindow.xaml</DependentUpon>
     </Compile>
@@ -129,9 +146,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Ninja.cs" />
-    <Compile Include="ViewModel\MainVM.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Model\Dummies\Ninja.cs" />
+    <Compile Include="ViewModel\mvvmLight\MainVM.cs" />
+    <Compile Include="ViewModel\mvvmLight\ViewModelLocator.cs" />
     <Compile Include="View\InventoryWindow.xaml.cs">
       <DependentUpon>InventoryWindow.xaml</DependentUpon>
     </Compile>
@@ -170,6 +187,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Model\MyEntities\MyEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\MyEntities\MyEntities.edmx.diagram">
+      <DependentUpon>MyEntities.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -185,6 +209,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\MyEntities\MyEntites.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyEntities.edmx</DependentUpon>
+      <LastGenOutput>MyEntites.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\MyEntities\MyEntites.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyEntities.edmx</DependentUpon>
+      <LastGenOutput>MyEntites.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

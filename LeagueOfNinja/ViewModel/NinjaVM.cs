@@ -18,7 +18,7 @@ namespace LeagueOfNinja.ViewModel
 
         public string Name
         {
-            get { return _ninja.Name}
+            get { return _ninja.Name; }
             set { _ninja.Name = value; RaisePropertyChanged("Name"); }
         }
 
