@@ -4,14 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LeagueOfNinja.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__RefactorLog">
+      <Schema Namespace="LeagueOfNinja.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="C__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
           </Key>
           <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <EntityType Name="Equipment">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EquipmentInventories">
+          <Key>
+            <PropertyRef Name="EquipmentId" />
+            <PropertyRef Name="InventoryId" />
+          </Key>
+          <Property Name="EquipmentId" Type="int" Nullable="false" />
+          <Property Name="InventoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipments">
           <Key>
             <PropertyRef Name="EquipmentId" />
           </Key>
@@ -22,100 +32,127 @@
           <Property Name="Intelligence" Type="int" />
           <Property Name="Agility" Type="int" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Shop_ShopId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Inventory">
+        <EntityType Name="Inventories">
           <Key>
             <PropertyRef Name="InventoryId" />
           </Key>
           <Property Name="InventoryId" Type="int" Nullable="false" />
+          <Property Name="EquipmentId" Type="int" />
         </EntityType>
-        <EntityType Name="Ninja">
+        <EntityType Name="Ninjas">
           <Key>
             <PropertyRef Name="NinjaId" />
           </Key>
           <Property Name="NinjaId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" />
           <Property Name="Money" Type="int" />
+          <Property Name="ShopShopId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="NinjaGear">
+        <EntityType Name="Shops">
           <Key>
-            <PropertyRef Name="NinjaGearId" />
+            <PropertyRef Name="ShopId" />
           </Key>
-          <Property Name="NinjaGearId" Type="int" Nullable="false" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="ShopName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EquipmentId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Shop">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TypeOfEquipment">
+        <EntityType Name="TypeOfEquipments">
           <Key>
             <PropertyRef Name="TypeOfEquipmentId" />
           </Key>
           <Property Name="TypeOfEquipmentId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Equipment_TypeOfEquipment">
-          <End Role="TypeOfEquipment" Type="Self.TypeOfEquipment" Multiplicity="1" />
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <End Role="TypeOfEquipments" Type="Self.TypeOfEquipments" Multiplicity="1" />
+          <End Role="Equipments" Type="Self.Equipments" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TypeOfEquipment">
+            <Principal Role="TypeOfEquipments">
               <PropertyRef Name="TypeOfEquipmentId" />
             </Principal>
-            <Dependent Role="Equipment">
+            <Dependent Role="Equipments">
               <PropertyRef Name="Type" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ninja_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
+          <End Role="Inventories" Type="Self.Inventories" Multiplicity="1" />
+          <End Role="Ninjas" Type="Self.Ninjas" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Inventory">
+            <Principal Role="Inventories">
               <PropertyRef Name="InventoryId" />
             </Principal>
-            <Dependent Role="Ninja">
+            <Dependent Role="Ninjas">
               <PropertyRef Name="NinjaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ninja_NinjaGear">
-          <End Role="NinjaGear" Type="Self.NinjaGear" Multiplicity="1" />
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
+        <Association Name="FK_ShopEquipment">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+          <End Role="Equipments" Type="Self.Equipments" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="NinjaGear">
-              <PropertyRef Name="NinjaGearId" />
+            <Principal Role="Shops">
+              <PropertyRef Name="ShopId" />
             </Principal>
-            <Dependent Role="Ninja">
-              <PropertyRef Name="NinjaId" />
+            <Dependent Role="Equipments">
+              <PropertyRef Name="Shop_ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShopNinja">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+          <End Role="Ninjas" Type="Self.Ninjas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="ShopId" />
+            </Principal>
+            <Dependent Role="Ninjas">
+              <PropertyRef Name="ShopShopId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="LeagueOfNinjaDBModelStoreContainer">
-          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NinjaGear" EntityType="Self.NinjaGear" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TypeOfEquipment" EntityType="Self.TypeOfEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipments" EntityType="Self.Equipments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventories" EntityType="Self.Inventories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ninjas" EntityType="Self.Ninjas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfEquipments" EntityType="Self.TypeOfEquipments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipmentInventories" EntityType="Self.EquipmentInventories" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EquipmentInventories].[EquipmentId] AS [EquipmentId], 
+    [EquipmentInventories].[InventoryId] AS [InventoryId]
+    FROM [dbo].[EquipmentInventories] AS [EquipmentInventories]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Equipment_TypeOfEquipment" Association="Self.FK_Equipment_TypeOfEquipment">
-            <End Role="TypeOfEquipment" EntitySet="TypeOfEquipment" />
-            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="TypeOfEquipments" EntitySet="TypeOfEquipments" />
+            <End Role="Equipments" EntitySet="Equipments" />
           </AssociationSet>
           <AssociationSet Name="FK_Ninja_Inventory" Association="Self.FK_Ninja_Inventory">
-            <End Role="Inventory" EntitySet="Inventory" />
-            <End Role="Ninja" EntitySet="Ninja" />
+            <End Role="Inventories" EntitySet="Inventories" />
+            <End Role="Ninjas" EntitySet="Ninjas" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ninja_NinjaGear" Association="Self.FK_Ninja_NinjaGear">
-            <End Role="NinjaGear" EntitySet="NinjaGear" />
-            <End Role="Ninja" EntitySet="Ninja" />
+          <AssociationSet Name="FK_ShopEquipment" Association="Self.FK_ShopEquipment">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Equipments" EntitySet="Equipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShopNinja" Association="Self.FK_ShopNinja">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Ninjas" EntitySet="Ninjas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LeagueOfNinja.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LeagueOfNinja.DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="EquipmentId" />
@@ -127,14 +164,17 @@
           <Property Name="Intelligence" Type="Int32" />
           <Property Name="Agility" Type="Int32" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TypeOfEquipment" Relationship="Self.FK_Equipment_TypeOfEquipment" FromRole="Equipment" ToRole="TypeOfEquipment" />
+          <Property Name="Shop_ShopId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TypeOfEquipment" Relationship="Self.FK_Equipment_TypeOfEquipment" FromRole="Equipments" ToRole="TypeOfEquipments" />
+          <NavigationProperty Name="Shop" Relationship="Self.FK_ShopEquipment" FromRole="Equipments" ToRole="Shops" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="InventoryId" />
           </Key>
           <Property Name="InventoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ninja" Relationship="Self.FK_Ninja_Inventory" FromRole="Inventory" ToRole="Ninja" />
+          <Property Name="EquipmentId" Type="Int32" />
+          <NavigationProperty Name="Ninja" Relationship="Self.FK_Ninja_Inventory" FromRole="Inventories" ToRole="Ninjas" />
         </EntityType>
         <EntityType Name="Ninja">
           <Key>
@@ -143,101 +183,124 @@
           <Property Name="NinjaId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Money" Type="Int32" />
-          <NavigationProperty Name="Inventory" Relationship="Self.FK_Ninja_Inventory" FromRole="Ninja" ToRole="Inventory" />
-          <NavigationProperty Name="NinjaGear" Relationship="LeagueOfNinja.Model.FK_Ninja_NinjaGear" FromRole="Ninja" ToRole="NinjaGear" />
+          <Property Name="ShopShopId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Ninja_Inventory" FromRole="Ninjas" ToRole="Inventories" />
+          <NavigationProperty Name="Shop" Relationship="Self.FK_ShopNinja" FromRole="Ninjas" ToRole="Shops" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="ShopId" />
+          </Key>
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK_ShopEquipment" FromRole="Shops" ToRole="Equipments" />
+          <NavigationProperty Name="Ninjas" Relationship="Self.FK_ShopNinja" FromRole="Shops" ToRole="Ninjas" />
         </EntityType>
         <EntityType Name="TypeOfEquipment">
           <Key>
             <PropertyRef Name="TypeOfEquipmentId" />
           </Key>
           <Property Name="TypeOfEquipmentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_TypeOfEquipment" FromRole="TypeOfEquipment" ToRole="Equipment" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_TypeOfEquipment" FromRole="TypeOfEquipments" ToRole="Equipments" />
+        </EntityType>
+        <EntityType Name="EquipmentInventory">
+          <Key>
+            <PropertyRef Name="EquipmentId" />
+            <PropertyRef Name="InventoryId" />
+          </Key>
+          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+          <Property Name="InventoryId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Equipment_TypeOfEquipment">
-          <End Role="TypeOfEquipment" Type="Self.TypeOfEquipment" Multiplicity="1" />
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <End Role="TypeOfEquipments" Type="Self.TypeOfEquipment" Multiplicity="1" />
+          <End Role="Equipments" Type="Self.Equipment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TypeOfEquipment">
+            <Principal Role="TypeOfEquipments">
               <PropertyRef Name="TypeOfEquipmentId" />
             </Principal>
-            <Dependent Role="Equipment">
+            <Dependent Role="Equipments">
               <PropertyRef Name="Type" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ninja_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
+        <Association Name="FK_ShopEquipment">
+          <End Role="Shops" Type="Self.Shop" Multiplicity="1" />
+          <End Role="Equipments" Type="Self.Equipment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Inventory">
+            <Principal Role="Shops">
+              <PropertyRef Name="ShopId" />
+            </Principal>
+            <Dependent Role="Equipments">
+              <PropertyRef Name="Shop_ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ninja_Inventory">
+          <End Role="Inventories" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Ninjas" Type="Self.Ninja" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Inventories">
               <PropertyRef Name="InventoryId" />
             </Principal>
-            <Dependent Role="Ninja">
+            <Dependent Role="Ninjas">
               <PropertyRef Name="NinjaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_ShopNinja">
+          <End Role="Shops" Type="Self.Shop" Multiplicity="1" />
+          <End Role="Ninjas" Type="Self.Ninja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="ShopId" />
+            </Principal>
+            <Dependent Role="Ninjas">
+              <PropertyRef Name="ShopShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
           <EntitySet Name="Inventories" EntityType="Self.Inventory" />
           <EntitySet Name="Ninjas" EntityType="Self.Ninja" />
+          <EntitySet Name="Shops" EntityType="Self.Shop" />
           <EntitySet Name="TypeOfEquipments" EntityType="Self.TypeOfEquipment" />
+          <EntitySet Name="EquipmentInventories" EntityType="Self.EquipmentInventory" />
           <AssociationSet Name="FK_Equipment_TypeOfEquipment" Association="Self.FK_Equipment_TypeOfEquipment">
-            <End Role="TypeOfEquipment" EntitySet="TypeOfEquipments" />
-            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="TypeOfEquipments" EntitySet="TypeOfEquipments" />
+            <End Role="Equipments" EntitySet="Equipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShopEquipment" Association="Self.FK_ShopEquipment">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Equipments" EntitySet="Equipments" />
           </AssociationSet>
           <AssociationSet Name="FK_Ninja_Inventory" Association="Self.FK_Ninja_Inventory">
-            <End Role="Inventory" EntitySet="Inventories" />
-            <End Role="Ninja" EntitySet="Ninjas" />
+            <End Role="Inventories" EntitySet="Inventories" />
+            <End Role="Ninjas" EntitySet="Ninjas" />
           </AssociationSet>
-          <EntitySet Name="C__RefactorLog" EntityType="LeagueOfNinja.Model.C__RefactorLog" />
-          <EntitySet Name="NinjaGears" EntityType="LeagueOfNinja.Model.NinjaGear" />
-          <EntitySet Name="Shops" EntityType="LeagueOfNinja.Model.Shop" />
-          <AssociationSet Name="FK_Ninja_NinjaGear" Association="LeagueOfNinja.Model.FK_Ninja_NinjaGear">
-            <End Role="NinjaGear" EntitySet="NinjaGears" />
-            <End Role="Ninja" EntitySet="Ninjas" />
+          <AssociationSet Name="FK_ShopNinja" Association="Self.FK_ShopNinja">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Ninjas" EntitySet="Ninjas" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="C__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="Guid" Nullable="false" />
-        </EntityType>
-        <EntityType Name="NinjaGear">
-          <Key>
-            <PropertyRef Name="NinjaGearId" />
-          </Key>
-          <Property Name="NinjaGearId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ninja" Relationship="LeagueOfNinja.Model.FK_Ninja_NinjaGear" FromRole="NinjaGear" ToRole="Ninja" />
-        </EntityType>
-        <EntityType Name="Shop">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Ninja_NinjaGear">
-          <End Type="LeagueOfNinja.Model.NinjaGear" Role="NinjaGear" Multiplicity="1" />
-          <End Type="LeagueOfNinja.Model.Ninja" Role="Ninja" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="NinjaGear">
-              <PropertyRef Name="NinjaGearId" />
-            </Principal>
-            <Dependent Role="Ninja">
-              <PropertyRef Name="NinjaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LeagueOfNinjaDBModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="LeagueOfNinjaDBModelStoreContainer" CdmEntityContainer="MyEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="C__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Equipment">
-              <MappingFragment StoreEntitySet="Equipment">
+            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipments">
                 <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -245,50 +308,49 @@
                 <ScalarProperty Name="Intelligence" ColumnName="Intelligence" />
                 <ScalarProperty Name="Agility" ColumnName="Agility" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Shop_ShopId" ColumnName="Shop_ShopId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inventories">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Inventory">
-              <MappingFragment StoreEntitySet="Inventory">
+            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventories">
                 <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ninjas">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Ninja">
-              <MappingFragment StoreEntitySet="Ninja">
+            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Ninja">
+              <MappingFragment StoreEntitySet="Ninjas">
                 <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Money" ColumnName="Money" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TypeOfEquipments">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.TypeOfEquipment">
-              <MappingFragment StoreEntitySet="TypeOfEquipment">
-                <ScalarProperty Name="TypeOfEquipmentId" ColumnName="TypeOfEquipmentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.C__RefactorLog">
-              <MappingFragment StoreEntitySet="__RefactorLog">
-                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NinjaGears">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.NinjaGear">
-              <MappingFragment StoreEntitySet="NinjaGear">
-                <ScalarProperty Name="NinjaGearId" ColumnName="NinjaGearId" />
+                <ScalarProperty Name="ShopShopId" ColumnName="ShopShopId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shops">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Shop">
-              <MappingFragment StoreEntitySet="Shop">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Shop">
+              <MappingFragment StoreEntitySet="Shops">
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfEquipments">
+            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.TypeOfEquipment">
+              <MappingFragment StoreEntitySet="TypeOfEquipments">
+                <ScalarProperty Name="TypeOfEquipmentId" ColumnName="TypeOfEquipmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentInventories">
+            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.EquipmentInventory">
+              <MappingFragment StoreEntitySet="EquipmentInventories">
+                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

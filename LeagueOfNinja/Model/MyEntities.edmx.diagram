@@ -4,17 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="405f4ec4add2476eaabe0209a4d690a4" Name="Diagram1" ZoomLevel="126">
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.Equipment" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.Inventory" Width="1.5" PointX="9.125" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.Ninja" Width="1.5" PointX="12.25" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.TypeOfEquipment" Width="1.5" PointX="1.375" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="LeagueOfNinja.Model.FK_Equipment_TypeOfEquipment" ManuallyRouted="false" />
-        <AssociationConnector Association="LeagueOfNinja.Model.FK_Ninja_Inventory" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.C__RefactorLog" Width="1.5" PointX="0.75" PointY="7.125" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.NinjaGear" Width="1.5" PointX="12.25" PointY="7" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.Shop" Width="1.5" PointX="2.75" PointY="3.75" />
-        <AssociationConnector Association="LeagueOfNinja.Model.FK_Ninja_NinjaGear" />
+      <Diagram DiagramId="6339c690f26442b5a3e3ac4bfa884117" Name="Diagram1">
+        <EntityTypeShape EntityType="LeagueOfNinja.DBModel.C__RefactorLog" Width="1.5" PointX="1" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfNinja.DBModel.Equipment" Width="1.5" PointX="4.625" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfNinja.DBModel.Inventory" Width="1.5" PointX="8" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfNinja.DBModel.Ninja" Width="1.5" PointX="11.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfNinja.DBModel.Shop" Width="1.5" PointX="4.625" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfNinja.DBModel.TypeOfEquipment" Width="1.5" PointX="1.125" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfNinja.DBModel.EquipmentInventory" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="LeagueOfNinja.DBModel.FK_Equipment_TypeOfEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="LeagueOfNinja.DBModel.FK_ShopEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="LeagueOfNinja.DBModel.FK_Ninja_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="LeagueOfNinja.DBModel.FK_ShopNinja" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

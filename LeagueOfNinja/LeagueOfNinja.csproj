@@ -87,7 +87,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\C__RefactorLog.cs">
+      <DependentUpon>MyEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Equipment.cs">
+      <DependentUpon>MyEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EquipmentInventory.cs">
       <DependentUpon>MyEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Inventory.cs">
@@ -109,6 +115,9 @@
       <DependentUpon>MyEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Ninja.cs">
+      <DependentUpon>MyEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Shop.cs">
       <DependentUpon>MyEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TypeOfEquipment.cs">

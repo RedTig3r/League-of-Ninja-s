@@ -12,18 +12,9 @@ namespace LeagueOfNinja.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipment
+    public partial class EquipmentInventory
     {
         public int EquipmentId { get; set; }
-        public string Title { get; set; }
-        public Nullable<int> Price { get; set; }
-        public Nullable<int> Strength { get; set; }
-        public Nullable<int> Intelligence { get; set; }
-        public Nullable<int> Agility { get; set; }
-        public string Type { get; set; }
-        public int Shop_ShopId { get; set; }
-    
-        public virtual TypeOfEquipment TypeOfEquipment { get; set; }
-        public virtual Shop Shop { get; set; }
+        public int InventoryId { get; set; }
     }
 }

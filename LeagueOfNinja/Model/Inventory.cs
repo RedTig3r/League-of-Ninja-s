@@ -15,6 +15,7 @@ namespace LeagueOfNinja.Model
     public partial class Inventory
     {
         public int InventoryId { get; set; }
+        public Nullable<int> EquipmentId { get; set; }
     
         public virtual Ninja Ninja { get; set; }
     }

@@ -13,10 +13,10 @@ namespace LeagueOfNinja.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class MyEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public MyEntities()
+            : base("name=MyEntities")
         {
         }
     
@@ -25,9 +25,12 @@ namespace LeagueOfNinja.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<Equipment> Equipments { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Ninja> Ninjas { get; set; }
+        public virtual DbSet<Shop> Shops { get; set; }
         public virtual DbSet<TypeOfEquipment> TypeOfEquipments { get; set; }
+        public virtual DbSet<EquipmentInventory> EquipmentInventories { get; set; }
     }
 }

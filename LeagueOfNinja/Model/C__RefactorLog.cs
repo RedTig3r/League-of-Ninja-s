@@ -12,14 +12,8 @@ namespace LeagueOfNinja.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Ninja
+    public partial class C__RefactorLog
     {
-        public int NinjaId { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> Money { get; set; }
-        public int ShopShopId { get; set; }
-    
-        public virtual Inventory Inventory { get; set; }
-        public virtual Shop Shop { get; set; }
+        public System.Guid OperationKey { get; set; }
     }
 }

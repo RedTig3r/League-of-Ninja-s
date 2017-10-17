@@ -9,5 +9,4 @@
     [Type] NVARCHAR(50) NOT NULL, 
     CONSTRAINT [FK_Equipment_TypeOfEquipment] FOREIGN KEY ([Type]) REFERENCES [dbo].[TypeOfEquipment]([TypeOfEquipmentId]), 
 
-  
 )
