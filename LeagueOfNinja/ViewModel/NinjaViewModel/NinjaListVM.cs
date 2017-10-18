@@ -13,7 +13,9 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 {
     public class NinjaListVM : ViewModelBase
     {
-        private AddNinjaVM _addNinjaWindow;
+        private AddNinjaWindow _addNinjaWindow;
+
+        private UpdateNinjaWindow _updateNinjaWindow;
 
         INinjaRepository ninjaRepo;
 
@@ -42,31 +44,57 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
             var ninjaList = ninjaRepo.GetNinjas().Select(s => new NinjaVM(s));
             Ninjas = new ObservableCollection<NinjaVM>(ninjaList);
 
+            ShowAddNinjaCommand = new RelayCommand(ShowAddNinja , CanShowAddNinja);
+            ShowUpdateNinjaCommand = new RelayCommand(ShowUpdateNinja, CanUpdateNinja);
+            DeleteNinjaCommand = new RelayCommand(DeleteNinja);
 
         }
 
-        public void ShowUpdateNinja()
-        {
-            var updateNinja = new UpdateNinjaWindow();
-            updateNinja.Show();
-        }
+        //---  Create ---
 
         public void ShowAddNinja()
         {
-            //_addNinjaWindow = new AddNinjaWindow();
-            //_addNinjaWindow.Show();
+            _addNinjaWindow = new AddNinjaWindow();
+            _addNinjaWindow.Show();
         }
 
         public bool CanShowAddNinja()
         {
-            //return _addNinjaWindow != null ? !_addNinjaWindow.IsVisible : true;
-            return true;
+            return _addNinjaWindow != null ? !_addNinjaWindow.IsVisible : true;
         }
+
 
         public void HideAddNinja()
         {
-          //_addNinjaWindow.Close();
+            _addNinjaWindow.Close();
         }
+
+
+
+        //--- Update ---
+
+        public void ShowUpdateNinja()
+        {
+            _updateNinjaWindow = new UpdateNinjaWindow();
+            _updateNinjaWindow.Show();
+        }
+
+
+        public bool CanUpdateNinja()
+        {
+            return _addNinjaWindow != null ? !_addNinjaWindow.IsVisible : true;
+        }
+
+
+
+        public void HideUpdateNinja()
+        {
+            _updateNinjaWindow.Close();
+        }
+
+
+
+        //--- Delete ---
 
         private void DeleteNinja()
         {

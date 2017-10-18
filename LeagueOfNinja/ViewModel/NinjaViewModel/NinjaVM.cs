@@ -25,10 +25,10 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
             set { _ninja.Name = value; RaisePropertyChanged("Name"); }
         }
 
-        public int Gold
+        public int Money
         {
             get { return _ninja.Money; }
-            set { _ninja.Money = value; RaisePropertyChanged("Gold"); }
+            set { _ninja.Money = value; RaisePropertyChanged("Money"); }
         }
 
         internal Ninja ToModel()

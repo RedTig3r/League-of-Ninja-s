@@ -27,7 +27,7 @@ namespace LeagueOfNinja.ViewModel
     public class ViewModelLocator
     {
 
-        private NinjaVM _ninjaVM;
+        private NinjaListVM _ninjaListVM;
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
@@ -50,18 +50,42 @@ namespace LeagueOfNinja.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public NinjaVM Main
+        public NinjaListVM NinjaListVM
         {
             get
             {
-                if(_ninjaVM == null)
-                _ninjaVM = new NinjaVM();
+                if(_ninjaListVM == null)
+                    _ninjaListVM = new NinjaListVM();
 
 
-                return _ninjaVM;
+                return _ninjaListVM;
             }
         }
-        
+
+
+        public AddNinjaVM AddNinjaVM
+        {
+            get
+            {
+         
+                return new AddNinjaVM();
+            }
+        }
+
+
+        public UpdateNinjaVM UpdateNinjaVM
+        {
+            get
+            {
+
+                return new UpdateNinjaVM();
+            }
+        }
+
+
+
+
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

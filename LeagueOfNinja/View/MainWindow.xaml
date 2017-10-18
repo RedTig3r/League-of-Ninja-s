@@ -6,15 +6,39 @@
         xmlns:local="clr-namespace:LeagueOfNinja"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="500"
-        DataContext="{Binding Main, Source={StaticResource Locator}}">
+        DataContext="{Binding NinjaListVM, Source={StaticResource Locator}}">
 
 
     <StackPanel>
 
-      
-       
+        <Grid>
+            <TextBlock Text="Ninja Collection" Margin="10,5,10,5" FontSize="24" />
+            <Button Width="100" Height="50" FontSize="15" Content="Add ninja" Command="{Binding ShowAddNinjaCommand}"></Button>
+            
+        </Grid>
 
-    
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedNinja, Mode=TwoWay}" ItemsSource="{Binding Ninjas}"  Margin="10,5,10,0" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Ninja name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Amount of money" Binding="{Binding Money}" />
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.ShowUpdateNinjaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">Update</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.DeleteNinjaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">Update</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
 
 
     </StackPanel>
