@@ -5,11 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="LeagueOfNinja.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="EquipmentId" />
           </Key>
-          <Property Name="EquipmentId" Type="int" Nullable="false" />
+          <Property Name="EquipmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="Strength" Type="int" Nullable="false" />
@@ -32,14 +38,13 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Key>
             <PropertyRef Name="InventoryId" />
           </Key>
-          <Property Name="InventoryId" Type="int" Nullable="false" />
-          <Property Name="EquipmentId" Type="int" Nullable="false" />
+          <Property Name="InventoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Ninja">
           <Key>
             <PropertyRef Name="NinjaId" />
           </Key>
-          <Property Name="NinjaId" Type="int" Nullable="false" />
+          <Property Name="NinjaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Money" Type="int" Nullable="false" />
           <Property Name="ShopId" Type="int" Nullable="false" />
@@ -48,7 +53,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Key>
             <PropertyRef Name="ShopId" />
           </Key>
-          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="ShopId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeOfEquipment">
@@ -130,6 +135,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="LeagueOfNinjaDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
@@ -169,7 +175,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LeagueOfNinja.DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LeagueOfNinja.Model.Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="EquipmentId" />
@@ -191,7 +197,6 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             <PropertyRef Name="InventoryId" />
           </Key>
           <Property Name="InventoryId" Type="Int32" Nullable="false" />
-          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ninja" Relationship="Self.FK_Ninja_Inventory" FromRole="Inventory" ToRole="Ninja" />
           <NavigationProperty Name="Equipments" Relationship="Self.EquipmentInventory" FromRole="Inventory" ToRole="Equipment" />
         </EntityType>
@@ -204,7 +209,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Property Name="Money" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Inventory" Relationship="Self.FK_Ninja_Inventory" FromRole="Ninja" ToRole="Inventory" />
           <Property Name="ShopId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Shop" Relationship="LeagueOfNinja.DBModel.FK_Ninja_Shop1" FromRole="Ninja" ToRole="Shop" />
+          <NavigationProperty Name="Shop" Relationship="LeagueOfNinja.Model.Entities.FK_Ninja_Shop1" FromRole="Ninja" ToRole="Shop" />
         </EntityType>
         <EntityType Name="Shop">
           <Key>
@@ -213,7 +218,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Property Name="ShopId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_Shop" FromRole="Shop" ToRole="Equipment" />
-          <NavigationProperty Name="Ninjas" Relationship="LeagueOfNinja.DBModel.FK_Ninja_Shop1" FromRole="Shop" ToRole="Ninja" />
+          <NavigationProperty Name="Ninjas" Relationship="LeagueOfNinja.Model.Entities.FK_Ninja_Shop1" FromRole="Shop" ToRole="Ninja" />
         </EntityType>
         <EntityType Name="TypeOfEquipment">
           <Key>
@@ -284,14 +289,15 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="Inventory" EntitySet="Inventories" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ninja_Shop1" Association="LeagueOfNinja.DBModel.FK_Ninja_Shop1">
+          <AssociationSet Name="FK_Ninja_Shop1" Association="LeagueOfNinja.Model.Entities.FK_Ninja_Shop1">
             <End Role="Shop" EntitySet="Shops" />
             <End Role="Ninja" EntitySet="Ninjas" />
           </AssociationSet>
+          <EntitySet Name="C__RefactorLog" EntityType="LeagueOfNinja.Model.Entities.C__RefactorLog" />
         </EntityContainer>
         <Association Name="FK_Ninja_Shop1">
-          <End Type="LeagueOfNinja.DBModel.Shop" Role="Shop" Multiplicity="1" />
-          <End Type="LeagueOfNinja.DBModel.Ninja" Role="Ninja" Multiplicity="*" />
+          <End Type="LeagueOfNinja.Model.Entities.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="LeagueOfNinja.Model.Entities.Ninja" Role="Ninja" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shop">
               <PropertyRef Name="ShopId" />
@@ -301,6 +307,12 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -308,7 +320,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LeagueOfNinjaDBModelStoreContainer" CdmEntityContainer="NinjaEntities">
           <EntitySetMapping Name="Equipments">
-            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Equipment">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
                 <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -322,15 +334,14 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inventories">
-            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Inventory">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
                 <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
-                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ninjas">
-            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Ninja">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.Ninja">
               <MappingFragment StoreEntitySet="Ninja">
                 <ScalarProperty Name="ShopId" ColumnName="ShopId" />
                 <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
@@ -340,7 +351,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shops">
-            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.Shop">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.Shop">
               <MappingFragment StoreEntitySet="Shop">
                 <ScalarProperty Name="ShopId" ColumnName="ShopId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -348,13 +359,13 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfEquipments">
-            <EntityTypeMapping TypeName="LeagueOfNinja.DBModel.TypeOfEquipment">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.TypeOfEquipment">
               <MappingFragment StoreEntitySet="TypeOfEquipment">
                 <ScalarProperty Name="TypeOfEquipmentId" ColumnName="TypeOfEquipmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="EquipmentInventory" TypeName="LeagueOfNinja.DBModel.EquipmentInventory" StoreEntitySet="EquipmentInventory">
+          <AssociationSetMapping Name="EquipmentInventory" TypeName="LeagueOfNinja.Model.Entities.EquipmentInventory" StoreEntitySet="EquipmentInventory">
             <EndProperty Name="Equipment">
               <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
             </EndProperty>
@@ -362,6 +373,13 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
               <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

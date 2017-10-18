@@ -83,6 +83,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Entities\C__RefactorLog.cs">
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Entities\Equipment.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
@@ -207,7 +210,9 @@
     <None Include="Model\Entities\NinjaEntities.edmx.diagram">
       <DependentUpon>NinjaEntities.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

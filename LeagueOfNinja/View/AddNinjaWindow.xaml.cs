@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LeagueOfNinja.ViewModel.NinjaViewModel;
 
 namespace LeagueOfNinja.View
 {
@@ -19,6 +20,8 @@ namespace LeagueOfNinja.View
     /// </summary>
     public partial class AddNinjaWindow : Window
     {
+        private NinjaListVM ninjaListVM;
+
         public AddNinjaWindow()
         {
             InitializeComponent();

@@ -30,5 +30,6 @@ namespace LeagueOfNinja.Model.Entities
         public virtual DbSet<Ninja> Ninjas { get; set; }
         public virtual DbSet<Shop> Shops { get; set; }
         public virtual DbSet<TypeOfEquipment> TypeOfEquipments { get; set; }
+        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
     }
 }

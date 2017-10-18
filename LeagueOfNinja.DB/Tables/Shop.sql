@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Shop]
 (
-	[ShopId] INT NOT NULL PRIMARY KEY, 
+	[ShopId] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Name] VARCHAR(50) NOT NULL, 
   
 )

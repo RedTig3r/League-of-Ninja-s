@@ -68,7 +68,7 @@ namespace LeagueOfNinja.ViewModel
             get
             {
          
-                return new AddNinjaVM();
+                return new AddNinjaVM(this.NinjaListVM);
             }
         }
 
@@ -78,7 +78,7 @@ namespace LeagueOfNinja.ViewModel
             get
             {
 
-                return new UpdateNinjaVM();
+                return new UpdateNinjaVM(this.NinjaListVM);
             }
         }
 

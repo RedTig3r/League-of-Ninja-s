@@ -9,5 +9,14 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 {
     public class UpdateNinjaVM : ViewModelBase
     {
+
+
+        private NinjaListVM _ninjaListVM;
+
+        public UpdateNinjaVM(NinjaListVM ninjaListVM)
+        {
+            this._ninjaListVM = ninjaListVM;
+        }
+
     }
 }

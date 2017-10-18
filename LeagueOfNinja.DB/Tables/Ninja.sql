@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Ninja]
 (
-	[NinjaId] INT NOT NULL PRIMARY KEY, 
+	[NinjaId] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Name] NCHAR(50) NOT NULL, 
     [Money] INT NOT NULL, 
     [ShopId] INT NOT NULL, 

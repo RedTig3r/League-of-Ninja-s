@@ -21,7 +21,6 @@ namespace LeagueOfNinja.Model.Entities
         }
     
         public int InventoryId { get; set; }
-        public int EquipmentId { get; set; }
     
         public virtual Ninja Ninja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
