@@ -11,17 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using LeagueOfNinja.ViewModel.NinjaViewModel;
 
 namespace LeagueOfNinja.View
 {
     /// <summary>
-    /// Interaction logic for AddNinjaWindow.xaml
+    /// Interaction logic for VisualGearWindow.xaml
     /// </summary>
-    public partial class AddNinjaWindow : Window
+    public partial class VisualGearWindow : Window
     {
-       
-        public AddNinjaWindow()
+        public VisualGearWindow()
         {
             InitializeComponent();
         }
