@@ -19,7 +19,22 @@
         <TextBox MaxLength="50" Text="{Binding Path=NinjaVM.Name, Mode=TwoWay}" />
 
         <TextBlock Text="Start money:" Margin="0,5,0,0" />
-        <TextBox MaxLength="50" Text="{Binding Path=Ninja.Money, Mode=TwoWay}" />
+        <StackPanel>
+            <ComboBox SelectedValue="{Binding Path=Ninja.Money}">
+                <ComboBoxItem IsSelected="True">1000</ComboBoxItem>
+                <ComboBoxItem>5000</ComboBoxItem>
+                <ComboBoxItem>10000</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+
+        <TextBlock Text="Start money:" Margin="0,5,0,0" />
+        <StackPanel>
+            <ComboBox SelectedValue="{Binding Path=Ninja.Money}">
+                <ComboBoxItem IsSelected="True">1000</ComboBoxItem>
+                <ComboBoxItem>5000</ComboBoxItem>
+                <ComboBoxItem>10000</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
 
         <Button Content="Add ninja" Command="{Binding AddNinjaICommand}" CommandParameter="{Binding AddNinjaICommand}"
                     Width="100"  HorizontalAlignment="Center" Margin="0,5,0,0" />
