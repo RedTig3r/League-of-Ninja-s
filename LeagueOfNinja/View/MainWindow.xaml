@@ -13,7 +13,7 @@
 
         <Grid>
             <TextBlock Text="Ninja Collection" Margin="10,5,10,5" FontSize="24" />
-            <Button Width="100" Height="50" FontSize="15" Content="Add ninja" Command="{Binding ShowAddNinjaCommand}"></Button>
+            <Button Width="100" Height="50" FontSize="15" Content="Add ninja" Command="{Binding ShowAddNinjaCommand}" Margin="382,0,10,0"></Button>
             
         </Grid>
 

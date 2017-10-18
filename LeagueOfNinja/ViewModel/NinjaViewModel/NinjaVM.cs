@@ -34,9 +34,7 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
         internal Ninja ToModel()
         {
             return _ninja;
-        }
-
-       
+        }       
 
         public NinjaVM()
         {
