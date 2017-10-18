@@ -10,4 +10,10 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-/*:r .\Seeds\Equipment.sql  */
+:r .\Seeds\InsertTypeOfEquipment.sql
+:r .\Seeds\InsertShop.sql
+:r .\Seeds\InsertInventory.sql 
+:r .\Seeds\InsertNinja.sql
+/*
+
+*/

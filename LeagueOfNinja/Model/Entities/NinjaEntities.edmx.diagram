@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="LeagueOfNinja.Model.Entities.TypeOfEquipment" Width="1.5" PointX="3.625" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="LeagueOfNinja.Model.Entities.FK_Equipment_Shop" ManuallyRouted="false" />
         <AssociationConnector Association="LeagueOfNinja.Model.Entities.FK_Equipment_TypeOfEquipment" ManuallyRouted="false" />
-        <AssociationConnector Association="LeagueOfNinja.Model.Entities.FK_Ninja_Inventory" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="LeagueOfNinja.Model.Entities.FK_Ninja_Inventory" />
         <AssociationConnector Association="LeagueOfNinja.Model.Entities.EquipmentInventory" ManuallyRouted="false" />
         <AssociationConnector Association="LeagueOfNinja.Model.Entities.FK_Ninja_Shop1" />
         <EntityTypeShape EntityType="LeagueOfNinja.Model.Entities.C__RefactorLog" Width="1.5" PointX="0.75" PointY="0.75" />

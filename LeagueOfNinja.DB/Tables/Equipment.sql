@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Equipment]
 (
-	[EquipmentId] INT NOT NULL PRIMARY KEY IDENTITY, 
+	[EquipmentId] INT NOT NULL PRIMARY KEY,
     [Title] NVARCHAR(50) NOT NULL, 
     [Price] INT NOT NULL, 
     [Strength] INT NOT NULL, 

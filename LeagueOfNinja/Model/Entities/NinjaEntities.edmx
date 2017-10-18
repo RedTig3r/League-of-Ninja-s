@@ -15,7 +15,7 @@
           <Key>
             <PropertyRef Name="EquipmentId" />
           </Key>
-          <Property Name="EquipmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EquipmentId" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="Strength" Type="int" Nullable="false" />
@@ -38,13 +38,13 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Key>
             <PropertyRef Name="InventoryId" />
           </Key>
-          <Property Name="InventoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InventoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Ninja">
           <Key>
             <PropertyRef Name="NinjaId" />
           </Key>
-          <Property Name="NinjaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NinjaId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Money" Type="int" Nullable="false" />
           <Property Name="ShopId" Type="int" Nullable="false" />
@@ -53,7 +53,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <Key>
             <PropertyRef Name="ShopId" />
           </Key>
-          <Property Name="ShopId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeOfEquipment">
@@ -110,6 +110,18 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inventory_Ninja">
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ninja">
+              <PropertyRef Name="NinjaId" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="InventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ninja_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
@@ -162,6 +174,10 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           <AssociationSet Name="FK_EquipmentInventory_Inventory" Association="Self.FK_EquipmentInventory_Inventory">
             <End Role="Inventory" EntitySet="Inventory" />
             <End Role="EquipmentInventory" EntitySet="EquipmentInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Ninja" Association="Self.FK_Inventory_Ninja">
+            <End Role="Ninja" EntitySet="Ninja" />
+            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_Ninja_Inventory" Association="Self.FK_Ninja_Inventory">
             <End Role="Inventory" EntitySet="Inventory" />
@@ -252,8 +268,8 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ninja_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="0..1" />
+          <End Type="Self.Inventory" Multiplicity="1" Role="Inventory" />
+          <End Type="Self.Ninja" Multiplicity="0..1" Role="Ninja" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
               <PropertyRef Name="InventoryId" />
@@ -282,8 +298,8 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentInventory' does not 
             <End Role="Equipment" EntitySet="Equipments" />
           </AssociationSet>
           <AssociationSet Name="FK_Ninja_Inventory" Association="Self.FK_Ninja_Inventory">
-            <End Role="Inventory" EntitySet="Inventories" />
-            <End Role="Ninja" EntitySet="Ninjas" />
+            <End EntitySet="Inventories" Role="Inventory" />
+            <End EntitySet="Ninjas" Role="Ninja" />
           </AssociationSet>
           <AssociationSet Name="EquipmentInventory" Association="Self.EquipmentInventory">
             <End Role="Equipment" EntitySet="Equipments" />
