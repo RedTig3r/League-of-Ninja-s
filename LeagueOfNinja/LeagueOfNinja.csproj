@@ -89,6 +89,9 @@
     <Compile Include="Model\Entities\Equipment.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Entities\EquipmentStatistic.cs">
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Entities\Inventory.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
@@ -114,6 +117,9 @@
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Entities\TypeOfEquipment.cs">
+      <DependentUpon>NinjaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Entities\TypOfStatistic.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Repository\NinjaRepository.cs" />

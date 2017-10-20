@@ -1,14 +1,15 @@
 ﻿MERGE INTO dbo.Ninja AS Target
 USING (values
- (1, 'Barieee Batsbak', 3000, 1),
- (2, 'Kenny SlideShadow', 3000, 1)
-) AS Source (NinjaId, Name, Money, ShopId)
+ (1, 'Barieee Batsbak', 1000),
+ (2, 'Kenny SlideShadow', 1000),
+  (3, 'Naked ninja', 5000)
+) AS Source (NinjaId, Name, Money)
 ON Target.NinjaId = Source.NinjaId
 When Not MATCHED BY TARGET THEN
- INSERT (NinjaId, Name, Money, ShopId)
- VALUES (NinjaId, Name, Money, ShopId)
+ INSERT (NinjaId, Name, Money)
+ VALUES (NinjaId, Name, Money)
 WHEN MATCHED THEN
 	UPDATE SET
+		NinjaId = Source.NinjaId,
 		Name = Source.Name,
-		Money = Source.Money,
-		ShopId = Source.ShopId;
+		Money = Source.Money;

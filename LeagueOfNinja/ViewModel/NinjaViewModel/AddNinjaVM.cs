@@ -23,6 +23,7 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
         {
             this._ninjaListVM = ninjaListVM;
             this.NinjaVM = new NinjaVM();
+          //  this.NinjaVM.Id = ninjaListVM.Ninjas.Count + 1;
             AddNinjaICommand = new RelayCommand(AddNinja, CanAddNinja);
         }
 

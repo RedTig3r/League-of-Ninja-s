@@ -18,7 +18,6 @@ namespace LeagueOfNinja.Model.Entities
         public Shop()
         {
             this.Equipments = new HashSet<Equipment>();
-            this.Ninjas = new HashSet<Ninja>();
         }
     
         public int ShopId { get; set; }
@@ -26,7 +25,5 @@ namespace LeagueOfNinja.Model.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipment> Equipments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ninja> Ninjas { get; set; }
     }
 }

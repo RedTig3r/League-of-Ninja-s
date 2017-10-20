@@ -25,11 +25,13 @@ namespace LeagueOfNinja.Model.Entities
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<Equipment> Equipments { get; set; }
-        public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Ninja> Ninjas { get; set; }
         public virtual DbSet<Shop> Shops { get; set; }
         public virtual DbSet<TypeOfEquipment> TypeOfEquipments { get; set; }
-        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
+        public virtual DbSet<TypOfStatistic> TypOfStatistics { get; set; }
+        public virtual DbSet<EquipmentStatistic> EquipmentStatistics { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
     }
 }

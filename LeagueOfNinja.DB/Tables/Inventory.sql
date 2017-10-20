@@ -1,5 +1,11 @@
 ﻿CREATE TABLE [dbo].[Inventory]
 (
-	[InventoryId] INT NOT NULL PRIMARY KEY, 
+	[NinjaId] INT NOT NULL,
+	[EquitmentId] INT NULL,
+
+
+	CONSTRAINT [FK_Inventory_Ninja] FOREIGN KEY ([NinjaId]) REFERENCES [dbo].[Ninja] ([NinjaId]),
+	CONSTRAINT  [FK_CompetitionTeam_Equitment]  FOREIGN KEY ([EquitmentId]) REFERENCES [dbo].[Equipment] ([EquitmentId]), 
+
 
 )

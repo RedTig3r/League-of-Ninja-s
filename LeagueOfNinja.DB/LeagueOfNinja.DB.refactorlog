@@ -14,4 +14,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="EquipmentId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="5edffd0e-b18d-46ac-b427-ac91c4ba9d4f" ChangeDateTime="10/18/2017 15:32:31">
+    <Property Name="ElementName" Value="[dbo].[Equipment].[ShopId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Equipment]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ShopNameId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bbd97089-222e-4319-aca5-481a3b5baa96" ChangeDateTime="10/18/2017 15:33:26">
+    <Property Name="ElementName" Value="[dbo].[Ninja].[ShopId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ninja]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ShopNameId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="de493a24-e135-4ab1-8174-487d7069d7e7" ChangeDateTime="10/20/2017 11:39:12">
+    <Property Name="ElementName" Value="[dbo].[Shop].[ShopNameId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Shop]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ShopId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="872d3b3a-d0d2-488e-a475-223bdaa69927" ChangeDateTime="10/20/2017 11:44:58">
+    <Property Name="ElementName" Value="[dbo].[Equipment].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Equipment]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EquitmentType" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2ea29288-d698-4ba0-a15e-2b9685d0c621" ChangeDateTime="10/20/2017 12:03:41">
+    <Property Name="ElementName" Value="[dbo].[Equipment].[Value]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Equipment]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EquitmentValue" />
+  </Operation>
 </Operations>

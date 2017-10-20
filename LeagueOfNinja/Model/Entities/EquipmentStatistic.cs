@@ -12,12 +12,13 @@ namespace LeagueOfNinja.Model.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Ninja
+    public partial class EquipmentStatistic
     {
-        public int NinjaId { get; set; }
-        public string Name { get; set; }
-        public int Money { get; set; }
+        public int EquitmentId { get; set; }
+        public string StatisticType { get; set; }
+        public int StatisticValue { get; set; }
     
-        public virtual Inventory Inventory { get; set; }
+        public virtual Equipment Equipment { get; set; }
+        public virtual TypOfStatistic TypOfStatistic { get; set; }
     }
 }

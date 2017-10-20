@@ -13,6 +13,24 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         private Ninja _ninja;
 
+  
+
+        public NinjaVM()
+        {
+            this._ninja = new Ninja();
+        }
+
+        public NinjaVM(Ninja ninja)
+        {
+            this._ninja = ninja;
+        }
+
+
+        internal Ninja ToModel()
+        {
+            return _ninja;
+        }
+
         public int Id
         {
             get { return _ninja.NinjaId; }
@@ -31,20 +49,11 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
             set { _ninja.Money = value; RaisePropertyChanged("Money"); }
         }
 
-        internal Ninja ToModel()
-        {
-            return _ninja;
-        }       
 
-        public NinjaVM()
-        {
-            this._ninja = new Ninja();
-        }
 
-        public NinjaVM(Ninja ninja)
-        {
-            this._ninja = ninja;
-        }
+   
+
+ 
 
     }
 }

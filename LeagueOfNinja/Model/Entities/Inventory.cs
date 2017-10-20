@@ -14,16 +14,10 @@ namespace LeagueOfNinja.Model.Entities
     
     public partial class Inventory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Inventory()
-        {
-            this.Equipments = new HashSet<Equipment>();
-        }
+        public int NinjaId { get; set; }
+        public Nullable<int> EquitmentId { get; set; }
     
-        public int InventoryId { get; set; }
-    
+        public virtual Equipment Equipment { get; set; }
         public virtual Ninja Ninja { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipments { get; set; }
     }
 }

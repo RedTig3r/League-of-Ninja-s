@@ -6,8 +6,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Linq;
 using LeagueOfNinja.View;
-using LeagueofNinja.Model;
 using LeagueofNinja.Model.Repository;
+using LeagueOfNinja.Model.Entities;
 
 namespace LeagueOfNinja.ViewModel.NinjaViewModel
 {
@@ -20,6 +20,8 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
         INinjaRepository ninjaRepo;
 
         public ObservableCollection<NinjaVM> Ninjas { get; set; }
+
+
                 
         private NinjaVM _selectedNinja;
 
@@ -98,7 +100,26 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         private void DeleteNinja()
         {
-            Ninjas.Remove(SelectedNinja);
+
+
+            using (var context = new NinjaEntities())
+            {
+                context.Ninjas.Remove(SelectedNinja.ToModel());
+                context.SaveChanges();
+            }
+
+            /*
+            try
+            {
+           
+            }
+            catch
+            {
+                throw;
+            }
+     
+             */
+
         }
 
     }
