@@ -97,11 +97,7 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
         //--- Delete ---
 
         private void DeleteNinja()
-        {
-
-            //Cascade Delete
-
-          
+        {    
 
             using (var context = new NinjaEntities())
             {

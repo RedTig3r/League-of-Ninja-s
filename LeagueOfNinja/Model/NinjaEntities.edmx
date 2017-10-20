@@ -262,7 +262,8 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentStatistic' does not 
         </EntityType>
         <Association Name="FK_CompetitionTeam_Equitment">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
-          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="Equipment">
               <PropertyRef Name="EquitmentId" />
@@ -309,8 +310,10 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentStatistic' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inventory_Ninja">
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" />
-          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" >
+          </End>
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="Ninja">
               <PropertyRef Name="NinjaId" />

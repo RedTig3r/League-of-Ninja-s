@@ -8,7 +8,7 @@
     PRIMARY KEY ([NinjaId], [EquitmentId]),
 
 	CONSTRAINT [FK_Inventory_Ninja] FOREIGN KEY ([NinjaId]) REFERENCES [dbo].[Ninja] ([NinjaId]),
-	CONSTRAINT  [FK_CompetitionTeam_Equitment]  FOREIGN KEY ([EquitmentId]) REFERENCES [dbo].[Equipment] ([EquitmentId]), 
+	CONSTRAINT  [FK_Inventory_Equitment]  FOREIGN KEY ([EquitmentId]) REFERENCES [dbo].[Equipment] ([EquitmentId]), 
 
 
 )
