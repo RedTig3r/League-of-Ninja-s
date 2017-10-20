@@ -31,12 +31,13 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
         private void AddNinja()
         {
             var ninja = Ninja.ToModel();
-            ninja.Money = 0;
+
             using (var context = new NinjaEntities())
             {
           
                 context.Ninjas.Add(ninja);
-                context.SaveChanges();             
+                context.Entry(ninja).State = EntityState.Added;
+                context.SaveChanges();
             }
 
             _ninjaListVM.NinjasOC.Add(Ninja);

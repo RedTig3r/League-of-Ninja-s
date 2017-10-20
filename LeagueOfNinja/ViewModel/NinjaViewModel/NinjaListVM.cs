@@ -98,17 +98,21 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         private void DeleteNinja()
         {
-                using (var context = new NinjaEntities())
-                {
 
-                    var ninja = SelectedNinja.ToModel();
+            //Cascade Delete
 
-                    context.Entry(ninja).State = EntityState.Deleted;
-                    context.SaveChanges();
-                }
+          
 
-                NinjasOC.Remove(SelectedNinja);
-            
+            using (var context = new NinjaEntities())
+            {
+                var ninja = SelectedNinja.ToModel();
+
+                context.Entry(ninja).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+
+            NinjasOC.Remove(SelectedNinja);
+
         }
 
     }
