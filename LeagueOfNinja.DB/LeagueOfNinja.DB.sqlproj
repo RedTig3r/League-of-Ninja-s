@@ -64,7 +64,7 @@
     <None Include="LeagueOfNinja.DB.publish.xml" />
     <None Include="Seeds\InsertTypeOfEquipment.sql" />
     <None Include="Seeds\InsertShop.sql" />
-    <None Include="Seeds\InsertInventory.sql" />
+    <None Include="Seeds\InsertInventoryItem.sql" />
     <None Include="Seeds\InsertNinja.sql" />
     <None Include="Seeds\InsertTypeOfStatistic.sql" />
     <None Include="Seeds\InsertEquipment.sql" />
@@ -73,7 +73,7 @@
   <ItemGroup>
     <Build Include="Tables\Ninja.sql" />
     <Build Include="Tables\Shop.sql" />
-    <Build Include="Tables\Inventory.sql" />
+    <Build Include="Tables\InventoryItem.sql" />
     <Build Include="Tables\Equipment.sql" />
     <Build Include="Tables\TypeOfEquipment.sql" />
     <Build Include="Tables\TypeOStatistic.sql" />

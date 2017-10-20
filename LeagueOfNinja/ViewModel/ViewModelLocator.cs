@@ -15,20 +15,17 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using LeagueOfNinja.ViewModel.NinjaViewModel;
+using LeagueOfNinja.View;
 using Microsoft.Practices.ServiceLocation;
 
 namespace LeagueOfNinja.ViewModel
 {
-
     /// <summary>
     /// This class contains static references to all the view models in the
     /// application and provides an entry point for the bindings.
     /// </summary>
     public class ViewModelLocator
     {
-
-        private NinjaListVM _ninjaListVM;
-
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
@@ -50,13 +47,15 @@ namespace LeagueOfNinja.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
+        private NinjaListVM _ninjaListVM;
+
+
         public NinjaListVM NinjaListVM
         {
             get
-            {
-                if(_ninjaListVM == null)
+            { //De service locator gebruikt een 'singleton' patroon.
+                if (_ninjaListVM == null)
                     _ninjaListVM = new NinjaListVM();
-
 
                 return _ninjaListVM;
             }
@@ -67,7 +66,7 @@ namespace LeagueOfNinja.ViewModel
         {
             get
             {
-         
+
                 return new AddNinjaVM(this.NinjaListVM);
             }
         }
@@ -83,12 +82,9 @@ namespace LeagueOfNinja.ViewModel
         }
 
 
-
-
-
         public static void Cleanup()
         {
-            // TODO Clear the ViewModels
+           
         }
     }
 }

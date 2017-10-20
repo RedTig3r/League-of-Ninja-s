@@ -16,4 +16,4 @@ Post-Deployment Script Template
 :r .\Seeds\InsertTypeOfStatistic.sql
 :r .\Seeds\InsertEquipment.sql
 :r .\Seeds\InsertEquipmentStatistic.sql
-:r .\Seeds\InsertInventory.sql 
+:r .\Seeds\InsertInventoryItem.sql

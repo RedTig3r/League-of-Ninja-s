@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LeagueOfNinja.Model.Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LeagueOfNinja.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -15,7 +15,7 @@
           <Key>
             <PropertyRef Name="EquitmentId" />
           </Key>
-          <Property Name="EquitmentId" Type="int" Nullable="false" />
+          <Property Name="EquitmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EquipmentValue" Type="int" Nullable="false" />
           <Property Name="EquitmentType" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -33,20 +33,20 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.EquipmentStatistic' does not 
           <Property Name="StatisticType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="StatisticValue" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Inventory">
+        <EntityType Name="InventoryItem">
           <Key>
             <PropertyRef Name="NinjaId" />
+            <PropertyRef Name="EquitmentId" />
           </Key>
           <Property Name="NinjaId" Type="int" Nullable="false" />
-          <Property Name="EquitmentId" Type="int" />
+          <Property Name="EquitmentId" Type="int" Nullable="false" />
+          <Property Name="IsUsingEquitment" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Ninja">
           <Key>
             <PropertyRef Name="NinjaId" />
           </Key>
-          <Property Name="NinjaId" Type="int" Nullable="false" />
+          <Property Name="NinjaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Money" Type="int" Nullable="false" />
         </EntityType>
@@ -54,7 +54,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
           <Key>
             <PropertyRef Name="ShopId" />
           </Key>
-          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="ShopId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeOfEquipment">
@@ -70,13 +70,13 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
           <Property Name="StatisticType" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_CompetitionTeam_Equitment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipment">
               <PropertyRef Name="EquitmentId" />
             </Principal>
-            <Dependent Role="Inventory">
+            <Dependent Role="InventoryItem">
               <PropertyRef Name="EquitmentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -131,19 +131,20 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
         </Association>
         <Association Name="FK_Inventory_Ninja">
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ninja">
               <PropertyRef Name="NinjaId" />
             </Principal>
-            <Dependent Role="Inventory">
+            <Dependent Role="InventoryItem">
               <PropertyRef Name="NinjaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LeagueOfNinjaModelEntitiesStoreContainer">
+        <EntityContainer Name="LeagueOfNinjaModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryItem" EntityType="Self.InventoryItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfEquipment" EntityType="Self.TypeOfEquipment" Schema="dbo" store:Type="Tables" />
@@ -155,15 +156,9 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
     [EquipmentStatistic].[StatisticValue] AS [StatisticValue]
     FROM [dbo].[EquipmentStatistic] AS [EquipmentStatistic]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Inventory" EntityType="Self.Inventory" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Inventory].[NinjaId] AS [NinjaId], 
-    [Inventory].[EquitmentId] AS [EquitmentId]
-    FROM [dbo].[Inventory] AS [Inventory]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_CompetitionTeam_Equitment" Association="Self.FK_CompetitionTeam_Equitment">
             <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="InventoryItem" EntitySet="InventoryItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Equipment_Shop" Association="Self.FK_Equipment_Shop">
             <End Role="Shop" EntitySet="Shop" />
@@ -183,14 +178,14 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
           </AssociationSet>
           <AssociationSet Name="FK_Inventory_Ninja" Association="Self.FK_Inventory_Ninja">
             <End Role="Ninja" EntitySet="Ninja" />
-            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="InventoryItem" EntitySet="InventoryItem" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LeagueOfNinja.Model.Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LeagueOfNinja.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -201,30 +196,41 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
           <Key>
             <PropertyRef Name="EquitmentId" />
           </Key>
-          <Property Name="EquitmentId" Type="Int32" Nullable="false" />
+          <Property Name="EquitmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EquipmentValue" Type="Int32" Nullable="false" />
           <Property Name="EquitmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ShopId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Inventories" Relationship="Self.FK_CompetitionTeam_Equitment" FromRole="Equipment" ToRole="Inventory" />
+          <NavigationProperty Name="InventoryItems" Relationship="Self.FK_CompetitionTeam_Equitment" FromRole="Equipment" ToRole="InventoryItem" />
           <NavigationProperty Name="Shop" Relationship="Self.FK_Equipment_Shop" FromRole="Equipment" ToRole="Shop" />
           <NavigationProperty Name="TypeOfEquipment" Relationship="Self.FK_Equipment_TypeOfEquitment" FromRole="Equipment" ToRole="TypeOfEquipment" />
           <NavigationProperty Name="EquipmentStatistics" Relationship="Self.FK_EquipmentState_Equipment" FromRole="Equipment" ToRole="EquipmentStatistic" />
+        </EntityType>
+        <EntityType Name="InventoryItem">
+          <Key>
+            <PropertyRef Name="NinjaId" />
+            <PropertyRef Name="EquitmentId" />
+          </Key>
+          <Property Name="NinjaId" Type="Int32" Nullable="false" />
+          <Property Name="EquitmentId" Type="Int32" Nullable="false" />
+          <Property Name="IsUsingEquitment" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_CompetitionTeam_Equitment" FromRole="InventoryItem" ToRole="Equipment" />
+          <NavigationProperty Name="Ninja" Relationship="Self.FK_Inventory_Ninja" FromRole="InventoryItem" ToRole="Ninja" />
         </EntityType>
         <EntityType Name="Ninja">
           <Key>
             <PropertyRef Name="NinjaId" />
           </Key>
-          <Property Name="NinjaId" Type="Int32" Nullable="false" />
+          <Property Name="NinjaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Money" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Ninja" FromRole="Ninja" ToRole="Inventory" />
+          <NavigationProperty Name="InventoryItems" Relationship="Self.FK_Inventory_Ninja" FromRole="Ninja" ToRole="InventoryItem" />
         </EntityType>
         <EntityType Name="Shop">
           <Key>
             <PropertyRef Name="ShopId" />
           </Key>
-          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_Shop" FromRole="Shop" ToRole="Equipment" />
         </EntityType>
@@ -254,23 +260,14 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
           <NavigationProperty Name="Equipment" Relationship="Self.FK_EquipmentState_Equipment" FromRole="EquipmentStatistic" ToRole="Equipment" />
           <NavigationProperty Name="TypOfStatistic" Relationship="Self.FK_EquipmentState_TypOfStatistic" FromRole="EquipmentStatistic" ToRole="TypOfStatistic" />
         </EntityType>
-        <EntityType Name="Inventory">
-          <Key>
-            <PropertyRef Name="NinjaId" />
-          </Key>
-          <Property Name="NinjaId" Type="Int32" Nullable="false" />
-          <Property Name="EquitmentId" Type="Int32" />
-          <NavigationProperty Name="Equipment" Relationship="Self.FK_CompetitionTeam_Equitment" FromRole="Inventory" ToRole="Equipment" />
-          <NavigationProperty Name="Ninja" Relationship="Self.FK_Inventory_Ninja" FromRole="Inventory" ToRole="Ninja" />
-        </EntityType>
         <Association Name="FK_CompetitionTeam_Equitment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipment">
               <PropertyRef Name="EquitmentId" />
             </Principal>
-            <Dependent Role="Inventory">
+            <Dependent Role="InventoryItem">
               <PropertyRef Name="EquitmentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -313,12 +310,12 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
         </Association>
         <Association Name="FK_Inventory_Ninja">
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ninja">
               <PropertyRef Name="NinjaId" />
             </Principal>
-            <Dependent Role="Inventory">
+            <Dependent Role="InventoryItem">
               <PropertyRef Name="NinjaId" />
             </Dependent>
           </ReferentialConstraint>
@@ -338,15 +335,15 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
         <EntityContainer Name="NinjaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="InventoryItems" EntityType="Self.InventoryItem" />
           <EntitySet Name="Ninjas" EntityType="Self.Ninja" />
           <EntitySet Name="Shops" EntityType="Self.Shop" />
           <EntitySet Name="TypeOfEquipments" EntityType="Self.TypeOfEquipment" />
           <EntitySet Name="TypOfStatistics" EntityType="Self.TypOfStatistic" />
           <EntitySet Name="EquipmentStatistics" EntityType="Self.EquipmentStatistic" />
-          <EntitySet Name="Inventories" EntityType="Self.Inventory" />
           <AssociationSet Name="FK_CompetitionTeam_Equitment" Association="Self.FK_CompetitionTeam_Equitment">
             <End Role="Equipment" EntitySet="Equipments" />
-            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="InventoryItem" EntitySet="InventoryItems" />
           </AssociationSet>
           <AssociationSet Name="FK_Equipment_Shop" Association="Self.FK_Equipment_Shop">
             <End Role="Shop" EntitySet="Shops" />
@@ -362,7 +359,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
           </AssociationSet>
           <AssociationSet Name="FK_Inventory_Ninja" Association="Self.FK_Inventory_Ninja">
             <End Role="Ninja" EntitySet="Ninjas" />
-            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="InventoryItem" EntitySet="InventoryItems" />
           </AssociationSet>
           <AssociationSet Name="FK_EquipmentState_TypOfStatistic" Association="Self.FK_EquipmentState_TypOfStatistic">
             <End Role="TypOfStatistic" EntitySet="TypOfStatistics" />
@@ -374,16 +371,16 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LeagueOfNinjaModelEntitiesStoreContainer" CdmEntityContainer="NinjaEntities">
+        <EntityContainerMapping StorageEntityContainer="LeagueOfNinjaModelStoreContainer" CdmEntityContainer="NinjaEntities">
           <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.C__RefactorLog">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
                 <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.Equipment">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
                 <ScalarProperty Name="EquitmentId" ColumnName="EquitmentId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -393,8 +390,17 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="InventoryItems">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.InventoryItem">
+              <MappingFragment StoreEntitySet="InventoryItem">
+                <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
+                <ScalarProperty Name="EquitmentId" ColumnName="EquitmentId" />
+                <ScalarProperty Name="IsUsingEquitment" ColumnName="IsUsingEquitment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Ninjas">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.Ninja">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Ninja">
               <MappingFragment StoreEntitySet="Ninja">
                 <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -403,7 +409,7 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shops">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.Shop">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Shop">
               <MappingFragment StoreEntitySet="Shop">
                 <ScalarProperty Name="ShopId" ColumnName="ShopId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -411,33 +417,25 @@ warning 6002: The table/view 'LeagueOfNinja.DB.dbo.Inventory' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfEquipments">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.TypeOfEquipment">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.TypeOfEquipment">
               <MappingFragment StoreEntitySet="TypeOfEquipment">
                 <ScalarProperty Name="EquitmentType" ColumnName="EquitmentType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypOfStatistics">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.TypOfStatistic">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.TypOfStatistic">
               <MappingFragment StoreEntitySet="TypOfStatistic">
                 <ScalarProperty Name="StatisticType" ColumnName="StatisticType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EquipmentStatistics">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.EquipmentStatistic">
+            <EntityTypeMapping TypeName="LeagueOfNinja.Model.EquipmentStatistic">
               <MappingFragment StoreEntitySet="EquipmentStatistic">
                 <ScalarProperty Name="EquitmentId" ColumnName="EquitmentId" />
                 <ScalarProperty Name="StatisticType" ColumnName="StatisticType" />
                 <ScalarProperty Name="StatisticValue" ColumnName="StatisticValue" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Inventories">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Entities.Inventory">
-              <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
-                <ScalarProperty Name="EquitmentId" ColumnName="EquitmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

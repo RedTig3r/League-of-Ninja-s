@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LeagueOfNinja.Model.Entities
+namespace LeagueOfNinja.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class EquipmentStatistic
+    public partial class InventoryItem
     {
+        public int NinjaId { get; set; }
         public int EquitmentId { get; set; }
-        public string StatisticType { get; set; }
-        public int StatisticValue { get; set; }
+        public bool IsUsingEquitment { get; set; }
     
         public virtual Equipment Equipment { get; set; }
-        public virtual TypOfStatistic TypOfStatistic { get; set; }
+        public virtual Ninja Ninja { get; set; }
     }
 }

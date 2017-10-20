@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LeagueOfNinja.Model.Entities
+namespace LeagueOfNinja.Model
 {
     using System;
     using System.Collections.Generic;

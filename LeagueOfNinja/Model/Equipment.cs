@@ -7,22 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LeagueOfNinja.Model.Entities
+namespace LeagueOfNinja.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TypeOfEquipment
+    public partial class Equipment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TypeOfEquipment()
+        public Equipment()
         {
-            this.Equipments = new HashSet<Equipment>();
+            this.InventoryItems = new HashSet<InventoryItem>();
+            this.EquipmentStatistics = new HashSet<EquipmentStatistic>();
         }
     
+        public int EquitmentId { get; set; }
+        public string Name { get; set; }
+        public int EquipmentValue { get; set; }
         public string EquitmentType { get; set; }
+        public int ShopId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipments { get; set; }
+        public virtual ICollection<InventoryItem> InventoryItems { get; set; }
+        public virtual Shop Shop { get; set; }
+        public virtual TypeOfEquipment TypeOfEquipment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EquipmentStatistic> EquipmentStatistics { get; set; }
     }
 }

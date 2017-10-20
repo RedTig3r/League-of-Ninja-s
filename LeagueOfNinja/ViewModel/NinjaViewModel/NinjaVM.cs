@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Linq;
 using System;
-using LeagueOfNinja.Model.Entities;
 
 namespace LeagueOfNinja.ViewModel.NinjaViewModel
 {
@@ -12,8 +11,7 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
     {
 
         private Ninja _ninja;
-
-  
+ 
 
         public NinjaVM()
         {
@@ -29,12 +27,6 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
         internal Ninja ToModel()
         {
             return _ninja;
-        }
-
-        public int Id
-        {
-            get { return _ninja.NinjaId; }
-            set { _ninja.NinjaId = value;  RaisePropertyChanged("Id"); }
         }
 
         public string Name

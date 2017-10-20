@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using LeagueOfNinja.Model.Entities;
+using LeagueOfNinja.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +11,33 @@ namespace LeagueOfNinja.ViewModel.InventoryViewModel
     public class InventoryVM : ViewModelBase
     {
 
-        private Inventory _inventory;
+        private InventoryItem _inventoryItem;
 
-        internal Inventory ToModel()
-        {
-            return _inventory;
-        }
 
         public InventoryVM()
         {
-            this._inventory = new Inventory();
+            this._inventoryItem = new InventoryItem();
         }
 
-        public InventoryVM(Inventory inventory)
+        public InventoryVM(InventoryItem inventory)
         {
-            this._inventory = inventory;
+            this._inventoryItem = inventory;
         }
+
+
+        internal InventoryItem ToModel()
+        {
+            return _inventoryItem;
+        }
+
+
+        public bool IsUsingEquitment
+        {
+            get { return _inventoryItem.IsUsingEquitment; }
+            set { _inventoryItem.IsUsingEquitment = value; RaisePropertyChanged("IsUsingEquitment"); }
+        }
+
+
 
     }
 }

@@ -1,13 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using LeagueOfNinja.Model;
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Linq;
 using LeagueOfNinja.View;
-using LeagueofNinja.Model.Repository;
-using LeagueOfNinja.Model.Entities;
+using System.Data.Entity;
 
 namespace LeagueOfNinja.ViewModel.NinjaViewModel
 {
@@ -17,13 +15,30 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         private UpdateNinjaWindow _updateNinjaWindow;
 
-        INinjaRepository ninjaRepo;
-
-        public ObservableCollection<NinjaVM> Ninjas { get; set; }
-
-
-                
         private NinjaVM _selectedNinja;
+
+        public ObservableCollection<NinjaVM> NinjasOC { get; set; }
+
+        //Commands
+        public ICommand ShowAddNinjaCommand { get; set; }
+        public ICommand ShowUpdateNinjaCommand { get; set; }
+        public ICommand DeleteNinjaCommand { get; set; }
+
+
+        public NinjaListVM()
+        {
+            using (var context = new NinjaEntities())
+            {
+
+                var ninjas = context.Ninjas.ToList();
+                NinjasOC = new ObservableCollection<NinjaVM>(ninjas.Select(r => new NinjaVM(r)));
+            }
+
+            ShowAddNinjaCommand = new RelayCommand(ShowAddNinja, CanShowAddNinja);
+            ShowUpdateNinjaCommand = new RelayCommand(ShowUpdateNinja, CanUpdateNinja);
+            DeleteNinjaCommand = new RelayCommand(DeleteNinja);
+        }
+
 
         public NinjaVM SelectedNinja
         {
@@ -33,23 +48,6 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
                 _selectedNinja = value;
                 base.RaisePropertyChanged();
             }
-        }
-
-        //Commands
-        public ICommand ShowAddNinjaCommand { get; set; }
-        public ICommand ShowUpdateNinjaCommand { get; set; }        
-        public ICommand DeleteNinjaCommand { get; set; }
-
-        public NinjaListVM()
-        {
-            ninjaRepo = new NinjaRepository();
-            var ninjaList = ninjaRepo.GetNinjas().Select(s => new NinjaVM(s));
-            Ninjas = new ObservableCollection<NinjaVM>(ninjaList);
-
-            ShowAddNinjaCommand = new RelayCommand(ShowAddNinja , CanShowAddNinja);
-            ShowUpdateNinjaCommand = new RelayCommand(ShowUpdateNinja, CanUpdateNinja);
-            DeleteNinjaCommand = new RelayCommand(DeleteNinja);
-
         }
 
         //---  Create ---
@@ -100,26 +98,17 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         private void DeleteNinja()
         {
+                using (var context = new NinjaEntities())
+                {
 
+                    var ninja = SelectedNinja.ToModel();
 
-            using (var context = new NinjaEntities())
-            {
-                context.Ninjas.Remove(SelectedNinja.ToModel());
-                context.SaveChanges();
-            }
+                    context.Entry(ninja).State = EntityState.Deleted;
+                    context.SaveChanges();
+                }
 
-            /*
-            try
-            {
-           
-            }
-            catch
-            {
-                throw;
-            }
-     
-             */
-
+                NinjasOC.Remove(SelectedNinja);
+            
         }
 
     }

@@ -49,4 +49,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="EquitmentValue" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="5d43e183-5917-44e4-a3bf-ea485fa412a2" ChangeDateTime="10/20/2017 14:50:27">
+    <Property Name="ElementName" Value="[dbo].[Inventory].[wear]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Inventory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsEquitment" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7a8bb53f-dfa5-4368-9c20-716ac9a4a6db" ChangeDateTime="10/20/2017 14:50:33">
+    <Property Name="ElementName" Value="[dbo].[Inventory].[IsEquitment]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Inventory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IswearingEquitment" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fb5fbd33-7e31-43f7-8892-23b0de8e9226" ChangeDateTime="10/20/2017 14:51:50">
+    <Property Name="ElementName" Value="[dbo].[Inventory].[IswearingEquitment]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Inventory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsUsingEquitment" />
+  </Operation>
 </Operations>

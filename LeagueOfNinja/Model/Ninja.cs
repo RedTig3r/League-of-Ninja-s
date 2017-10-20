@@ -7,17 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LeagueOfNinja.Model.Entities
+namespace LeagueOfNinja.Model
 {
     using System;
     using System.Collections.Generic;
     
     public partial class Ninja
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Ninja()
+        {
+            this.InventoryItems = new HashSet<InventoryItem>();
+        }
+    
         public int NinjaId { get; set; }
         public string Name { get; set; }
         public int Money { get; set; }
     
-        public virtual Inventory Inventory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InventoryItem> InventoryItems { get; set; }
     }
 }

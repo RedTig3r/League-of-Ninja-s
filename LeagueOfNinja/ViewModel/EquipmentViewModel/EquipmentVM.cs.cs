@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using LeagueOfNinja.Model.Entities;
+using LeagueOfNinja.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,36 +13,36 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
 
         private Equipment _equipment;
 
-        public string Title
+
+        public int EquipmentId
         {
-            get { return _equipment.Title; }
-            set { _equipment.Title = value; RaisePropertyChanged("Title"); }
+            get { return _equipment.EquitmentId; }
+            set { _equipment.EquitmentId = value; RaisePropertyChanged("EquitmentId"); }
         }
-        public int Price
+
+        public string Name
         {
-            get { return _equipment.Price; }
-            set { _equipment.Price = value; RaisePropertyChanged("Price"); }
+            get { return _equipment.Name; }
+            set { _equipment.Name = value; RaisePropertyChanged("Name"); }
         }
-        public int Strength
+        public int EquipmentValue
         {
-            get { return _equipment.Strength; }
-            set { _equipment.Strength = value; RaisePropertyChanged("Strength"); }
+            get { return _equipment.EquipmentValue; }
+            set { _equipment.EquipmentValue = value; RaisePropertyChanged("EquipmentValue"); }
         }
-        public int Intelligence
+      
+        public string EquitmentType
         {
-            get { return _equipment.Intelligence; }
-            set { _equipment.Intelligence = value; RaisePropertyChanged("Intelligence"); }
+            get { return _equipment.EquitmentType; }
+            set { _equipment.EquitmentType = value; RaisePropertyChanged("EquitmentType"); }
         }
-        public int Agility
+
+        public int ShopId
         {
-            get { return _equipment.Agility; }
-            set { _equipment.Agility = value; RaisePropertyChanged("Agility"); }
+            get { return _equipment.ShopId; }
+            set { _equipment.ShopId = value; RaisePropertyChanged("ShopId"); }
         }
-        public string Type
-        {
-            get { return _equipment.Type; }
-            set { _equipment.Type = value; RaisePropertyChanged("Type"); }
-        }
+
 
         internal Equipment ToModel()
         {

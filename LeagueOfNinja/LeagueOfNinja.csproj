@@ -43,12 +43,16 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight, Version=4.4.32.39728, Culture=neutral, PublicKeyToken=eabbf6a5f5af5004, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.4.4.32.7\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Extras, Version=4.4.32.39728, Culture=neutral, PublicKeyToken=0e27b6f8be9b2ef7, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.4.4.32.7\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -62,7 +66,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.4.4.32.7\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -83,47 +87,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Entities\C__RefactorLog.cs">
+    <Compile Include="Model\C__RefactorLog.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\Equipment.cs">
+    <Compile Include="Model\Equipment.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\EquipmentStatistic.cs">
+    <Compile Include="Model\EquipmentStatistic.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\Inventory.cs">
+    <Compile Include="Model\InventoryItem.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\Ninja.cs">
+    <Compile Include="Model\Ninja.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\NinjaEntities.Context.cs">
+    <Compile Include="Model\NinjaEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NinjaEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\NinjaEntities.cs">
+    <Compile Include="Model\NinjaEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\NinjaEntities.Designer.cs">
+    <Compile Include="Model\NinjaEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NinjaEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\Shop.cs">
+    <Compile Include="Model\Shop.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\TypeOfEquipment.cs">
+    <Compile Include="Model\TypeOfEquipment.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Entities\TypOfStatistic.cs">
+    <Compile Include="Model\TypOfStatistic.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Repository\NinjaRepository.cs" />
-    <Compile Include="Model\Repository\INinjaRepository.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NinjaViewModel\NinjaListVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -209,11 +211,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Entities\NinjaEntities.edmx">
+    <EntityDeploy Include="Model\NinjaEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>NinjaEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Entities\NinjaEntities.edmx.diagram">
+    <None Include="Model\NinjaEntities.edmx.diagram">
       <DependentUpon>NinjaEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config">
@@ -237,12 +239,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Entities\NinjaEntities.Context.tt">
+    <Content Include="Model\NinjaEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NinjaEntities.edmx</DependentUpon>
       <LastGenOutput>NinjaEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\Entities\NinjaEntities.tt">
+    <Content Include="Model\NinjaEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NinjaEntities.edmx</DependentUpon>
       <LastGenOutput>NinjaEntities.cs</LastGenOutput>

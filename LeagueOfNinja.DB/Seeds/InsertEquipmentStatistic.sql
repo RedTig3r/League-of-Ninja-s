@@ -9,11 +9,9 @@ USING (values
 
 	(3, 'Agility', 2),
 
-
 	(4, 'Strength', 5),
 	(4, 'Intelligence', 20),
 	(4, 'Agility', 10),
-
 
 	(5, 'Intelligence', 5),
 	(5, 'Agility', 10),
@@ -24,41 +22,30 @@ USING (values
 	(7, 'Intelligence', -10),
 	(7, 'Agility', 5),
 
-
 	(8, 'Intelligence', -2),
 	(8, 'Agility', 2),
-
 	
 	(9, 'Strength', 2),
 	(9, 'Intelligence', -1),
 	(9, 'Agility', 1),
-
 	 
 	(10, 'Strength', 20),
 	(10, 'Intelligence', -3),
 	(10, 'Agility', 20),
-
 	
 	(11, 'Strength', 7),
-	(11, 'Agility', 12),
-
-	
+	(11, 'Agility', 12),	
 
 	(12, 'Agility', 8),
-
 	
 	(13, 'Strength', -2),
 	(13, 'Intelligence', -5),
 	(13, 'Agility', 30),
-
 	
 	(14, 'Strength', -2),
 	(14, 'Agility', 12),
 
-	
 	(15, 'Agility', 3)
-
-
 ) AS Source (EquitmentId, StatisticType,StatisticValue)  
 ON Target.EquitmentId = Source.EquitmentId  
 and Target.StatisticType = Source.StatisticType
