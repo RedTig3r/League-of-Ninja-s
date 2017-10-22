@@ -126,6 +126,7 @@
     <Compile Include="Model\TypOfStatistic.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\EquipmentViewModel\EquipmentListVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NinjaViewModel\NinjaListVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -135,33 +136,43 @@
     <Compile Include="ViewModel\InventoryViewModel\AddInventoryVM.cs" />
     <Compile Include="ViewModel\InventoryViewModel\InventoryVM.cs" />
     <Compile Include="ViewModel\InventoryViewModel\UpdateInventoryVM.cs" />
-    <Compile Include="View\AddEquipmentWindow.xaml.cs">
+    <Compile Include="View\Equipment\AddEquipmentWindow.xaml.cs">
       <DependentUpon>AddEquipmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\NinjaViewModel\AddNinjaVM.cs" />
     <Compile Include="ViewModel\NinjaViewModel\NinjaVM.cs" />
     <Compile Include="ViewModel\NinjaViewModel\UpdateNinjaVM.cs" />
-    <Compile Include="View\AddNinjaWindow.xaml.cs">
+    <Compile Include="View\Ninja\AddNinjaWindow.xaml.cs">
       <DependentUpon>AddNinjaWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ShopWindow.xaml.cs">
+    <Compile Include="View\Equipment\EquipmentWindow.xaml.cs">
+      <DependentUpon>EquipmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Inventory\ShopWindow.xaml.cs">
       <DependentUpon>ShopWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UpdateEquipmentWindow.xaml.cs">
+    <Compile Include="View\Equipment\UpdateEquipmentWindow.xaml.cs">
       <DependentUpon>UpdateEquipmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UpdateNinjaWindow.xaml.cs">
+    <Compile Include="View\Ninja\UpdateNinjaWindow.xaml.cs">
       <DependentUpon>UpdateNinjaWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\AddEquipmentWindow.xaml">
+    <Compile Include="View\Inventory\VisualGearWindow.xaml.cs">
+      <DependentUpon>VisualGearWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\Equipment\AddEquipmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AddNinjaWindow.xaml">
+    <Page Include="View\Ninja\AddNinjaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\InventoryWindow.xaml">
+    <Page Include="View\Equipment\EquipmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Inventory\InventoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,22 +184,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\InventoryWindow.xaml.cs">
+    <Compile Include="View\Inventory\InventoryWindow.xaml.cs">
       <DependentUpon>InventoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\ShopWindow.xaml">
+    <Page Include="View\Inventory\ShopWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UpdateEquipmentWindow.xaml">
+    <Page Include="View\Equipment\UpdateEquipmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UpdateNinjaWindow.xaml">
+    <Page Include="View\Ninja\UpdateNinjaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Inventory\VisualGearWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,13 +247,12 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\NinjaPicca.png" />
     <Content Include="Model\NinjaEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NinjaEntities.edmx</DependentUpon>

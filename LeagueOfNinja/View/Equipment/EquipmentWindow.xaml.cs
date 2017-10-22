@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace LeagueOfNinja.View
 {
     /// <summary>
-    /// Interaction logic for AddEquipmentVM.xaml
+    /// Interaction logic for EquipmentWindow.xaml
     /// </summary>
-    public partial class AddEquipmentVM : Window
+    public partial class EquipmentWindow : Window
     {
-        public AddEquipmentVM()
+        public EquipmentWindow()
         {
             InitializeComponent();
         }
