@@ -15,7 +15,7 @@
             <ColumnDefinition Width="106*"/>
         </Grid.ColumnDefinitions>
         <Image x:Name="VisualGear" HorizontalAlignment="Left" Height="100" Margin="96,66,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
-        <Image Source="NinjaPicca.png" Grid.ColumnSpan="2"></Image>
+        <Image Source="/Images/NinjaPicca.png" Grid.ColumnSpan="2"></Image>
 
         <DataGrid x:Name="Head" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="59" Width="61"/>
         <DataGrid x:Name="Shoulder" HorizontalAlignment="Left" Margin="108,66,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="1"/>
