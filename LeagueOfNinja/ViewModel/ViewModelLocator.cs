@@ -53,7 +53,7 @@ namespace LeagueOfNinja.ViewModel
         public NinjaListVM NinjaListVM
         {
             get
-            { //De service locator gebruikt een 'singleton' patroon.
+            { 
                 if (_ninjaListVM == null)
                     _ninjaListVM = new NinjaListVM();
 

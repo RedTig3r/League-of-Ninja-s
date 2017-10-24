@@ -14,7 +14,7 @@ namespace LeagueOfNinja.Model
     
     public partial class EquipmentStatistic
     {
-        public int EquitmentId { get; set; }
+        public int EquipmentId { get; set; }
         public string StatisticType { get; set; }
         public int StatisticValue { get; set; }
     
