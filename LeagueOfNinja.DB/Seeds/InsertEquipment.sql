@@ -1,4 +1,4 @@
-﻿INSERT INTO dbo.Equipment(Name, EquipmentValue, EquitmentType, ShopId)
+﻿INSERT INTO dbo.Equipment(Name, EquipmentValue, EquipmentType, ShopId)
 VALUES
  ('Super Shoulders', 1000, 'Shoulders',1),
  ('Normal Shoulders', 500, 'Shoulders',1),

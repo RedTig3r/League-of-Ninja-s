@@ -12,14 +12,14 @@ USING (values
 	(2,9,1),
 	(2,12,1),
 	(2,15,1)
-)AS Source (NinjaId, EquitmentId, IsUsingEquitment)
+)AS Source (NinjaId, EquipmentId, IsUsingEquitment)
 On Target.NinjaId = Source.NinjaId
-and Target.EquitmentId = Source.EquitmentId 
+and Target.EquipmentId = Source.EquipmentId 
 WHEN NOT MATCHED BY TARGET THEN
-	INSERT (NinjaId, EquitmentId, IsUsingEquitment)
-	VALUES (NinjaId, EquitmentId, IsUsingEquitment)
+	INSERT (NinjaId, EquipmentId, IsUsingEquitment)
+	VALUES (NinjaId, EquipmentId, IsUsingEquitment)
 WHEN MATCHED THEN
 	UPDATE SET
 		NinjaId = Source.NinjaId,
-		EquitmentId = Source.EquitmentId,
+		EquipmentId = Source.EquipmentId,
 		IsUsingEquitment = Source.IsUsingEquitment;

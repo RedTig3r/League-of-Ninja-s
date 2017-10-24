@@ -46,14 +46,14 @@ USING (values
 	(14, 'Agility', 12),
 
 	(15, 'Agility', 3)
-) AS Source (EquitmentId, StatisticType,StatisticValue)  
-ON Target.EquitmentId = Source.EquitmentId  
+) AS Source (EquipmentId, StatisticType,StatisticValue)  
+ON Target.EquipmentId = Source.EquipmentId  
 and Target.StatisticType = Source.StatisticType
 WHEN NOT MATCHED BY TARGET THEN  
-	INSERT (EquitmentId, StatisticType,StatisticValue)  
-	VALUES (EquitmentId, StatisticType,StatisticValue)
+	INSERT (EquipmentId, StatisticType,StatisticValue)  
+	VALUES (EquipmentId, StatisticType,StatisticValue)
 WHEN MATCHED THEN
 	UPDATE SET
-		EquitmentId = Source.EquitmentId,
+		EquipmentId = Source.EquipmentId,
 		StatisticType = Source.StatisticType,
 		StatisticValue = Source.StatisticValue;

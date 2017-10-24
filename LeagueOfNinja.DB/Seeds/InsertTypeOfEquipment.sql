@@ -5,14 +5,14 @@ USING (values
 	('Belt'),
 	('Legs'),
 	('Boots')
-)AS Source (EquitmentType)
-On Target.EquitmentType = Source.EquitmentType
+)AS Source (EquipmentType)
+On Target.EquipmentType = Source.EquipmentType
 WHEN NOT MATCHED BY TARGET THEN
-	INSERT (EquitmentType)
-	VALUES (EquitmentType)
+	INSERT (EquipmentType)
+	VALUES (EquipmentType)
 WHEN MATCHED THEN
 	UPDATE SET
-		EquitmentType = Source.EquitmentType;
+		EquipmentType = Source.EquipmentType;
 
 
 
