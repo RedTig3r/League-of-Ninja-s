@@ -69,6 +69,7 @@
     <None Include="Seeds\InsertTypeOfStatistic.sql" />
     <None Include="Seeds\InsertEquipment.sql" />
     <None Include="Seeds\InsertEquipmentStatistic.sql" />
+    <None Include="LeagueOfNinja.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Ninja.sql" />

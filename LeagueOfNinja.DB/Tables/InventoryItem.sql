@@ -2,13 +2,12 @@
 (
 
 
-	[NinjaId] INT NOT NULL,
-	[EquitmentId] INT NOT NULL,
+	[NinjaId] INT NULL,
+	[EquitmentId] INT NULL,
 	[IsUsingEquitment] BIT NOT NULL, 
-    PRIMARY KEY ([NinjaId], [EquitmentId]),
 
-	CONSTRAINT [FK_Inventory_Ninja] FOREIGN KEY ([NinjaId]) REFERENCES [dbo].[Ninja] ([NinjaId]),
-	CONSTRAINT  [FK_Inventory_Equitment]  FOREIGN KEY ([EquitmentId]) REFERENCES [dbo].[Equipment] ([EquitmentId]), 
+	CONSTRAINT [FK_Inventory_Ninja] FOREIGN KEY ([NinjaId]) REFERENCES [dbo].[Ninja] ([NinjaId])  ON DELETE CASCADE,
+	CONSTRAINT  [FK_Inventory_Equitment]  FOREIGN KEY ([EquitmentId]) REFERENCES [dbo].[Equipment] ([EquitmentId])  ON DELETE CASCADE, 
 
 
 )
