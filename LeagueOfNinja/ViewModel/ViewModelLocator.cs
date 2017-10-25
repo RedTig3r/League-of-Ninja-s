@@ -17,6 +17,7 @@ using GalaSoft.MvvmLight.Ioc;
 using LeagueOfNinja.ViewModel.NinjaViewModel;
 using LeagueOfNinja.View;
 using Microsoft.Practices.ServiceLocation;
+using LeagueOfNinja.ViewModel.EquipmentViewModel;
 
 namespace LeagueOfNinja.ViewModel
 {
@@ -47,8 +48,26 @@ namespace LeagueOfNinja.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
+
+        private MainVM _mainVM;
+
         private NinjaListVM _ninjaListVM;
 
+        
+
+        //---- Main ----
+        public MainVM MainVM
+        {
+            get
+            {
+                if (_mainVM == null)
+                    _mainVM = new MainVM();
+
+                return _mainVM;
+            }
+        }
+
+        //---- Ninja ----
 
         public NinjaListVM NinjaListVM
         {
@@ -78,6 +97,19 @@ namespace LeagueOfNinja.ViewModel
             {
 
                 return new UpdateNinjaVM(this.NinjaListVM);
+            }
+        }
+
+        private EquipmentListVM _equipmentListVM;
+
+        public EquipmentListVM EquipmentListVM
+        {
+            get
+            {
+                if (_equipmentListVM == null)
+                    _equipmentListVM = new EquipmentListVM();
+
+                return _equipmentListVM;
             }
         }
 

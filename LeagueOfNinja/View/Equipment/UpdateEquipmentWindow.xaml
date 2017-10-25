@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeagueOfNinja.View"
         mc:Ignorable="d"
-        Title="UpdateEquipmentWindow" Height="300" Width="300">
+        Title="League of Ninja's" Height="300" Width="300">
     <Grid>
         
     </Grid>

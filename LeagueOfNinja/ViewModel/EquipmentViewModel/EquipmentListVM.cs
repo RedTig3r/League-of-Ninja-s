@@ -15,7 +15,7 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
 
         private UpdateEquipmentWindow _updateEquipmentWindow;
 
-        private MainWindow _mainWindow;
+        private NinjaWindow _ninjaWindow;
 
         private EquipmentVM _selectedEquipment;
 
@@ -98,8 +98,8 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
         //--- Ninjas ---
         public void ShowNinjas()
         {
-            _mainWindow = new MainWindow();
-            _mainWindow.Show();
+            _ninjaWindow = new NinjaWindow();
+            _ninjaWindow.Show();
         }
 
 

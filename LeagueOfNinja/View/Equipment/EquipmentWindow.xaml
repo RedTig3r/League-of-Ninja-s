@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeagueOfNinja.View"
         mc:Ignorable="d"
-        Title="Equipments" Height="500" Width="700"
+        Title="League of Ninja's" Height="500" Width="700"
         DataContext="{Binding EquipmentListVM, Source={StaticResource Locator}}">
+    
     <Border BorderThickness="12">
         <StackPanel>
 
@@ -33,10 +34,10 @@
 
             <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}" ItemsSource="{Binding EquipmentsOC}"  Margin="0,5,0,0" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding EquitmentId}" Width="*"/>
+                    <DataGridTextColumn Header="Id" Binding="{Binding EquipmentId}" Width="*"/>
                     <DataGridTextColumn Header="Equipment name" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Price" Binding="{Binding EquipmentValue}" Width="*" />
-                    <DataGridTextColumn Header="Type" Binding="{Binding EquitmentType}" Width="*"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding EquipmentType}" Width="*"/>
                     <DataGridTemplateColumn Width="50">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

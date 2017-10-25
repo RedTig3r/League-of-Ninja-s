@@ -128,10 +128,11 @@
     </Compile>
     <Compile Include="ViewModel\EquipmentViewModel\EquipmentListVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\NinjaViewModel\NinjaListVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\AddEquipmentVM.cs" />
-    <Compile Include="ViewModel\EquipmentViewModel\EquipmentVM.cs.cs" />
+    <Compile Include="ViewModel\EquipmentViewModel\EquipmentVM.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\UpdateEquipmentVM.cs" />
     <Compile Include="ViewModel\InventoryViewModel\AddInventoryVM.cs" />
     <Compile Include="ViewModel\InventoryViewModel\InventoryVM.cs" />
@@ -142,6 +143,9 @@
     <Compile Include="ViewModel\NinjaViewModel\AddNinjaVM.cs" />
     <Compile Include="ViewModel\NinjaViewModel\NinjaVM.cs" />
     <Compile Include="ViewModel\NinjaViewModel\UpdateNinjaVM.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Ninja\AddNinjaWindow.xaml.cs">
       <DependentUpon>AddNinjaWindow.xaml</DependentUpon>
     </Compile>
@@ -164,6 +168,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Ninja\AddNinjaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -176,7 +184,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="View\Ninja\NinjaWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -187,8 +195,8 @@
     <Compile Include="View\Inventory\InventoryWindow.xaml.cs">
       <DependentUpon>InventoryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="View\Ninja\NinjaWindow.xaml.cs">
+      <DependentUpon>NinjaWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Inventory\ShopWindow.xaml">
@@ -255,6 +263,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Images\FrontImage.png" />
     <Content Include="Model\NinjaEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NinjaEntities.edmx</DependentUpon>

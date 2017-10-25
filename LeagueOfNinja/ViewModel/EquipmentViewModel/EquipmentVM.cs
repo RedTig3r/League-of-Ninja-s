@@ -13,11 +13,25 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
 
         private Equipment _equipment;
 
+        public EquipmentVM()
+        {
+            this._equipment = new Equipment();
+        }
+
+        public EquipmentVM(Equipment equipment)
+        {
+            this._equipment = equipment;
+        }
+        internal Equipment ToModel()
+        {
+            return _equipment;
+        }
+
 
         public int EquipmentId
         {
-            get { return _equipment.EquitmentId; }
-            set { _equipment.EquitmentId = value; RaisePropertyChanged("EquitmentId"); }
+            get { return _equipment.EquipmentId; }
+            set { _equipment.EquipmentId = value; RaisePropertyChanged("EquipmentId"); }
         }
 
         public string Name
@@ -31,10 +45,10 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
             set { _equipment.EquipmentValue = value; RaisePropertyChanged("EquipmentValue"); }
         }
       
-        public string EquitmentType
+        public string EquipmentType
         {
-            get { return _equipment.EquitmentType; }
-            set { _equipment.EquitmentType = value; RaisePropertyChanged("EquitmentType"); }
+            get { return _equipment.EquipmentType; }
+            set { _equipment.EquipmentType = value; RaisePropertyChanged("EquipmentType"); }
         }
 
         public int ShopId
@@ -44,20 +58,8 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
         }
 
 
-        internal Equipment ToModel()
-        {
-            return _equipment;
-        }
 
-        public EquipmentVM()
-        {
-            this._equipment = new Equipment();
-        }
-
-        public EquipmentVM(Equipment equipment)
-        {
-            this._equipment = equipment;
-        }
+       }      
 
     }
-}
+

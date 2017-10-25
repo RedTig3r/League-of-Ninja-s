@@ -5,9 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeagueOfNinja.View"
         mc:Ignorable="d"
-        Title="AddEquipmentWindow" Height="300" Width="300"
+        Title="League of Ninja's" Height="300" Width="300"
         DataContext="{Binding AddEquipmentVM, Source={StaticResource Locator}}">
-    <Grid>
-        
-    </Grid>
+    
+    <StackPanel>
+
+        <Grid>
+            <TextBlock Text="Add equipment" FontSize="28" />
+        </Grid>
+
+        <TextBlock Text="Id:" Margin="0,5,0,0"  />
+        <TextBox MaxLength="50" Text="{Binding Path=Equipment.EquipmentId, Mode=TwoWay}" />
+
+        <TextBlock Text="Equipment name:" Margin="0,5,0,0" />
+        <TextBox MaxLength="50" Text="{Binding Path=Equipment.Name, Mode=TwoWay}" />
+
+        <TextBlock Text="Price:" Margin="0,5,0,0" />
+        <TextBox MaxLength="50" Text="{Binding Path=Equipment.EquipmentValue, Mode=TwoWay}" />
+
+        <TextBlock Text="Type:" Margin="0,5,0,0" />
+        <TextBox MaxLength="50" Text="{Binding Path=Equipment.EquipmentType, Mode=TwoWay}" />
+
+
+        <Button Content="Add equipment" Command="{Binding AddEquipmentICommand}" CommandParameter="{Binding AddEquipmentICommand}"
+                    Width="100"  HorizontalAlignment="Center" Margin="0,5,0,0" />
+
+    </StackPanel>
 </Window>

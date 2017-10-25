@@ -11,17 +11,18 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="64*"/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="106*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="VisualGear" HorizontalAlignment="Left" Height="100" Margin="96,66,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
-        <Image Source="/Images/NinjaPicca.png" Grid.ColumnSpan="2"></Image>
+        <Image x:Name="VisualGear" HorizontalAlignment="Left" Height="100" Margin="96,66,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="3"/>
+        <Image Source="/Images/NinjaPicca.png" Grid.ColumnSpan="3" Margin="61,29,71,28"></Image>
 
         <DataGrid x:Name="Head" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="59" Width="61"/>
-        <DataGrid x:Name="Shoulder" HorizontalAlignment="Left" Margin="108,66,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="1"/>
-        <DataGrid x:Name="Shoes" HorizontalAlignment="Left" Margin="108,382,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="1"/>
+        <DataGrid x:Name="Shoulder" HorizontalAlignment="Left" Margin="108,66,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="2"/>
+        <DataGrid x:Name="Shoes" HorizontalAlignment="Left" Margin="108,400,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="2"/>
         <DataGrid x:Name="Legs" HorizontalAlignment="Left" Margin="10,353,0,0" VerticalAlignment="Top" Height="59" Width="61"/>
         <DataGrid x:Name="Chest" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Height="59" Width="61"/>
-        <DataGrid x:Name="Belt" HorizontalAlignment="Left" Margin="141,228,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="1"/>
+        <DataGrid x:Name="Belt" HorizontalAlignment="Left" Margin="141,228,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="2"/>
     </Grid>
 </Window>

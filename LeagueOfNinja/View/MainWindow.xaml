@@ -6,67 +6,21 @@
         xmlns:local="clr-namespace:LeagueOfNinja.View"
         mc:Ignorable="d"
         Title="League of Ninja's" 
-        Height="500" 
-        Width="500"
-        DataContext="{Binding NinjaListVM, Source={StaticResource Locator}}">
+        Height="400" 
+        Width="400" 
+        ResizeMode="NoResize" 
+        Background="Black"
+        DataContext="{Binding MainVM, Source={StaticResource Locator}}">
 
-    <Border BorderThickness="12">
-        <StackPanel>
+    <Grid>
+        <TextBlock Text="Welcome to League of Ninja's" FontSize="27" Grid.Column="0" Foreground="White" Margin="20,10,20,0" />
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                </Grid.ColumnDefinitions>
+        <!-- image -->
+        <Image Source="/Images/FrontImage.png"/>
 
-                <TextBlock Text="League of Ninja's" FontSize="24" Grid.Column="0" />
-                
-                <!-- Add Ninja Button -->
-                <Button Height="50" FontSize="15" Content="Add ninja" 
-                        Foreground="White" FontWeight="Bold" Background="Purple" Grid.Column="1" Command="{Binding ShowAddNinjaCommand}">
-                </Button>
-
-                <!-- Equipments Button -->
-                <Button Height="50" FontSize="15" Content="Equipments" 
-                        Foreground="White" FontWeight="Bold" Background="Orange" Grid.Column="2" Command="{Binding ShowEquipmentsCommand}">
-                </Button>
-
-            </Grid>
-
-            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedNinja, Mode=TwoWay}" ItemsSource="{Binding NinjasOC}"  Margin="0,5,0,0" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Ninja name" Binding="{Binding Name}" Width="*"/>
-                    <DataGridTextColumn Header="Amount of money" Binding="{Binding Money}" Width="*" />
-                    <DataGridTemplateColumn Width="50">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <!-- Update button -->
-                                <Button Command="{Binding DataContext.ShowUpdateNinjaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    BorderThickness="0,0,0,1" BorderBrush="#FF999A9B" Foreground="White" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="30" Background="#FF6F9BDA">Update</Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="50">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <!-- Delete button -->
-                                <Button Command="{Binding DataContext.DeleteNinjaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    BorderThickness="0,0,0,1" BorderBrush="#FF999A9B" Foreground="White" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="30" Background="#FFD45134">Delete</Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="35">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <!-- Select button -->
-                                <Button Command="{Binding DataContext.ShowInventoryCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    BorderThickness="0,0,0,1" BorderBrush="#FF999A9B" Foreground="White" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="30" Background="#FF44AE3F">Use</Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
-    </Border>
+        <Button Height="50" FontSize="24" Content="Start" 
+                        Foreground="Black" FontWeight="Bold" Background="GreenYellow" Command="{Binding ShowStartCommand}" Margin="160,300,160,20" Grid.Column="0">
+        </Button>
+        
+    </Grid>
 </Window>

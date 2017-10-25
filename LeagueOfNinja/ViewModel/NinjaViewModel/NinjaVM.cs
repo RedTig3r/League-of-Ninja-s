@@ -29,6 +29,7 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
             return _ninja;
         }
 
+        
         public string Name
         {
             get { return _ninja.Name; }

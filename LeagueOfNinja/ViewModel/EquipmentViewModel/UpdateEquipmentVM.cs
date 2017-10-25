@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LeagueOfNinja.ViewModel.EquipmentViewModel
 {
-    class UpdateEquipmentVM : ViewModelBase
+    public class UpdateEquipmentVM : ViewModelBase
     {
     }
 }
