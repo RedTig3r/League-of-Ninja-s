@@ -25,9 +25,7 @@ namespace LeagueOfNinja.Model
         public string Name { get; set; }
         public int EquipmentValue { get; set; }
         public string EquipmentType { get; set; }
-        public int ShopId { get; set; }
     
-        public virtual Shop Shop { get; set; }
         public virtual TypeOfEquipment TypeOfEquipment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EquipmentStatistic> EquipmentStatistics { get; set; }

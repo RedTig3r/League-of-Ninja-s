@@ -12,21 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace LeagueOfNinja.View
+namespace LeagueOfNinja.View.Equipment
 {
     /// <summary>
-    /// Interaction logic for AddEquipmentVM.xaml
+    /// Interaction logic for AddEquipmentWindow.xaml
     /// </summary>
-    public partial class AddEquipmentVM : Window
+    public partial class AddEquipmentWindow : Window
     {
-        public AddEquipmentVM()
+        public AddEquipmentWindow()
         {
             InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
-            throw new NotImplementedException();
         }
     }
 }

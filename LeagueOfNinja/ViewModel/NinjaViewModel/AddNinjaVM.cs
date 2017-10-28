@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace LeagueOfNinja.ViewModel.NinjaViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class AddNinjaVM : ViewModelBase
     {

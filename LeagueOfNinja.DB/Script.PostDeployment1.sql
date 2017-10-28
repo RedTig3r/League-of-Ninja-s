@@ -11,7 +11,6 @@ Post-Deployment Script Template
 */
 
 :r .\Seeds\InsertNinja.sql
-:r .\Seeds\InsertShop.sql
 :r .\Seeds\InsertTypeOfEquipment.sql
 :r .\Seeds\InsertTypeOfStatistic.sql
 :r .\Seeds\InsertEquipment.sql

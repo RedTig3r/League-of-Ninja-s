@@ -6,8 +6,9 @@ using System.Windows.Input;
 using System.Linq;
 using LeagueOfNinja.View;
 using System.Data.Entity;
+using LeagueOfNinja.View.Equipment;
 
-namespace LeagueOfNinja.ViewModel.EquipmentViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class EquipmentListVM : ViewModelBase
     {
@@ -26,6 +27,7 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
         public ICommand ShowUpdateEquipmentCommand { get; set; }
         public ICommand DeleteEquipmentCommand { get; set; }
         public ICommand ShowNinjasCommand { get; set; }
+
 
         public EquipmentListVM()
         {

@@ -7,7 +7,7 @@ using System;
 using System.Collections.ObjectModel;
 using LeagueOfNinja.ViewModel.EquipmentViewModel;
 
-namespace LeagueOfNinja.ViewModel.NinjaViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class NinjaVM : ViewModelBase
     {

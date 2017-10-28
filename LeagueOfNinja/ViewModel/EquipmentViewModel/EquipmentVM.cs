@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeagueOfNinja.ViewModel.EquipmentViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class EquipmentVM : ViewModelBase
     {
@@ -26,6 +26,8 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
         {
             return _equipment;
         }
+
+
 
 
         public int EquipmentId
@@ -48,16 +50,10 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
         public string EquipmentType
         {
             get { return _equipment.EquipmentType; }
-            set { _equipment.EquipmentType = value; RaisePropertyChanged("EquipmentType"); }
+            set { _equipment.EquipmentType = value.ToString(); RaisePropertyChanged("EquipmentType"); }
         }
 
-        public int ShopId
-        {
-            get { return _equipment.ShopId; }
-            set { _equipment.ShopId = value; RaisePropertyChanged("ShopId"); }
-        }
-
-
+  
 
 
        }      

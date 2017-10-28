@@ -14,10 +14,9 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using LeagueOfNinja.ViewModel.NinjaViewModel;
 using LeagueOfNinja.View;
 using Microsoft.Practices.ServiceLocation;
-using LeagueOfNinja.ViewModel.EquipmentViewModel;
+
 
 namespace LeagueOfNinja.ViewModel
 {
@@ -110,6 +109,24 @@ namespace LeagueOfNinja.ViewModel
                     _equipmentListVM = new EquipmentListVM();
 
                 return _equipmentListVM;
+            }
+        }
+
+
+
+        public AddEquipmentVM AddEquipmentVM
+        {
+            get
+            {
+              return new AddEquipmentVM(EquipmentListVM);
+            }
+        }
+
+        public UpdateEquipmentVM UpdateEquipmentVM
+        {
+            get
+            {
+                return new UpdateEquipmentVM(EquipmentListVM);
             }
         }
 

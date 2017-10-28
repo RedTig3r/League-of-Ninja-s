@@ -7,7 +7,7 @@ using System.Linq;
 using LeagueOfNinja.View;
 using System.Data.Entity;
 
-namespace LeagueOfNinja.ViewModel.NinjaViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class NinjaListVM : ViewModelBase
     {

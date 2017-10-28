@@ -14,10 +14,7 @@
             <Grid>
                 <TextBlock Text="Update equipment" FontSize="28" />
             </Grid>
-
-            <TextBlock Text="Id:" Margin="0,5,0,0"  />
-            <TextBox MaxLength="50" Text="{Binding Path=EquipmentVM.EquipmentId, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" />
-
+            
             <TextBlock Text="Equipment name:" Margin="0,5,0,0" />
             <TextBox MaxLength="50" Text="{Binding Path=EquipmentVM.Name, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" />
 
@@ -28,8 +25,7 @@
             <TextBox MaxLength="50" Text="{Binding Path=EquipmentVM.EquipmentType, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" />
 
 
-
-            <Button Content="Save changes" Command="{Binding UpdateEquipmentICommand}" CommandParameter="{Binding AddEquipmentICommand}"
+                <Button Content="Save changes" Command="{Binding UpdateEquipmentICommand}" CommandParameter="{Binding AddEquipmentICommand}"
                     Width="100"  HorizontalAlignment="Center" Margin="0,10,0,0" />
 
         </StackPanel>
