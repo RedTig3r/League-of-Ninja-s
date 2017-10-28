@@ -15,6 +15,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using LeagueOfNinja.View;
+using LeagueOfNinja.ViewModel.InventoryViewModel;
 using Microsoft.Practices.ServiceLocation;
 
 
@@ -49,11 +50,8 @@ namespace LeagueOfNinja.ViewModel
 
 
         private MainVM _mainVM;
-
-        private NinjaListVM _ninjaListVM;
-
-        
-
+           
+              
         //---- Main ----
         public MainVM MainVM
         {
@@ -67,6 +65,8 @@ namespace LeagueOfNinja.ViewModel
         }
 
         //---- Ninja ----
+
+        private NinjaListVM _ninjaListVM;
 
         public NinjaListVM NinjaListVM
         {
@@ -99,6 +99,10 @@ namespace LeagueOfNinja.ViewModel
             }
         }
 
+
+
+        //--- Equipment ---
+
         private EquipmentListVM _equipmentListVM;
 
         public EquipmentListVM EquipmentListVM
@@ -111,9 +115,7 @@ namespace LeagueOfNinja.ViewModel
                 return _equipmentListVM;
             }
         }
-
-
-
+        
         public AddEquipmentVM AddEquipmentVM
         {
             get
@@ -131,6 +133,32 @@ namespace LeagueOfNinja.ViewModel
         }
 
 
+        //--- Inventory ---
+
+        private InventoryListVM _inventoryListVM;
+
+        public InventoryListVM InventoryListVM
+        {
+            get
+            {
+                if (_inventoryListVM == null)
+                    _inventoryListVM = new InventoryListVM();
+
+                return _inventoryListVM;
+            }
+        }
+
+        public InventoryVM NinjaInventory
+        {
+            get
+            {
+                return new InventoryVM(_ninjaListVM.SelectedNinja);
+            }
+        }
+
+        
+
+       
         public static void Cleanup()
         {
            

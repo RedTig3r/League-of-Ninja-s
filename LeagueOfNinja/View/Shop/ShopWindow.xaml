@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeagueOfNinja.View"
         mc:Ignorable="d"
-        Title="League of Ninja's" Height="300" Width="506.161">
+        Title="League of Ninja's" 
+        Height="300" 
+        Width="506.161"
+        ResizeMode="NoResize"
+        DataContext="{Binding EquipmentVM, Source={StaticResource Locator}}">
 
 
-    <Grid>
-        
+    <Grid>        
         
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace LeagueOfNinja.ViewModel
 {
-    class ShopVM : ViewModelBase
+    public class ShopVM : ViewModelBase
     {
+
 
     
 

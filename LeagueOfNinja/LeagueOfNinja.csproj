@@ -126,6 +126,7 @@
     <Compile Include="ViewModel\EquipmentViewModel\AddEquipmentStatistic.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\EquipmentListVM.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\EquipmentStatisticVM.cs" />
+    <Compile Include="ViewModel\InventoryViewModel\InventoryListVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\NinjaViewModel\NinjaListVM.cs" />

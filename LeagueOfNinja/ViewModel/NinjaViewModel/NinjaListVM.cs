@@ -18,8 +18,6 @@ namespace LeagueOfNinja.ViewModel
 
         private InventoryWindow _inventoryWindow;
 
-        private EquipmentWindow _equipmentWindow;
-
         private NinjaVM _selectedNinja;
 
 
@@ -30,7 +28,6 @@ namespace LeagueOfNinja.ViewModel
         public ICommand ShowUpdateNinjaCommand { get; set; }
         public ICommand DeleteNinjaCommand { get; set; }
         public ICommand ShowInventoryCommand { get; set; }
-        public ICommand ShowEquipmentsCommand { get; set; }
 
 
         public NinjaListVM()
@@ -50,8 +47,7 @@ namespace LeagueOfNinja.ViewModel
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
 
             ShowInventoryCommand = new RelayCommand(ShowInventory);
-
-            ShowEquipmentsCommand = new RelayCommand(ShowEquipements);
+                        
         }
 
 
@@ -116,15 +112,7 @@ namespace LeagueOfNinja.ViewModel
             _inventoryWindow.Show();
         }
 
-        //--- Equipments ---
-
-        public void ShowEquipements()
-        {
-            _equipmentWindow = new EquipmentWindow();            
-            _equipmentWindow.Show();
-        }
-
-
+        
         //--- Delete ---
 
         private void DeleteNinja()
