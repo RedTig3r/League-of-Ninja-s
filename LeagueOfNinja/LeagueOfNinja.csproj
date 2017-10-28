@@ -264,6 +264,7 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\FrontImage.png" />
+    <Resource Include="Images\ninjaArmor.jpg" />
     <Content Include="Model\NinjaEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NinjaEntities.edmx</DependentUpon>
