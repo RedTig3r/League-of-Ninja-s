@@ -34,7 +34,8 @@
 
             </Grid>
 
-            <DataGrid Height="375" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedNinja, Mode=TwoWay}" ItemsSource="{Binding NinjasOC}"  Margin="0,5,0,0" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column"      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <DataGrid Height="375" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedNinja, Mode=TwoWay}" ItemsSource="{Binding NinjasOC}"  Margin="0,5,0,0" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column"      
+                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="35">
                         <DataGridTemplateColumn.CellTemplate>

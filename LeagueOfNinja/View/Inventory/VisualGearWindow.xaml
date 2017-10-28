@@ -21,8 +21,31 @@
         <DataGrid x:Name="Head" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="59" Width="61"/>
         <DataGrid x:Name="Shoulder" HorizontalAlignment="Left" Margin="108,66,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="2"/>
         <DataGrid x:Name="Shoes" HorizontalAlignment="Left" Margin="108,400,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="2"/>
-        <DataGrid x:Name="Legs" HorizontalAlignment="Left" Margin="10,353,0,0" VerticalAlignment="Top" Height="59" Width="61"/>
+        <DataGrid x:Name="Legs" HorizontalAlignment="Left" Margin="0,292,0,0" VerticalAlignment="Top" Height="59" Width="61"/>
         <DataGrid x:Name="Chest" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Height="59" Width="61"/>
         <DataGrid x:Name="Belt" HorizontalAlignment="Left" Margin="141,228,0,0" VerticalAlignment="Top" Height="59" Width="61" Grid.Column="2"/>
+
+        <!-- Name text -->
+        <TextBlock Margin="0,13,108,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Width="104" Grid.Column="2"/>
+        <TextBlock x:Name="Name" Grid.Column="2" HorizontalAlignment="Left" Margin="37,13,0,0" TextWrapping="Wrap" Text="{Binding Ninja.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="104"/>
+
+        <!-- Gear value -->
+        <TextBlock Margin="10,374,14,0" TextWrapping="Wrap" Text="Gear Value:" VerticalAlignment="Top" Width="104"/>
+        <TextBlock x:Name="GearValue" Grid.Column="2" HorizontalAlignment="Left" Margin="37,13,0,0" TextWrapping="Wrap" Text="{Binding Ninja.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="104"/>
+
+        <!-- Strength text -->
+        <TextBlock Margin="10,395,14,0" TextWrapping="Wrap" Text="Strength:" VerticalAlignment="Top" Width="104"/>
+        <TextBlock x:Name="Strength" Grid.Column="2" HorizontalAlignment="Left" Margin="37,13,0,0" TextWrapping="Wrap" Text="{Binding Ninja.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="104"/>
+
+        <!-- Agility text -->
+        <TextBlock Margin="10,411,14,0" TextWrapping="Wrap" Text="Agility:" VerticalAlignment="Top" Width="104"/>
+        <TextBlock x:Name="Agility" Grid.Column="2" HorizontalAlignment="Left" Margin="37,13,0,0" TextWrapping="Wrap" Text="{Binding Ninja.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="104"/>
+
+        <!-- Intelligence text -->
+        <TextBlock Margin="10,427,14,0" TextWrapping="Wrap" Text="Intelligence:" VerticalAlignment="Top" Width="104"/>
+        <TextBlock x:Name="Intelligence" Grid.Column="2" HorizontalAlignment="Left" Margin="37,13,0,0" TextWrapping="Wrap" Text="{Binding Ninja.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="104"/>
+
+
+
     </Grid>
 </Window>

@@ -22,7 +22,6 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         private NinjaVM _selectedNinja;
 
-        private NinjaWindow _ninjaWindow;
 
         public ObservableCollection<NinjaVM> NinjasOC { get; set; }
 
