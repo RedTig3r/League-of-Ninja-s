@@ -11,6 +11,7 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 {
     public class NinjaListVM : ViewModelBase
     {
+
         private AddNinjaWindow _addNinjaWindow;
 
         private UpdateNinjaWindow _updateNinjaWindow;
@@ -33,6 +34,9 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         public NinjaListVM()
         {
+
+            App.Current.MainWindow.Close();
+
             using (var context = new NinjaEntities())
             {
 

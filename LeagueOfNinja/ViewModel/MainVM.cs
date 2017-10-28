@@ -18,6 +18,7 @@ namespace LeagueOfNinja.ViewModel
 
         public MainVM()
         {
+
             ShowStartCommand = new RelayCommand(ShowNinjaWindow);
         }
 
@@ -26,7 +27,13 @@ namespace LeagueOfNinja.ViewModel
         {
             _ninjaWindow = new NinjaWindow();
             _ninjaWindow.Show();
+
         }    
+
+   
+
+
+
         
        
     }
