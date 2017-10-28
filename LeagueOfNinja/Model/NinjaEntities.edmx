@@ -19,7 +19,6 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EquipmentValue" Type="int" Nullable="false" />
           <Property Name="EquipmentType" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ShopId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EquipmentStatistic">
           <Key>
@@ -47,13 +46,6 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Money" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Shop">
-          <Key>
-            <PropertyRef Name="ShopId" />
-          </Key>
-          <Property Name="ShopId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="TypeOfEquipment">
           <Key>
             <PropertyRef Name="EquipmentType" />
@@ -66,20 +58,6 @@
           </Key>
           <Property Name="StatisticType" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Equipment_Shop">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shop">
-              <PropertyRef Name="ShopId" />
-            </Principal>
-            <Dependent Role="Equipment">
-              <PropertyRef Name="ShopId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Equipment_TypeOfEquipment">
           <End Role="TypeOfEquipment" Type="Self.TypeOfEquipment" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -156,13 +134,8 @@
           <EntitySet Name="EquipmentStatistic" EntityType="Self.EquipmentStatistic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryItem" EntityType="Self.InventoryItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfEquipment" EntityType="Self.TypeOfEquipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypOfStatistic" EntityType="Self.TypOfStatistic" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Equipment_Shop" Association="Self.FK_Equipment_Shop">
-            <End Role="Shop" EntitySet="Shop" />
-            <End Role="Equipment" EntitySet="Equipment" />
-          </AssociationSet>
           <AssociationSet Name="FK_Equipment_TypeOfEquipment" Association="Self.FK_Equipment_TypeOfEquipment">
             <End Role="TypeOfEquipment" EntitySet="TypeOfEquipment" />
             <End Role="Equipment" EntitySet="Equipment" />
@@ -203,8 +176,6 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EquipmentValue" Type="Int32" Nullable="false" />
           <Property Name="EquipmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ShopId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Shop" Relationship="Self.FK_Equipment_Shop" FromRole="Equipment" ToRole="Shop" />
           <NavigationProperty Name="TypeOfEquipment" Relationship="Self.FK_Equipment_TypeOfEquipment" FromRole="Equipment" ToRole="TypeOfEquipment" />
           <NavigationProperty Name="EquipmentStatistics" Relationship="Self.FK_EquipmentState_Equipment" FromRole="Equipment" ToRole="EquipmentStatistic" />
           <NavigationProperty Name="InventoryItems" Relationship="Self.FK_Inventory_Equitment" FromRole="Equipment" ToRole="InventoryItem" />
@@ -240,14 +211,6 @@
           <Property Name="Money" Type="Int32" Nullable="false" />
           <NavigationProperty Name="InventoryItems" Relationship="Self.FK_Inventory_Ninja" FromRole="Ninja" ToRole="InventoryItem" />
         </EntityType>
-        <EntityType Name="Shop">
-          <Key>
-            <PropertyRef Name="ShopId" />
-          </Key>
-          <Property Name="ShopId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_Shop" FromRole="Shop" ToRole="Equipment" />
-        </EntityType>
         <EntityType Name="TypeOfEquipment">
           <Key>
             <PropertyRef Name="EquipmentType" />
@@ -262,20 +225,6 @@
           <Property Name="StatisticType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="EquipmentStatistics" Relationship="Self.FK_EquipmentState_TypOfStatistic" FromRole="TypOfStatistic" ToRole="EquipmentStatistic" />
         </EntityType>
-        <Association Name="FK_Equipment_Shop">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shop">
-              <PropertyRef Name="ShopId" />
-            </Principal>
-            <Dependent Role="Equipment">
-              <PropertyRef Name="ShopId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Equipment_TypeOfEquipment">
           <End Role="TypeOfEquipment" Type="Self.TypeOfEquipment" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -352,13 +301,8 @@
           <EntitySet Name="EquipmentStatistics" EntityType="Self.EquipmentStatistic" />
           <EntitySet Name="InventoryItems" EntityType="Self.InventoryItem" />
           <EntitySet Name="Ninjas" EntityType="Self.Ninja" />
-          <EntitySet Name="Shops" EntityType="Self.Shop" />
           <EntitySet Name="TypeOfEquipments" EntityType="Self.TypeOfEquipment" />
           <EntitySet Name="TypOfStatistics" EntityType="Self.TypOfStatistic" />
-          <AssociationSet Name="FK_Equipment_Shop" Association="Self.FK_Equipment_Shop">
-            <End Role="Shop" EntitySet="Shops" />
-            <End Role="Equipment" EntitySet="Equipments" />
-          </AssociationSet>
           <AssociationSet Name="FK_Equipment_TypeOfEquipment" Association="Self.FK_Equipment_TypeOfEquipment">
             <End Role="TypeOfEquipment" EntitySet="TypeOfEquipments" />
             <End Role="Equipment" EntitySet="Equipments" />
@@ -400,7 +344,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EquipmentValue" ColumnName="EquipmentValue" />
                 <ScalarProperty Name="EquipmentType" ColumnName="EquipmentType" />
-                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -428,14 +371,6 @@
                 <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Money" ColumnName="Money" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Shops">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.Shop">
-              <MappingFragment StoreEntitySet="Shop">
-                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

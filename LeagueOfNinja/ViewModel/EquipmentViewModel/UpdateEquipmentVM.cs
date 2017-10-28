@@ -21,11 +21,14 @@ namespace LeagueOfNinja.ViewModel
 
         public ICommand UpdateEquipmentICommand { get; set; }
 
+
+
         public UpdateEquipmentVM(EquipmentListVM equipmentListVM)
         {
             this._equipmentListVM = equipmentListVM;
             this.EquipmentVM = _equipmentListVM.SelectedEquipment;
             UpdateEquipmentICommand = new RelayCommand(UpdateEquipment, CanUpdateEquipment);
+         
         }
 
         private void UpdateEquipment()

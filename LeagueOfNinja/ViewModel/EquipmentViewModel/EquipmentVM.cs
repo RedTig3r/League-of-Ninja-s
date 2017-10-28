@@ -28,6 +28,8 @@ namespace LeagueOfNinja.ViewModel
         }
 
 
+
+
         public int EquipmentId
         {
             get { return _equipment.EquipmentId; }
@@ -48,16 +50,10 @@ namespace LeagueOfNinja.ViewModel
         public string EquipmentType
         {
             get { return _equipment.EquipmentType; }
-            set { _equipment.EquipmentType = value; RaisePropertyChanged("EquipmentType"); }
+            set { _equipment.EquipmentType = value.ToString(); RaisePropertyChanged("EquipmentType"); }
         }
 
-        public int ShopId
-        {
-            get { return _equipment.ShopId; }
-            set { _equipment.ShopId = value; RaisePropertyChanged("ShopId"); }
-        }
-
-
+  
 
 
        }      

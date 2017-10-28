@@ -30,7 +30,6 @@ namespace LeagueOfNinja.Model
         public virtual DbSet<EquipmentStatistic> EquipmentStatistics { get; set; }
         public virtual DbSet<InventoryItem> InventoryItems { get; set; }
         public virtual DbSet<Ninja> Ninjas { get; set; }
-        public virtual DbSet<Shop> Shops { get; set; }
         public virtual DbSet<TypeOfEquipment> TypeOfEquipments { get; set; }
         public virtual DbSet<TypOfStatistic> TypOfStatistics { get; set; }
     }
