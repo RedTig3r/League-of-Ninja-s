@@ -7,9 +7,60 @@
         mc:Ignorable="d"
         Title="League of Ninja's" 
         Height="500" 
-        Width="500">
-    
-    <Grid>
-        
-    </Grid>
+        Width="500"
+        DataContext="{Binding NinjaInventory, Source={StaticResource Locator}}">
+
+    <Border BorderThickness="12">
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Inventory" FontSize="24" Grid.Column="0" />
+
+                <!-- Shop Button -->
+                <Button Height="50" FontSize="15" Content="Add ninja" 
+                        Foreground="White" FontWeight="Bold" Background="Purple" Grid.Column="1" Command="{Binding ShowAddNinjaCommand}">
+                </Button>
+
+                <!-- Equipments Button -->
+                <Button Height="50" FontSize="15" Content="Equipments" 
+                        Foreground="White" FontWeight="Bold" Background="Orange" Grid.Column="2" Command="{Binding ShowEquipmentsCommand}">
+                </Button>
+
+
+
+            </Grid>
+
+            <DataGrid Height="340" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding SelectedNinja.InventoryItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Ninja" Binding="{Binding ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />                    
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                    <DataGridTextColumn Header="Strength" Binding="{Binding Strength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                    <DataGridTextColumn Header="Agility" Binding="{Binding Agility,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                    <DataGridTextColumn Header="Intelligence" Binding="{Binding Intelligence,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            
+               
+
+
+                <!-- Visual Gear Button -->
+                <Button Height="50" FontSize="15" Content="Visual gear" 
+                        Foreground="White" FontWeight="Bold" Background="Gray" Grid.Column="1" Command="{Binding ShowAddNinjaCommand}" Margin="0,0,356,0"/>
+
+                <!-- Clear all Button -->
+                <Button Height="50" FontSize="15" Content="Clear all" 
+                        Foreground="White" FontWeight="Bold" Background="Gray" Grid.Column="2" Command="{Binding ShowAddNinjaCommand}" Margin="0,0,356,0" />
+            
+
+
+        </StackPanel>
+    </Border>
 </Window>

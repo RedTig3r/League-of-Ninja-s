@@ -134,7 +134,6 @@
     <Compile Include="ViewModel\EquipmentViewModel\AddEquipmentVM.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\EquipmentVM.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\UpdateEquipmentVM.cs" />
-    <Compile Include="ViewModel\InventoryViewModel\AddInventoryVM.cs" />
     <Compile Include="ViewModel\InventoryViewModel\InventoryVM.cs" />
     <Compile Include="ViewModel\InventoryViewModel\UpdateInventoryVM.cs" />
     <Compile Include="View\Equipment\AddEquipmentWindow.xaml.cs">

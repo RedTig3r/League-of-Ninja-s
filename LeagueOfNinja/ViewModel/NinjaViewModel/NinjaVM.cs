@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Linq;
 using System;
+using System.Collections.ObjectModel;
+using LeagueOfNinja.ViewModel.EquipmentViewModel;
 
 namespace LeagueOfNinja.ViewModel.NinjaViewModel
 {
@@ -11,7 +13,8 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
     {
 
         private Ninja _ninja;
- 
+
+        public ObservableCollection<EquipmentVM> InventoryItems { get; set; }
 
         public NinjaVM()
         {
@@ -20,7 +23,7 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         public NinjaVM(Ninja ninja)
         {
-            this._ninja = ninja;
+            this._ninja = ninja;            
         }
 
 
