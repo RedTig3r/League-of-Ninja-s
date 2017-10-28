@@ -24,8 +24,13 @@
         <TextBox MaxLength="50" Text="{Binding Path=Equipment.EquipmentValue, Mode=TwoWay}" />
 
         <TextBlock Text="Type:" Margin="0,5,0,0" />
-        <TextBox MaxLength="50" Text="{Binding Path=Equipment.EquipmentType, Mode=TwoWay}" />
-
+        <ComboBox SelectedItem="{Binding Path=Equipment.EquipmentType, Mode=TwoWay}">
+            <ComboBoxItem IsSelected="True">Shoulders</ComboBoxItem>
+            <ComboBoxItem>Chest</ComboBoxItem>
+            <ComboBoxItem>Belt</ComboBoxItem>
+            <ComboBoxItem>Legs</ComboBoxItem>
+            <ComboBoxItem>Boots</ComboBoxItem>
+        </ComboBox>
 
         <Button Content="Add equipment" Command="{Binding AddEquipmentICommand}" CommandParameter="{Binding AddEquipmentICommand}"
                     Width="100"  HorizontalAlignment="Center" Margin="0,5,0,0" />

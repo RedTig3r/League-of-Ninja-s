@@ -32,7 +32,7 @@
                 <DataGrid Height="230" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedNinja, Mode=TwoWay}" ItemsSource="{Binding NinjasOC}" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn  Header="Equipment Type">
-                            <DataGridTemplateColumn.CellTemplate Binding="{Binding Name}">
+                            <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Command="{Binding DataContext.ShowUpdateNinjaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                     BorderThickness="0,0,0,1" BorderBrush="#FF999A9B" Foreground="White" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="30" Background="#FF6F9BDA">Update</Button>
@@ -50,7 +50,7 @@
                     <DataGrid.Columns>
 
                         <DataGridTemplateColumn  Header="Equipment Type Items">
-                            <DataGridTemplateColumn.CellTemplate Binding="{Binding Name}">
+                            <DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
                                     <Button Command="{Binding DataContext.ShowUpdateNinjaCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                     BorderThickness="0,0,0,1" BorderBrush="#FF999A9B" Foreground="White" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="30" Background="#FF6F9BDA">
@@ -112,9 +112,9 @@
 
             <!-- De cell midden onder -->
             <Grid  Grid.Row="1">
-                <Button Height="25" Width="75" x:Name="BuyEquipment" Content="BUY" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+                <Button Background="White" FontSize="10" Height="25" Width="75" x:Name="BuyEquipment" Content="BUY" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
      
-                <Label  FontSize="5" HorizontalAlignment="Left" VerticalAlignment="Bottom">HALLO</Label>
+                <Label Content="You have .... gold left"  FontSize="5" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Label>
             </Grid>
         </Grid>
     </Grid>

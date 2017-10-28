@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Data.Entity;
 
-namespace LeagueOfNinja.ViewModel.NinjaViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class UpdateNinjaVM : ViewModelBase
     {

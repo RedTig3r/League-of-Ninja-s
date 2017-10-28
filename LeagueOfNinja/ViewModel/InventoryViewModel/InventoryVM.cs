@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeagueOfNinja.ViewModel.InventoryViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class InventoryVM : ViewModelBase
     {

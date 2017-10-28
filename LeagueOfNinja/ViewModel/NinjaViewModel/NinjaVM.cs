@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Linq;
 using System;
 
-namespace LeagueOfNinja.ViewModel.NinjaViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class NinjaVM : ViewModelBase
     {

@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Data.Entity;
 
 
-namespace LeagueOfNinja.ViewModel.EquipmentViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class UpdateEquipmentVM : ViewModelBase
     {

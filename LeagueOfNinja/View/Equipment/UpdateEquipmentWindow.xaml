@@ -25,8 +25,13 @@
             <TextBox MaxLength="50" Text="{Binding Path=EquipmentVM.EquipmentValue, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock Text="Type:" Margin="0,5,0,0" />
-            <TextBox MaxLength="50" Text="{Binding Path=EquipmentVM.EquipmentType, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" />
-
+            <ComboBox SelectedItem="{Binding Path=EquipmentVM.EquipmentType, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem>Shoulders</ComboBoxItem>
+                <ComboBoxItem>Chest</ComboBoxItem>
+                <ComboBoxItem>Belt</ComboBoxItem>
+                <ComboBoxItem>Legs</ComboBoxItem>
+                <ComboBoxItem>Boots</ComboBoxItem>
+            </ComboBox>
 
 
             <Button Content="Save changes" Command="{Binding UpdateEquipmentICommand}" CommandParameter="{Binding AddEquipmentICommand}"

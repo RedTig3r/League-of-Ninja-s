@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeagueOfNinja.ViewModel.EquipmentViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class EquipmentVM : ViewModelBase
     {

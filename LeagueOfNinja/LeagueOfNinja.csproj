@@ -130,6 +130,9 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\NinjaViewModel\NinjaListVM.cs" />
+    <Compile Include="ViewModel\ShopViewModel\ShopEquipmentItemsListVM.cs" />
+    <Compile Include="ViewModel\ShopViewModel\ShopEquipmentTypeListVM.cs" />
+    <Compile Include="ViewModel\ShopViewModel\ShopVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\AddEquipmentVM.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\EquipmentVM.cs" />

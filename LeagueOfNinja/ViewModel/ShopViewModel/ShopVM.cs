@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace LeagueOfNinja.ViewModel
 {
-    class UpdateInventoryVM : ViewModelBase
+    class ShopVM : ViewModelBase
     {
+
+    
+
     }
 }
