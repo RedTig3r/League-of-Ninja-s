@@ -57,7 +57,7 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
 
         public void ShowAddEquipment()
         {
-            _addEquipmentWindow = new AddEquipmentWindow();
+            _addEquipmentWindow = new AddEquipmentWindow();            
             _addEquipmentWindow.Show();
         }
 
@@ -102,6 +102,10 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
             _ninjaWindow.Show();
         }
 
+        public void HideNinjaWindow()
+        {
+            _ninjaWindow.Close();
+        }
 
         //--- Delete ---
 

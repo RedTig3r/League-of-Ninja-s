@@ -22,6 +22,8 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         private NinjaVM _selectedNinja;
 
+        private NinjaWindow _ninjaWindow;
+
         public ObservableCollection<NinjaVM> NinjasOC { get; set; }
 
         //Commands
@@ -119,7 +121,7 @@ namespace LeagueOfNinja.ViewModel.NinjaViewModel
 
         public void ShowEquipements()
         {
-            _equipmentWindow = new EquipmentWindow();
+            _equipmentWindow = new EquipmentWindow();            
             _equipmentWindow.Show();
         }
 

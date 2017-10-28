@@ -152,7 +152,7 @@
     <Compile Include="View\Equipment\EquipmentWindow.xaml.cs">
       <DependentUpon>EquipmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Inventory\ShopWindow.xaml.cs">
+    <Compile Include="View\Shop\ShopWindow.xaml.cs">
       <DependentUpon>ShopWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Equipment\UpdateEquipmentWindow.xaml.cs">
@@ -199,7 +199,7 @@
       <DependentUpon>NinjaWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Inventory\ShopWindow.xaml">
+    <Page Include="View\Shop\ShopWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
