@@ -59,6 +59,7 @@ namespace LeagueOfNinja.ViewModel.EquipmentViewModel
 
 
 
+
        }      
 
     }
