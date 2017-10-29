@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeagueOfNinja.View"
         mc:Ignorable="d"
-        Title="League of Ninja's" Height="500" Width="700"
+        Title="League of Ninja's" 
+        Height="500" 
+        Width="700"
+        ResizeMode="NoResize"
         DataContext="{Binding EquipmentListVM, Source={StaticResource Locator}}">
     
     <Border BorderThickness="12">

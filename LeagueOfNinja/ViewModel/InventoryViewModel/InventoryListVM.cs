@@ -17,6 +17,8 @@ namespace LeagueOfNinja.ViewModel.InventoryViewModel
 
         private VisualGearWindow _visualGearWindow;
 
+        private InventoryVM _selectedInventoryItem;
+
 
         public ObservableCollection<InventoryVM> InventoryOC { get; set; }
 
@@ -25,6 +27,9 @@ namespace LeagueOfNinja.ViewModel.InventoryViewModel
         public ICommand ShowEquipmentsCommand { get; set; }
 
         public ICommand ShowVisualGearCommand { get; set; }
+
+        public ICommand EquipItemCommand { get; set; }
+        public ICommand UnEquipItemCommand { get; set; }
 
         public InventoryListVM()
         {
@@ -41,6 +46,16 @@ namespace LeagueOfNinja.ViewModel.InventoryViewModel
             ShowShopCommand = new RelayCommand(ShowShop);
             ShowVisualGearCommand = new RelayCommand(ShowVisualGear);
 
+        }
+
+        public InventoryVM SelectedInventoryItem
+        {
+            get { return _selectedInventoryItem; }
+            set
+            {
+                _selectedInventoryItem = value;
+                base.RaisePropertyChanged();
+            }
         }
 
 
@@ -67,6 +82,10 @@ namespace LeagueOfNinja.ViewModel.InventoryViewModel
             _shopWindow = new ShopWindow();
             _shopWindow.Show();
         }
+
+
+
+
 
     }
 }
