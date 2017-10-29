@@ -15,12 +15,10 @@ namespace LeagueOfNinja.ViewModel
         private NinjaListVM _ninjaListVM;
         private InventoryWindow _inventoryWindow;
         private InventoryListVM _inventoryListVM;
-        private EquipmentVM _equipmentType;
         private EquipmentVM _equipment;
 
 
         public NinjaVM NinjaVM { get; set; }
-        public ObservableCollection<EquipmentVM> ShopTypesOC { get; set; }
         public ObservableCollection<EquipmentVM> ShopItemsOC { get; set; }
         public ICommand ShowAllItemsFromEquipmentTypeCommand { get; set; }
         public ICommand ShowEquipmentDetailCommand { get; set; }
@@ -38,19 +36,12 @@ namespace LeagueOfNinja.ViewModel
             this.NinjaVM = _ninjaListVM.SelectedNinja;
 
             this._inventoryListVM = inventoryListVM;
-
-            using (var context = new NinjaEntities())
-            {
-
-                var equipmentTypes = context.Equipments.GroupBy(i => i.EquipmentType).Select(i => i.OrderByDescending(e => e.EquipmentType).FirstOrDefault()).ToList();
-                ShopTypesOC = new ObservableCollection<EquipmentVM>(equipmentTypes.Select(e => new EquipmentVM(e)));
-
-
-            }
+            
 
 
             using (var context = new NinjaEntities())
             {
+   
                 var equipment = context.Equipments.ToList();
                 ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Select(e => new EquipmentVM(e)));
             }
@@ -116,28 +107,6 @@ namespace LeagueOfNinja.ViewModel
 
         }
 
-        private void ShowAllItemsFromEquipmentType()
-        {
-            ShopItemsOC.Clear();
-
-            using (var context = new NinjaEntities())
-            {
-                var equipment = context.Equipments.ToList();
-                ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Where(e => e.EquipmentType == _equipmentType.EquipmentType).Select(e => new EquipmentVM(e)));
-            }
-
-
-        }
-
-        public EquipmentVM SelectedEquipmentType
-        {
-            get { return _equipmentType; }
-            set
-            {
-                _equipmentType = value;
-                base.RaisePropertyChanged();
-            }
-        }
 
 
         public EquipmentVM SelectedEquipment
