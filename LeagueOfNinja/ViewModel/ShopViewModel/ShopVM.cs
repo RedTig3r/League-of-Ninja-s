@@ -4,6 +4,7 @@ using LeagueOfNinja.Model;
 using LeagueOfNinja.View;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows.Input;
 namespace LeagueOfNinja.ViewModel
@@ -12,30 +13,23 @@ namespace LeagueOfNinja.ViewModel
     {
 
         private NinjaListVM _ninjaListVM;
-
         private InventoryWindow _inventoryWindow;
-
         private InventoryListVM _inventoryListVM;
-
-        public NinjaVM NinjaVM { get; set; }
-
         private EquipmentVM _equipmentType;
-
         private EquipmentVM _equipment;
 
 
-
+        public NinjaVM NinjaVM { get; set; }
         public ObservableCollection<EquipmentVM> ShopTypesOC { get; set; }
-
-
         public ObservableCollection<EquipmentVM> ShopItemsOC { get; set; }
-
-
         public ICommand ShowAllItemsFromEquipmentTypeCommand { get; set; }
         public ICommand ShowEquipmentDetailCommand { get; set; }
         public ICommand BuyEquipmentTypeCommand { get; set; }
 
         public ICommand ShowInventoryCommand { get; set; }
+
+        public ICommand BugItemCommand { get; set; }
+
 
         public ShopVM(NinjaListVM ninjaListVM, InventoryListVM inventoryListVM)
         {
@@ -66,6 +60,35 @@ namespace LeagueOfNinja.ViewModel
             ShowEquipmentDetailCommand = new RelayCommand(ShowEquipmentDetail);
             BuyEquipmentTypeCommand = new RelayCommand(BuyEquipmentType);
             ShowInventoryCommand = new RelayCommand(ShowInventory);
+            BugItemCommand = new RelayCommand(BuyItem, CanBuyItem);
+        }
+
+        private void BuyItem()
+        {
+           
+                var InventoryItemVM = new InventoryVM();
+
+                var inventoryItem = InventoryItemVM.ToModel();
+
+                inventoryItem.NinjaId = NinjaVM.NinjaId;
+                inventoryItem.IsUsingEquitment = false;
+                inventoryItem.EquipmentId = SelectedEquipment.EquipmentId;
+
+                using (var context = new NinjaEntities())
+                {
+
+                    context.InventoryItems.Add(inventoryItem);
+                    context.Entry(inventoryItem).State = EntityState.Added;
+                    context.SaveChanges();
+                }
+
+            
+
+        }
+
+        private bool CanBuyItem()
+        {
+            return NinjaVM.Money > SelectedEquipment.EquipmentValue;
         }
 
         private void ShowInventory()
@@ -78,6 +101,8 @@ namespace LeagueOfNinja.ViewModel
 
         private void BuyEquipmentType()
         {
+  
+
             using (var context = new NinjaEntities())
             {
                 var equipment = context.Equipments.ToList();
@@ -93,11 +118,12 @@ namespace LeagueOfNinja.ViewModel
 
         private void ShowAllItemsFromEquipmentType()
         {
+            ShopItemsOC.Clear();
 
             using (var context = new NinjaEntities())
             {
                 var equipment = context.Equipments.ToList();
-                ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Select(e => new EquipmentVM(e)).Where(e => e.EquipmentType == _equipmentType.EquipmentType));
+                ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Where(e => e.EquipmentType == _equipmentType.EquipmentType).Select(e => new EquipmentVM(e)));
             }
 
 
@@ -110,7 +136,6 @@ namespace LeagueOfNinja.ViewModel
             {
                 _equipmentType = value;
                 base.RaisePropertyChanged();
-                ShowAllItemsFromEquipmentType();
             }
         }
 
