@@ -15,7 +15,6 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="120" />
-                    <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Equipments" FontSize="24" Grid.Column="0" />
@@ -23,12 +22,7 @@
                 <!-- Add Equipment Button -->
                 <Button Height="50" FontSize="15" Content="Add Equipment" 
                         Foreground="White" FontWeight="Bold" Background="Purple" Grid.Column="1" Command="{Binding ShowAddEquipmentCommand}">
-                </Button>
-
-                <!-- Ninjas Button -->
-                <Button Height="50" FontSize="15" Content="Ninja's" 
-                        Foreground="White" FontWeight="Bold" Background="Orange" Grid.Column="2" Command="{Binding ShowNinjasCommand}">
-                </Button>
+                </Button>                
 
             </Grid>
 

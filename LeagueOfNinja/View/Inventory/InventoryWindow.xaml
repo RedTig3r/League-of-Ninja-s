@@ -35,31 +35,36 @@
 
             </Grid>
 
-            <DataGrid Height="340" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding SelectedNinja.InventoryItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <DataGrid Height="325" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}" ItemsSource="{Binding EquipmentsOC}"  Margin="0,5,0,0" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column"          
                       ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
-                                       
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-                    <DataGridTextColumn Header="Price" Binding="{Binding EquipmentValue,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-                    <DataGridTextColumn Header="Strength" Binding="{Binding Strength,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-                    <DataGridTextColumn Header="Agility" Binding="{Binding Agility,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-                    <DataGridTextColumn Header="Intelligence" Binding="{Binding Intelligence,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Header="Id" Binding="{Binding EquipmentId}" Width="*"/>
+                    <DataGridTextColumn Header="Equipment name" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding EquipmentValue}" Width="*" />
+                    <DataGridTextColumn Header="Type" Binding="{Binding EquipmentType}" Width="*"/>
+
+
                 </DataGrid.Columns>
             </DataGrid>
 
-            
-               
 
-
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
                 <!-- Visual Gear Button -->
                 <Button Height="50" FontSize="15" Content="Visual gear" 
-                        Foreground="White" FontWeight="Bold" Background="Gray" Grid.Column="1" Command="{Binding ShowVisualGearCommand}" Margin="0,0,356,0"/>
+                        Foreground="White" FontWeight="Bold" Background="Cyan" Command="{Binding ShowVisualGearCommand}" Grid.Column="2"/>
 
                 <!-- Clear all Button -->
                 <Button Height="50" FontSize="15" Content="Clear all" 
-                        Foreground="White" FontWeight="Bold" Background="Gray" Grid.Column="2" Command="{Binding ClearInventoryCommand}" Margin="0,0,356,0" />
-            
+                        Foreground="White" FontWeight="Bold" Background="Red" Command="{Binding ClearInventoryCommand}" Grid.Column="1" />
 
+            </Grid>
 
         </StackPanel>
     </Border>
