@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LeagueOfNinja.View.Equipment"
         mc:Ignorable="d"
         Title="League of Ninja's" 
-        Height="300"
+        Height="350"
         Width="300"
         DataContext="{Binding AddEquipmentVM, Source={StaticResource Locator}}">
 
@@ -25,6 +25,14 @@
         <TextBlock Text="Type:" Margin="0,5,0,0" />
         <TextBox MaxLength="50" Text="{Binding Path=Equipment.EquipmentType, Mode=TwoWay}" />
 
+        <TextBlock Text="Strength:" Margin="0,5,0,0" />
+        <TextBox MaxLength="50" Text="{Binding Path=Equipment.Strength, Mode=TwoWay}" />
+
+        <TextBlock Text="Intelligence:" Margin="0,5,0,0" />
+        <TextBox MaxLength="50" Text="{Binding Path=Equipment.Intelligence, Mode=TwoWay}" />
+
+        <TextBlock Text="Agility:" Margin="0,5,0,0" />
+        <TextBox MaxLength="50" Text="{Binding Path=Equipment.Agility, Mode=TwoWay}" />
         <Button Content="Add equipment" Command="{Binding AddEquipmentICommand}" CommandParameter="{Binding AddEquipmentICommand}"
                     Width="100"  HorizontalAlignment="Center" Margin="0,5,0,0" />
 

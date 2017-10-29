@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Linq;
 using System;
 using System.Collections.ObjectModel;
-using LeagueOfNinja.ViewModel.EquipmentViewModel;
 
 namespace LeagueOfNinja.ViewModel
 {
@@ -32,7 +31,13 @@ namespace LeagueOfNinja.ViewModel
             return _ninja;
         }
 
-        
+        public int NinjaId
+        {
+            get { return _ninja.NinjaId; }
+            set { _ninja.NinjaId = value; RaisePropertyChanged("NinjaId"); }
+        }
+
+
         public string Name
         {
             get { return _ninja.Name; }

@@ -93,9 +93,6 @@
     <Compile Include="Model\Equipment.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\EquipmentStatistic.cs">
-      <DependentUpon>NinjaEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\InventoryItem.cs">
       <DependentUpon>NinjaEntities.tt</DependentUpon>
     </Compile>
@@ -117,21 +114,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NinjaEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\TypeOfEquipment.cs">
-      <DependentUpon>NinjaEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\TypOfStatistic.cs">
-      <DependentUpon>NinjaEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\EquipmentViewModel\AddEquipmentStatistic.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\EquipmentListVM.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\EquipmentStatisticVM.cs" />
     <Compile Include="ViewModel\InventoryViewModel\InventoryListVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
+    <Compile Include="ViewModel\NinjaGearViewModel\NinjaGearVM.cs" />
     <Compile Include="ViewModel\NinjaViewModel\NinjaListVM.cs" />
-    <Compile Include="ViewModel\ShopViewModel\ShopEquipmentItemsListVM.cs" />
-    <Compile Include="ViewModel\ShopViewModel\ShopEquipmentTypeListVM.cs" />
     <Compile Include="ViewModel\ShopViewModel\ShopVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\EquipmentViewModel\AddEquipmentVM.cs" />
@@ -264,6 +253,10 @@
     <Resource Include="Images\NinjaPicca.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\FrontImage.png" />
+    <Resource Include="Images\ninjaArmor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\NinjaEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NinjaEntities.edmx</DependentUpon>
@@ -274,10 +267,6 @@
       <DependentUpon>NinjaEntities.edmx</DependentUpon>
       <LastGenOutput>NinjaEntities.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\FrontImage.png" />
-    <Resource Include="Images\ninjaArmor.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

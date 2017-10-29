@@ -25,8 +25,13 @@
                 <TextBlock Text="Inventory" FontSize="24" Grid.Column="0" />
 
                 <TextBlock Text="{Binding NinjaInventory.SelectedNinja}" FontSize="24" Grid.Column="1" />
-                
+
+                <Button Grid.Column="2" Height="50" FontSize="15" Content="Ninjas" 
+                        Foreground="White" FontWeight="Bold" Background="Black" Command="{Binding ShowNinjaCommand}">
+                </Button>
+
                 <!-- Equipments Button -->
+                
                 <Button Height="50" FontSize="15" Content="Equipments" 
                         Foreground="White" FontWeight="Bold" Background="Orange" Grid.Column="3" Command="{Binding ShowEquipmentsCommand}">
                 </Button>

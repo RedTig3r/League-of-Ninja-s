@@ -62,21 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LeagueOfNinja.DB.publish.xml" />
-    <None Include="Seeds\InsertTypeOfEquipment.sql" />
     <None Include="Seeds\InsertInventoryItem.sql" />
     <None Include="Seeds\InsertNinja.sql" />
-    <None Include="Seeds\InsertTypeOfStatistic.sql" />
     <None Include="Seeds\InsertEquipment.sql" />
-    <None Include="Seeds\InsertEquipmentStatistic.sql" />
     <None Include="LeagueOfNinja.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Ninja.sql" />
     <Build Include="Tables\InventoryItem.sql" />
     <Build Include="Tables\Equipment.sql" />
-    <Build Include="Tables\TypeOfEquipment.sql" />
-    <Build Include="Tables\TypeOStatistic.sql" />
-    <Build Include="Tables\EquipmentStatistic.sql" />
+    <Build Include="Tables\EquipmentType.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />

@@ -19,15 +19,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EquipmentValue" Type="int" Nullable="false" />
           <Property Name="EquipmentType" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="EquipmentStatistic">
-          <Key>
-            <PropertyRef Name="EquipmentId" />
-            <PropertyRef Name="StatisticType" />
-          </Key>
-          <Property Name="EquipmentId" Type="int" Nullable="false" />
-          <Property Name="StatisticType" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="StatisticValue" Type="int" Nullable="false" />
+          <Property Name="Strength" Type="int" Nullable="false" />
+          <Property Name="Intelligence" Type="int" Nullable="false" />
+          <Property Name="Agility" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="InventoryItem">
           <Key>
@@ -46,60 +40,6 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Money" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="TypeOfEquipment">
-          <Key>
-            <PropertyRef Name="EquipmentType" />
-          </Key>
-          <Property Name="EquipmentType" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TypOfStatistic">
-          <Key>
-            <PropertyRef Name="StatisticType" />
-          </Key>
-          <Property Name="StatisticType" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Equipment_TypeOfEquipment">
-          <End Role="TypeOfEquipment" Type="Self.TypeOfEquipment" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeOfEquipment">
-              <PropertyRef Name="EquipmentType" />
-            </Principal>
-            <Dependent Role="Equipment">
-              <PropertyRef Name="EquipmentType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipmentState_Equipment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="EquipmentStatistic" Type="Self.EquipmentStatistic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="EquipmentId" />
-            </Principal>
-            <Dependent Role="EquipmentStatistic">
-              <PropertyRef Name="EquipmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipmentState_TypOfStatistic">
-          <End Role="TypOfStatistic" Type="Self.TypOfStatistic" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="EquipmentStatistic" Type="Self.EquipmentStatistic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypOfStatistic">
-              <PropertyRef Name="StatisticType" />
-            </Principal>
-            <Dependent Role="EquipmentStatistic">
-              <PropertyRef Name="StatisticType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Inventory_Equitment">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -131,23 +71,8 @@
         <EntityContainer Name="LeagueOfNinjaModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EquipmentStatistic" EntityType="Self.EquipmentStatistic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryItem" EntityType="Self.InventoryItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TypeOfEquipment" EntityType="Self.TypeOfEquipment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TypOfStatistic" EntityType="Self.TypOfStatistic" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Equipment_TypeOfEquipment" Association="Self.FK_Equipment_TypeOfEquipment">
-            <End Role="TypeOfEquipment" EntitySet="TypeOfEquipment" />
-            <End Role="Equipment" EntitySet="Equipment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipmentState_Equipment" Association="Self.FK_EquipmentState_Equipment">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="EquipmentStatistic" EntitySet="EquipmentStatistic" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipmentState_TypOfStatistic" Association="Self.FK_EquipmentState_TypOfStatistic">
-            <End Role="TypOfStatistic" EntitySet="TypOfStatistic" />
-            <End Role="EquipmentStatistic" EntitySet="EquipmentStatistic" />
-          </AssociationSet>
           <AssociationSet Name="FK_Inventory_Equitment" Association="Self.FK_Inventory_Equitment">
             <End Role="Equipment" EntitySet="Equipment" />
             <End Role="InventoryItem" EntitySet="InventoryItem" />
@@ -176,20 +101,10 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EquipmentValue" Type="Int32" Nullable="false" />
           <Property Name="EquipmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TypeOfEquipment" Relationship="Self.FK_Equipment_TypeOfEquipment" FromRole="Equipment" ToRole="TypeOfEquipment" />
-          <NavigationProperty Name="EquipmentStatistics" Relationship="Self.FK_EquipmentState_Equipment" FromRole="Equipment" ToRole="EquipmentStatistic" />
+          <Property Name="Strength" Type="Int32" Nullable="false" />
+          <Property Name="Intelligence" Type="Int32" Nullable="false" />
+          <Property Name="Agility" Type="Int32" Nullable="false" />
           <NavigationProperty Name="InventoryItems" Relationship="Self.FK_Inventory_Equitment" FromRole="Equipment" ToRole="InventoryItem" />
-        </EntityType>
-        <EntityType Name="EquipmentStatistic">
-          <Key>
-            <PropertyRef Name="EquipmentId" />
-            <PropertyRef Name="StatisticType" />
-          </Key>
-          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
-          <Property Name="StatisticType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StatisticValue" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Equipment" Relationship="Self.FK_EquipmentState_Equipment" FromRole="EquipmentStatistic" ToRole="Equipment" />
-          <NavigationProperty Name="TypOfStatistic" Relationship="Self.FK_EquipmentState_TypOfStatistic" FromRole="EquipmentStatistic" ToRole="TypOfStatistic" />
         </EntityType>
         <EntityType Name="InventoryItem">
           <Key>
@@ -211,48 +126,6 @@
           <Property Name="Money" Type="Int32" Nullable="false" />
           <NavigationProperty Name="InventoryItems" Relationship="Self.FK_Inventory_Ninja" FromRole="Ninja" ToRole="InventoryItem" />
         </EntityType>
-        <EntityType Name="TypeOfEquipment">
-          <Key>
-            <PropertyRef Name="EquipmentType" />
-          </Key>
-          <Property Name="EquipmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_TypeOfEquipment" FromRole="TypeOfEquipment" ToRole="Equipment" />
-        </EntityType>
-        <EntityType Name="TypOfStatistic">
-          <Key>
-            <PropertyRef Name="StatisticType" />
-          </Key>
-          <Property Name="StatisticType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="EquipmentStatistics" Relationship="Self.FK_EquipmentState_TypOfStatistic" FromRole="TypOfStatistic" ToRole="EquipmentStatistic" />
-        </EntityType>
-        <Association Name="FK_Equipment_TypeOfEquipment">
-          <End Role="TypeOfEquipment" Type="Self.TypeOfEquipment" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeOfEquipment">
-              <PropertyRef Name="EquipmentType" />
-            </Principal>
-            <Dependent Role="Equipment">
-              <PropertyRef Name="EquipmentType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipmentState_Equipment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="EquipmentStatistic" Type="Self.EquipmentStatistic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="EquipmentId" />
-            </Principal>
-            <Dependent Role="EquipmentStatistic">
-              <PropertyRef Name="EquipmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Inventory_Equitment">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -264,20 +137,6 @@
             </Principal>
             <Dependent Role="InventoryItem">
               <PropertyRef Name="EquipmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipmentState_TypOfStatistic">
-          <End Role="TypOfStatistic" Type="Self.TypOfStatistic" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="EquipmentStatistic" Type="Self.EquipmentStatistic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypOfStatistic">
-              <PropertyRef Name="StatisticType" />
-            </Principal>
-            <Dependent Role="EquipmentStatistic">
-              <PropertyRef Name="StatisticType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -298,26 +157,11 @@
         <EntityContainer Name="NinjaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
-          <EntitySet Name="EquipmentStatistics" EntityType="Self.EquipmentStatistic" />
           <EntitySet Name="InventoryItems" EntityType="Self.InventoryItem" />
           <EntitySet Name="Ninjas" EntityType="Self.Ninja" />
-          <EntitySet Name="TypeOfEquipments" EntityType="Self.TypeOfEquipment" />
-          <EntitySet Name="TypOfStatistics" EntityType="Self.TypOfStatistic" />
-          <AssociationSet Name="FK_Equipment_TypeOfEquipment" Association="Self.FK_Equipment_TypeOfEquipment">
-            <End Role="TypeOfEquipment" EntitySet="TypeOfEquipments" />
-            <End Role="Equipment" EntitySet="Equipments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipmentState_Equipment" Association="Self.FK_EquipmentState_Equipment">
-            <End Role="Equipment" EntitySet="Equipments" />
-            <End Role="EquipmentStatistic" EntitySet="EquipmentStatistics" />
-          </AssociationSet>
           <AssociationSet Name="FK_Inventory_Equitment" Association="Self.FK_Inventory_Equitment">
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="InventoryItem" EntitySet="InventoryItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipmentState_TypOfStatistic" Association="Self.FK_EquipmentState_TypOfStatistic">
-            <End Role="TypOfStatistic" EntitySet="TypOfStatistics" />
-            <End Role="EquipmentStatistic" EntitySet="EquipmentStatistics" />
           </AssociationSet>
           <AssociationSet Name="FK_Inventory_Ninja" Association="Self.FK_Inventory_Ninja">
             <End Role="Ninja" EntitySet="Ninjas" />
@@ -344,15 +188,9 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EquipmentValue" ColumnName="EquipmentValue" />
                 <ScalarProperty Name="EquipmentType" ColumnName="EquipmentType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EquipmentStatistics">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.EquipmentStatistic">
-              <MappingFragment StoreEntitySet="EquipmentStatistic">
-                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
-                <ScalarProperty Name="StatisticType" ColumnName="StatisticType" />
-                <ScalarProperty Name="StatisticValue" ColumnName="StatisticValue" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="Intelligence" ColumnName="Intelligence" />
+                <ScalarProperty Name="Agility" ColumnName="Agility" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -371,20 +209,6 @@
                 <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Money" ColumnName="Money" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TypeOfEquipments">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.TypeOfEquipment">
-              <MappingFragment StoreEntitySet="TypeOfEquipment">
-                <ScalarProperty Name="EquipmentType" ColumnName="EquipmentType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TypOfStatistics">
-            <EntityTypeMapping TypeName="LeagueOfNinja.Model.TypOfStatistic">
-              <MappingFragment StoreEntitySet="TypOfStatistic">
-                <ScalarProperty Name="StatisticType" ColumnName="StatisticType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

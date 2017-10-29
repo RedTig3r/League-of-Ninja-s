@@ -4,18 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4a14106c755d42e0b72378ae07bb44c0" Name="Diagram1" ZoomLevel="71">
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.C__RefactorLog" Width="1.5" PointX="5.875" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.Equipment" Width="1.5" PointX="9.25" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.EquipmentStatistic" Width="1.5" PointX="9.125" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.InventoryItem" Width="1.5" PointX="12.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.Ninja" Width="1.5" PointX="15.5" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.TypeOfEquipment" Width="1.5" PointX="6.125" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeagueOfNinja.Model.TypOfStatistic" Width="1.5" PointX="6.375" PointY="2.125" IsExpanded="true" />
-        <AssociationConnector Association="LeagueOfNinja.Model.FK_Equipment_TypeOfEquipment" ManuallyRouted="false" />
-        <AssociationConnector Association="LeagueOfNinja.Model.FK_EquipmentState_Equipment" ManuallyRouted="false" />
+      <Diagram DiagramId="5c5515e99ac747959e815e4e263f7c6f" Name="Diagram1" ZoomLevel="60">
+        <EntityTypeShape EntityType="LeagueOfNinja.Model.C__RefactorLog" Width="1.5" PointX="1.875" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfNinja.Model.Equipment" Width="1.5" PointX="4.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfNinja.Model.InventoryItem" Width="1.5" PointX="8.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfNinja.Model.Ninja" Width="1.5" PointX="11.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="LeagueOfNinja.Model.FK_Inventory_Equitment" ManuallyRouted="false" />
-        <AssociationConnector Association="LeagueOfNinja.Model.FK_EquipmentState_TypOfStatistic" ManuallyRouted="false" />
         <AssociationConnector Association="LeagueOfNinja.Model.FK_Inventory_Ninja" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeagueOfNinja.View"
         mc:Ignorable="d"
-        Title="League of Ninja's" Height="300" Width="300"
+        Title="League of Ninja's" Height="350" Width="300"
         DataContext="{Binding UpdateEquipmentVM, Source={StaticResource Locator}}">
     
     <Grid>
@@ -24,8 +24,16 @@
             <TextBlock Text="Type:" Margin="0,5,0,0" />
             <TextBox MaxLength="50" Text="{Binding Path=EquipmentVM.EquipmentType, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" />
 
+            <TextBlock Text="Strength:" Margin="0,5,0,0" />
+            <TextBox MaxLength="50" Text="{Binding Path=EquipmentVM.Strength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                <Button Content="Save changes" Command="{Binding UpdateEquipmentICommand}" CommandParameter="{Binding AddEquipmentICommand}"
+            <TextBlock Text="Intelligence:" Margin="0,5,0,0" />
+            <TextBox MaxLength="50" Text="{Binding Path=EquipmentVM.Intelligence, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Text="Agility:" Margin="0,5,0,0" />
+            <TextBox MaxLength="50" Text="{Binding Path=EquipmentVM.Agility, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" />
+
+            <Button Content="Save changes" Command="{Binding UpdateEquipmentICommand}" CommandParameter="{Binding AddEquipmentICommand}"
                     Width="100"  HorizontalAlignment="Center" Margin="0,10,0,0" />
 
         </StackPanel>

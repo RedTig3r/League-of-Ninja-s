@@ -15,7 +15,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using LeagueOfNinja.View;
-using LeagueOfNinja.ViewModel.InventoryViewModel;
 using Microsoft.Practices.ServiceLocation;
 
 
@@ -50,8 +49,8 @@ namespace LeagueOfNinja.ViewModel
 
 
         private MainVM _mainVM;
-           
-              
+
+
         //---- Main ----
         public MainVM MainVM
         {
@@ -71,9 +70,9 @@ namespace LeagueOfNinja.ViewModel
         public NinjaListVM NinjaListVM
         {
             get
-            { 
+            {
                 if (_ninjaListVM == null)
-                    _ninjaListVM = new NinjaListVM();
+                    _ninjaListVM = new NinjaListVM(this.MainVM);
 
                 return _ninjaListVM;
             }
@@ -110,17 +109,17 @@ namespace LeagueOfNinja.ViewModel
             get
             {
                 if (_equipmentListVM == null)
-                    _equipmentListVM = new EquipmentListVM();
+                    _equipmentListVM = new EquipmentListVM(this.InventoryListVM);
 
                 return _equipmentListVM;
             }
         }
-        
+
         public AddEquipmentVM AddEquipmentVM
         {
             get
             {
-              return new AddEquipmentVM(EquipmentListVM);
+                return new AddEquipmentVM(EquipmentListVM);
             }
         }
 
@@ -131,9 +130,22 @@ namespace LeagueOfNinja.ViewModel
                 return new UpdateEquipmentVM(EquipmentListVM);
             }
         }
+        private NinjaGearVM _ninjaGearVM;
+
+
+        public NinjaGearVM NinjaGearVM
+        {
+            get
+            {
+                if (_ninjaGearVM == null)
+                    _ninjaGearVM = new NinjaGearVM(this.InventoryListVM);
+                return _ninjaGearVM;
+            }
+        }
 
 
         //--- Inventory ---
+
 
         private InventoryListVM _inventoryListVM;
 
@@ -142,26 +154,36 @@ namespace LeagueOfNinja.ViewModel
             get
             {
                 if (_inventoryListVM == null)
-                    _inventoryListVM = new InventoryListVM();
+                _inventoryListVM = new InventoryListVM(this.NinjaListVM);
 
                 return _inventoryListVM;
             }
         }
 
-        public InventoryVM NinjaInventory
+
+     
+        private ShopVM _shopVM;
+
+        public ShopVM ShopVM
         {
             get
             {
-                return new InventoryVM(_ninjaListVM.SelectedNinja);
+                if (_shopVM == null)
+                    _shopVM = new ShopVM(this.NinjaListVM);
+
+                return _shopVM;
             }
         }
 
-        
 
-       
+
+ 
+
+
+
         public static void Cleanup()
         {
-           
+
         }
     }
 }

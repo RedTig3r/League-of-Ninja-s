@@ -18,13 +18,17 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="120" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Equipments" FontSize="24" Grid.Column="0" />
 
                 <!-- Add Equipment Button -->
+                <Button Height="50" FontSize="15" Content="Inventory" 
+                        Foreground="White" FontWeight="Bold" Background="Orange" Grid.Column="1" Command="{Binding ShowIventoryCommand}" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0.4,0,0,-0.4" Width="120">
+                </Button>
                 <Button Height="50" FontSize="15" Content="Add Equipment" 
-                        Foreground="White" FontWeight="Bold" Background="Purple" Grid.Column="1" Command="{Binding ShowAddEquipmentCommand}">
+                        Foreground="White" FontWeight="Bold" Background="Purple" Grid.Column="2" Command="{Binding ShowAddEquipmentCommand}">
                 </Button>                
 
             </Grid>
@@ -36,6 +40,9 @@
                     <DataGridTextColumn Header="Equipment name" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Price" Binding="{Binding EquipmentValue}" Width="*" />
                     <DataGridTextColumn Header="Type" Binding="{Binding EquipmentType}" Width="*"/>
+                    <DataGridTextColumn Header="Strength" Binding="{Binding Strength}" Width="*"/>
+                    <DataGridTextColumn Header="Intelligence" Binding="{Binding Intelligence}" Width="*"/>
+                    <DataGridTextColumn Header="Agility" Binding="{Binding Agility}" Width="*"/>
                     <DataGridTemplateColumn Width="50">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

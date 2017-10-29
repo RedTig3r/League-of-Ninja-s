@@ -4,5 +4,9 @@
 	[Name] nvarchar(50) NOT NULL,
     [EquipmentValue] INT NOT NULL, 
 	[EquipmentType] nvarchar(50) NOT NULL, 
-    CONSTRAINT [FK_Equipment_TypeOfEquipment] FOREIGN KEY ([EquipmentType]) REFERENCES [dbo].[TypeOfEquipment]([EquipmentType])  ON DELETE CASCADE, 
+    [Strength] INT NOT NULL, 
+    [Intelligence] INT NOT NULL, 
+	[Agility] INT NOT NULL, 
+
+
 )

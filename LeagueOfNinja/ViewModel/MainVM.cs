@@ -28,7 +28,13 @@ namespace LeagueOfNinja.ViewModel
             _ninjaWindow = new NinjaWindow();
             _ninjaWindow.Show();
 
-        }    
+        }
+
+
+        public void CloseNinjawindow()
+        {
+            _ninjaWindow.Close();
+        }
 
    
 

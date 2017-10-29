@@ -16,7 +16,9 @@ namespace LeagueOfNinja.ViewModel
 
         private UpdateEquipmentWindow _updateEquipmentWindow;
 
-        private NinjaWindow _ninjaWindow;
+        private InventoryWindow _inventoryWindow;
+
+        private InventoryListVM _inventoryListVM; 
 
         private EquipmentVM _selectedEquipment;
 
@@ -26,11 +28,14 @@ namespace LeagueOfNinja.ViewModel
         public ICommand ShowAddEquipmentCommand { get; set; }
         public ICommand ShowUpdateEquipmentCommand { get; set; }
         public ICommand DeleteEquipmentCommand { get; set; }
-        public ICommand ShowNinjasCommand { get; set; }
+        public ICommand ShowIventoryCommand { get; set; }
 
 
-        public EquipmentListVM()
+        public EquipmentListVM(InventoryListVM inventoryListVM)
         {
+
+            _inventoryListVM = inventoryListVM;
+
             using (var context = new NinjaEntities())
             {
                 var equipments = context.Equipments.ToList();
@@ -41,7 +46,7 @@ namespace LeagueOfNinja.ViewModel
             ShowUpdateEquipmentCommand = new RelayCommand(ShowUpdateEquipment, CanUpdateEquipment);
             DeleteEquipmentCommand = new RelayCommand(DeleteEquipment);
 
-            ShowNinjasCommand = new RelayCommand(ShowNinjas);
+            ShowIventoryCommand = new RelayCommand(ShowInventory);
 
         }
 
@@ -75,6 +80,22 @@ namespace LeagueOfNinja.ViewModel
         }
 
 
+        //---  Inventory ---
+
+        public void ShowInventory()
+        {
+            _inventoryWindow = new InventoryWindow();
+            _inventoryWindow.Show();
+            _inventoryListVM.HideEquipements();
+        }
+
+    
+
+        public void HideEquipment()
+        {
+            _addEquipmentWindow.Close();
+        }
+
 
         //--- Update ---
 
@@ -97,17 +118,7 @@ namespace LeagueOfNinja.ViewModel
             _updateEquipmentWindow.Close();
         }
 
-        //--- Ninjas ---
-        public void ShowNinjas()
-        {
-            _ninjaWindow = new NinjaWindow();
-            _ninjaWindow.Show();
-        }
-
-        public void HideNinjaWindow()
-        {
-            _ninjaWindow.Close();
-        }
+      
 
         //--- Delete ---
 

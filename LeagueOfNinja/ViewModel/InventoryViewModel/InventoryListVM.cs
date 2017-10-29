@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Linq;
 using LeagueOfNinja.View;
 using System.Data.Entity;
-namespace LeagueOfNinja.ViewModel.InventoryViewModel
+namespace LeagueOfNinja.ViewModel
 {
     public class InventoryListVM : ViewModelBase
     {
@@ -15,14 +15,19 @@ namespace LeagueOfNinja.ViewModel.InventoryViewModel
 
         private ShopWindow _shopWindow;
 
+        private NinjaWindow _ninjaWindow;
+
         private VisualGearWindow _visualGearWindow;
 
         private InventoryVM _selectedInventoryItem;
 
+        private NinjaListVM _ninjaListVM;
 
         public ObservableCollection<InventoryVM> InventoryOC { get; set; }
 
         //Commands
+
+        public ICommand ShowNinjaCommand { get; set; }
         public ICommand ShowShopCommand { get; set; }
         public ICommand ShowEquipmentsCommand { get; set; }
 
@@ -31,17 +36,18 @@ namespace LeagueOfNinja.ViewModel.InventoryViewModel
         public ICommand EquipItemCommand { get; set; }
         public ICommand UnEquipItemCommand { get; set; }
 
-        public InventoryListVM()
+        public InventoryListVM(NinjaListVM ninjaListVM)
         {
 
-            
+            _ninjaListVM = ninjaListVM;
+
+
             using (var context = new NinjaEntities())
             {
-
                 var inventoryItems = context.InventoryItems.ToList();
-                InventoryOC = new ObservableCollection<InventoryVM>(inventoryItems.Select(r => new InventoryVM(r)));
+                InventoryOC = new ObservableCollection<InventoryVM>(inventoryItems.Select(i => new InventoryVM(i)).Where(i => i.NinjaId == _ninjaListVM.SelectedNinja.NinjaId));
             }
-
+            ShowNinjaCommand = new RelayCommand(ShowNinjas);
             ShowEquipmentsCommand = new RelayCommand(ShowEquipements);
             ShowShopCommand = new RelayCommand(ShowShop);
             ShowVisualGearCommand = new RelayCommand(ShowVisualGear);
@@ -65,14 +71,24 @@ namespace LeagueOfNinja.ViewModel.InventoryViewModel
         {
             _equipmentWindow = new EquipmentWindow();
             _equipmentWindow.Show();
+            _ninjaListVM.CloseInventoryNinja();
         }
+
+
+        public void HideEquipements()
+        {
+
+            _equipmentWindow.Close();
+        }
+
 
         //--- Visual Gear ---
 
         public void ShowVisualGear()
         {
             _visualGearWindow = new VisualGearWindow();
-            _visualGearWindow.Show();            
+            _visualGearWindow.Show();
+            _ninjaListVM.CloseInventoryNinja();
         }
 
         //--- Shop ---
@@ -81,9 +97,17 @@ namespace LeagueOfNinja.ViewModel.InventoryViewModel
         {
             _shopWindow = new ShopWindow();
             _shopWindow.Show();
+            _ninjaListVM.CloseInventoryNinja();
         }
 
+        //--- Ninja ---
 
+        public void ShowNinjas()
+        {
+            _ninjaWindow = new NinjaWindow();
+            _ninjaWindow.Show();
+            _ninjaListVM.CloseInventoryNinja();
+        }
 
 
 

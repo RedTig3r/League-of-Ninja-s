@@ -20,6 +20,7 @@ namespace LeagueOfNinja.ViewModel
 
         private NinjaVM _selectedNinja;
 
+        private MainVM _mainVM;
 
         public ObservableCollection<NinjaVM> NinjasOC { get; set; }
 
@@ -30,9 +31,9 @@ namespace LeagueOfNinja.ViewModel
         public ICommand ShowInventoryCommand { get; set; }
 
 
-        public NinjaListVM()
+        public NinjaListVM(MainVM mainVM)
         {
-
+            _mainVM = mainVM;
             App.Current.MainWindow.Close();
 
             using (var context = new NinjaEntities())
@@ -61,12 +62,22 @@ namespace LeagueOfNinja.ViewModel
             }
         }
 
+
+        public void CloseInventoryNinja()
+        {
+            _inventoryWindow.Close();
+        }
+
+
+
+
         //---  Create ---
 
         public void ShowAddNinja()
         {
             _addNinjaWindow = new AddNinjaWindow();
             _addNinjaWindow.Show();
+  
         }
 
         public bool CanShowAddNinja()
@@ -109,7 +120,9 @@ namespace LeagueOfNinja.ViewModel
         public void ShowInventory()
         {
             _inventoryWindow = new InventoryWindow();
+
             _inventoryWindow.Show();
+            _mainVM.CloseNinjawindow();
         }
 
         
