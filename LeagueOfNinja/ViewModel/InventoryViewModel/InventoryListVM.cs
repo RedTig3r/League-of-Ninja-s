@@ -6,6 +6,8 @@ using System.Windows.Input;
 using System.Linq;
 using LeagueOfNinja.View;
 using System.Data.Entity;
+using System;
+
 namespace LeagueOfNinja.ViewModel
 {
     public class InventoryListVM : ViewModelBase
@@ -23,7 +25,9 @@ namespace LeagueOfNinja.ViewModel
 
         private NinjaListVM _ninjaListVM;
 
-        public ObservableCollection<InventoryVM> InventoryOC { get; set; }
+        public NinjaVM NinjaVM { get; set; }
+
+        public ObservableCollection<EquipmentVM> EquipmentInventoryOC { get; set; }
 
         //Commands
 
@@ -36,21 +40,75 @@ namespace LeagueOfNinja.ViewModel
         public ICommand EquipItemCommand { get; set; }
         public ICommand UnEquipItemCommand { get; set; }
 
+        public ICommand SellEverythingCommand { get; set; }
         public InventoryListVM(NinjaListVM ninjaListVM)
         {
 
             _ninjaListVM = ninjaListVM;
 
+            NinjaVM = _ninjaListVM.SelectedNinja;
+
 
             using (var context = new NinjaEntities())
             {
+
+                var index = NinjaVM.NinjaId;
                 var inventoryItems = context.InventoryItems.ToList();
-                InventoryOC = new ObservableCollection<InventoryVM>(inventoryItems.Select(i => new InventoryVM(i)).Where(i => i.NinjaId == _ninjaListVM.SelectedNinja.NinjaId));
+                var inventoryID = (inventoryItems.Select(e => new InventoryVM(e)).Where(e => e.NinjaId == index)).ToList();
+
+                var equipments = context.Equipments.ToList();
+                EquipmentInventoryOC = new ObservableCollection<EquipmentVM>(equipments.Select(e => new EquipmentVM(e)).Where(e => inventoryID.Any(e2 => e2.EquipmentId == e.EquipmentId)));
             }
+
+
             ShowNinjaCommand = new RelayCommand(ShowNinjas);
             ShowEquipmentsCommand = new RelayCommand(ShowEquipements);
             ShowShopCommand = new RelayCommand(ShowShop);
             ShowVisualGearCommand = new RelayCommand(ShowVisualGear);
+            EquipItemCommand = new RelayCommand(EquipItem);
+            UnEquipItemCommand = new RelayCommand(UnEquipItem);
+            SellEverythingCommand = new RelayCommand(SellEverything);
+
+        }
+
+        internal void HideShop()
+        {
+            _shopWindow.Close();
+        }
+
+        private void EquipItem()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UnEquipItem()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SellEverything()
+        {
+
+            foreach (EquipmentVM e in EquipmentInventoryOC)
+            {
+                NinjaVM.Money += e.EquipmentValue;
+            }
+
+
+            using (var context = new NinjaEntities())
+            {
+
+                context.InventoryItems.Where(p => p.NinjaId == NinjaVM.NinjaId).ToList().ForEach(p => context.InventoryItems.Remove(p));
+
+                var ninja = NinjaVM.ToModel();
+                context.Entry(ninja).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+
+
+            EquipmentInventoryOC.Clear();
+    
+     
 
         }
 

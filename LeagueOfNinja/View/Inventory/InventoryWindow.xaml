@@ -9,14 +9,14 @@
         Height="500" 
         Width="800"
         ResizeMode="NoResize"
-        DataContext="{Binding InventoryListVM, Source={StaticResource Locator}}">
+         DataContext="{Binding InventoryListVM, Source={StaticResource Locator}}">
 
     <Border BorderThickness="12">
         <StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="100" />
@@ -24,7 +24,7 @@
 
                 <TextBlock Text="Inventory" FontSize="24" Grid.Column="0" />
 
-                <TextBlock Text="{Binding NinjaInventory.SelectedNinja}" FontSize="24" Grid.Column="1" />
+                <TextBlock Text="{Binding NinjaVM.Name}" FontSize="24" Grid.Column="1" />
 
                 <Button Grid.Column="2" Height="50" FontSize="15" Content="Ninjas" 
                         Foreground="White" FontWeight="Bold" Background="Black" Command="{Binding ShowNinjaCommand}">
@@ -42,10 +42,8 @@
                 </Button>              
 
             </Grid>
-            
-            
 
-            <DataGrid Height="325" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedInventoryItem, Mode=TwoWay}" ItemsSource="{Binding SelectedNinja.InventoryItems}"  Margin="0,5,0,0" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column"          
+            <DataGrid Height="325" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedInventoryItem , Mode=TwoWay}" ItemsSource="{Binding EquipmentInventoryOC}"  Margin="0,5,0,0" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column"          
                       ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                                         
@@ -94,7 +92,7 @@
 
                 <!-- Clear all Button -->
                 <Button Height="50" FontSize="15" Content="Clear all" 
-                        Foreground="White" FontWeight="Bold" Background="Red" Command="{Binding ClearInventoryCommand}" Grid.Column="1" />
+                        Foreground="White" FontWeight="Bold" Background="Red" Command="{Binding SellEverythingCommand}" Grid.Column="1" />
 
             </Grid>
 

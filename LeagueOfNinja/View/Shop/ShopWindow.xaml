@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LeagueOfNinja.View"
         mc:Ignorable="d"
         Title="League of Ninja's" 
-        Height="450" 
+        Height="425" 
         Width="750"
         DataContext="{Binding ShopVM, Source={StaticResource Locator}}">
 
@@ -15,7 +15,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="400"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid>
@@ -28,7 +28,7 @@
 
             <!-- Add Equipment Button -->
             <Button Height="50" FontSize="15" Content="Inventory" 
-                        Foreground="White" FontWeight="Bold" Background="Purple" Grid.Column="1" Command="{Binding ShowInventory}">
+                        Foreground="White" FontWeight="Bold" Background="Purple" Grid.Column="1" Command="{Binding ShowInventoryCommand}">
             </Button>
 
         </Grid>
@@ -42,13 +42,13 @@
 
             <!-- types -->
             <Grid Grid.Column="0" Margin="5,5,5,5">
-                <DataGrid Height="300" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedEquipmentType, Mode=TwoWay}" ItemsSource="{Binding ShopTypes}" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <DataGrid Height="300" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedEquipmentType, Mode=TwoWay}" ItemsSource="{Binding ShopTypesOC}" BorderBrush="Black" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#5a5a5a" HeadersVisibility="Column"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn  Header="Equipment Type">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="{Binding SelectedEquipmentType.EquipmentType}" Command="{Binding DataContext.ShowAllItemsFromEquipmentTypeCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    BorderThickness="0,0,0,1" BorderBrush="#FF999A9B" Foreground="White" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="30" Background="#FF6F9BDA"></Button>
+                                    BorderThickness="0,0,0,1" BorderBrush="#FF999A9B" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="225" Height="30" Background="#FF6F9BDA"></Button>
 
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -140,6 +140,8 @@
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="2">
+                             
+                                
                                 <Label Content="{Binding SelectedEquipment.EquipmentValue}" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="10"></Label>
                             </Grid>
                         </Grid>
@@ -151,8 +153,9 @@
                 <Grid  Grid.Row="1">
                     <Button Background="White" FontSize="15" Height="40" Width="80" x:Name="BuyEquipment" Content="BUY" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
 
-                    <TextBlock Text="Ninja money left: "  FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
-                    <TextBlock Text="{Binding SelectedNinja.Money} "  FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="Ninja money left: "  FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,26.4" Width="115"></TextBlock>
+                    <TextBlock Text="{Binding NinjaVM.Money}"  FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,1.4" Width="115"></TextBlock>
+                   
                 </Grid>
             </Grid>
         </Grid>

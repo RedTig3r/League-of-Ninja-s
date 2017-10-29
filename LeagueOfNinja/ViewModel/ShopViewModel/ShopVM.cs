@@ -10,13 +10,20 @@ namespace LeagueOfNinja.ViewModel
 {
     public class ShopVM : ViewModelBase
     {
+
         private NinjaListVM _ninjaListVM;
+
+        private InventoryWindow _inventoryWindow;
+
+        private InventoryListVM _inventoryListVM;
+
+        public NinjaVM NinjaVM { get; set; }
 
         private EquipmentVM _equipmentType;
 
         private EquipmentVM _equipment;
 
-        public NinjaVM SelectedNinja;
+
 
         public ObservableCollection<EquipmentVM> ShopTypesOC { get; set; }
 
@@ -28,11 +35,15 @@ namespace LeagueOfNinja.ViewModel
         public ICommand ShowEquipmentDetailCommand { get; set; }
         public ICommand BuyEquipmentTypeCommand { get; set; }
 
-        public ShopVM(NinjaListVM ninjaListVM)
+        public ICommand ShowInventoryCommand { get; set; }
+
+        public ShopVM(NinjaListVM ninjaListVM, InventoryListVM inventoryListVM)
         {
             this._ninjaListVM = ninjaListVM;
 
-            SelectedNinja = _ninjaListVM.SelectedNinja;
+            this.NinjaVM = _ninjaListVM.SelectedNinja;
+
+            this._inventoryListVM = inventoryListVM;
 
             using (var context = new NinjaEntities())
             {
@@ -44,6 +55,15 @@ namespace LeagueOfNinja.ViewModel
             ShowAllItemsFromEquipmentTypeCommand = new RelayCommand(ShowAllItemsFromEquipmentType);
             ShowEquipmentDetailCommand = new RelayCommand(ShowEquipmentDetail);
             BuyEquipmentTypeCommand = new RelayCommand(BuyEquipmentType);
+            ShowInventoryCommand = new RelayCommand(ShowInventory);
+        }
+
+        private void ShowInventory()
+        {
+
+            _inventoryWindow = new InventoryWindow();
+            _inventoryWindow.Show();
+            _inventoryListVM.HideShop();
         }
 
         private void BuyEquipmentType()
@@ -57,18 +77,13 @@ namespace LeagueOfNinja.ViewModel
 
         private void ShowEquipmentDetail()
         {
-            SelectedNinja = _ninjaListVM.SelectedNinja;
         }
 
         private void ShowAllItemsFromEquipmentType()
         {
             if (_equipmentType != null)
             {
-                if (ShopItemsOC != null)
-                {
-                    ShopItemsOC.Clear();
-                }
-             
+       
 
                 using (var context = new NinjaEntities())
                 {
@@ -101,6 +116,7 @@ namespace LeagueOfNinja.ViewModel
         }
 
 
+ 
 
 
 

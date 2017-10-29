@@ -16,10 +16,6 @@ namespace LeagueOfNinja.ViewModel
 
         private InventoryItem _inventoryItem;
 
-        public NinjaVM SelectedNinja { get; set; }
-
-        public ICommand ClearInventoryCommand { get; set; }
-
 
         public InventoryVM()
         {
@@ -35,40 +31,6 @@ namespace LeagueOfNinja.ViewModel
         {
             return _inventoryItem;
         }
-
-        public InventoryVM(NinjaVM selectedNinja)
-        {
-            SelectedNinja = selectedNinja;
-
-            //ClearInventoryCommand = new RelayCommand(Clear, CanClear);
-        }
-
-        private void Clear(object parameter)
-        {
-            using (var context = new NinjaEntities())
-            {
-                var inventoryItem = SelectedNinja.ToModel();
-                SelectedNinja.ClearInventory();
-                context.Entry(inventoryItem).State = EntityState.Deleted;
-                context.SaveChanges();
-            }           
-        }
-
-        private bool CanClear()
-        {
-            if (SelectedNinja.InventoryItems.Count > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public void ClearInventory()
-        {
-            SelectedNinja.InventoryItems.Clear();
-            SelectedNinja.UpdateStatistics();
-        }
-
 
 
         public int NinjaId {

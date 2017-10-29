@@ -169,7 +169,7 @@ namespace LeagueOfNinja.ViewModel
             get
             {
                 if (_shopVM == null)
-                    _shopVM = new ShopVM(this.NinjaListVM);
+                    _shopVM = new ShopVM(this.NinjaListVM,this.InventoryListVM);
 
                 return _shopVM;
             }
