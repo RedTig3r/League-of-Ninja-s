@@ -7,6 +7,6 @@
     [Strength] INT NOT NULL, 
     [Intelligence] INT NOT NULL, 
 	[Agility] INT NOT NULL, 
-
+ 
 
 )

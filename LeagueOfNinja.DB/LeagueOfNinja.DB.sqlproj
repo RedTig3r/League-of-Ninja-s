@@ -71,7 +71,6 @@
     <Build Include="Tables\Ninja.sql" />
     <Build Include="Tables\InventoryItem.sql" />
     <Build Include="Tables\Equipment.sql" />
-    <Build Include="Tables\EquipmentType.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />

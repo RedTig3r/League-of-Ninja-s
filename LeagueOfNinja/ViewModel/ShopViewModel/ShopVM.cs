@@ -48,9 +48,19 @@ namespace LeagueOfNinja.ViewModel
             using (var context = new NinjaEntities())
             {
 
-                var equipmentTypes = context.Equipments.ToList();
-                ShopTypesOC = new ObservableCollection<EquipmentVM>(equipmentTypes.Select(et => new EquipmentVM(et)).GroupBy(et => et.EquipmentType).First());
+                var equipmentTypes = context.Equipments.GroupBy(i => i.EquipmentType).Select(i => i.OrderByDescending(e => e.EquipmentType).FirstOrDefault()).ToList();
+                ShopTypesOC = new ObservableCollection<EquipmentVM>(equipmentTypes.Select(e => new EquipmentVM(e)));
+
+
             }
+
+
+            using (var context = new NinjaEntities())
+            {
+                var equipment = context.Equipments.ToList();
+                ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Select(e => new EquipmentVM(e)));
+            }
+
 
             ShowAllItemsFromEquipmentTypeCommand = new RelayCommand(ShowAllItemsFromEquipmentType);
             ShowEquipmentDetailCommand = new RelayCommand(ShowEquipmentDetail);
@@ -77,21 +87,20 @@ namespace LeagueOfNinja.ViewModel
 
         private void ShowEquipmentDetail()
         {
+
+
         }
 
         private void ShowAllItemsFromEquipmentType()
         {
-            if (_equipmentType != null)
-            {
-       
 
-                using (var context = new NinjaEntities())
-                {
-                    var equipment = context.Equipments.ToList();
-                    ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Select(e => new EquipmentVM(e)).Where(e => e.EquipmentType == _equipmentType.EquipmentType));
-                }
+            using (var context = new NinjaEntities())
+            {
+                var equipment = context.Equipments.ToList();
+                ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Select(e => new EquipmentVM(e)).Where(e => e.EquipmentType == _equipmentType.EquipmentType));
             }
-          
+
+
         }
 
         public EquipmentVM SelectedEquipmentType
@@ -101,6 +110,7 @@ namespace LeagueOfNinja.ViewModel
             {
                 _equipmentType = value;
                 base.RaisePropertyChanged();
+                ShowAllItemsFromEquipmentType();
             }
         }
 
@@ -116,7 +126,7 @@ namespace LeagueOfNinja.ViewModel
         }
 
 
- 
+
 
 
 
