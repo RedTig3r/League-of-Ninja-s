@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using LeagueOfNinja.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,18 @@ namespace LeagueOfNinja.ViewModel
             //ClearInventoryCommand = new RelayCommand(Clear, CanClear);
         }
 
-        private bool CanClear(object parameter)
+        private void Clear(object parameter)
+        {
+            using (var context = new NinjaEntities())
+            {
+                var inventoryItem = SelectedNinja.ToModel();
+                SelectedNinja.ClearInventory();
+                context.Entry(inventoryItem).State = EntityState.Deleted;
+                context.SaveChanges();
+            }           
+        }
+
+        private bool CanClear()
         {
             if (SelectedNinja.InventoryItems.Count > 0)
             {
@@ -51,7 +63,11 @@ namespace LeagueOfNinja.ViewModel
             return false;
         }
 
-        
+        public void ClearInventory()
+        {
+            SelectedNinja.InventoryItems.Clear();
+            SelectedNinja.UpdateStatistics();
+        }
 
 
 

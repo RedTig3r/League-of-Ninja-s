@@ -47,8 +47,23 @@ namespace LeagueOfNinja.ViewModel
 
 
 
-   
+        public void UpdateStatistics()
+        {
+            foreach (var i in InventoryItems)
+            {
+                //statistics optellen met alle items van iedere statistics
+            }
+        }
 
+   
+        public void ClearInventory()
+        {
+            foreach (EquipmentVM e in InventoryItems)
+            {
+                //code die statistics verwijderd en geld vermeerderd van de verkochte items
+            }
+            InventoryItems.Clear();
+        }
  
 
     }

@@ -9,7 +9,7 @@
         Height="500" 
         Width="800"
         ResizeMode="NoResize"
-        DataContext="{Binding NinjaInventory, Source={StaticResource Locator}}">
+        DataContext="{Binding InventoryListVM, Source={StaticResource Locator}}">
 
     <Border BorderThickness="12">
         <StackPanel>
@@ -44,12 +44,12 @@
                       ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                                         
-                    <DataGridTextColumn Header="Equipment name" Binding="{Binding }" Width="100"/>
-                    <DataGridTextColumn Header="Value" Binding="{Binding }" Width="*" />
-                    <DataGridTextColumn Header="Type" Binding="{Binding }" Width="*"/>
-                    <DataGridTextColumn Header="Strength" Binding="{Binding }" Width="*" />
-                    <DataGridTextColumn Header="Agility" Binding="{Binding }" Width="*"/>
-                    <DataGridTextColumn Header="Intelligence" Binding="{Binding }" Width="*"/>
+                    <DataGridTextColumn Header="Equipment name" Binding="{Binding Name}" Width="100"/>
+                    <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*" />
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*"/>
+                    <DataGridTextColumn Header="Strength" Binding="{Binding Strength}" Width="*" />
+                    <DataGridTextColumn Header="Agility" Binding="{Binding Agility}" Width="*"/>
+                    <DataGridTextColumn Header="Intelligence" Binding="{Binding Intelligence}" Width="*"/>
                     <DataGridTextColumn Header="IsUsed" Binding="{Binding IsUsingEquipment}" Width="*"/>
 
                     <DataGridTemplateColumn Width="50">
