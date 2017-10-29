@@ -97,15 +97,7 @@
                 <!-- De cell links boven -->
                 <Border  Grid.Row="0" BorderBrush="Black" BorderThickness="1" >
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid  Grid.Column="0">
-                            <Image Source="/Images/ninjaArmor.jpg" Height="80" VerticalAlignment="Center"/>
-                        </Grid>
-                        <Grid  Grid.Column="1">
+             
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="*"/>
@@ -149,7 +141,7 @@
                                 <Label Content="{Binding SelectedEquipment.EquipmentValue}" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="10"></Label>
                             </Grid>
                         </Grid>
-                    </Grid>
+                   
                 </Border>
 
 
