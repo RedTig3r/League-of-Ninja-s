@@ -20,21 +20,17 @@ namespace LeagueOfNinja.ViewModel
 
         public NinjaVM NinjaVM { get; set; }
         public ObservableCollection<EquipmentVM> ShopItemsOC { get; set; }
-        public ICommand ShowAllItemsFromEquipmentTypeCommand { get; set; }
-        public ICommand ShowEquipmentDetailCommand { get; set; }
-        public ICommand BuyEquipmentTypeCommand { get; set; }
 
         public ICommand ShowInventoryCommand { get; set; }
 
-        public ICommand BugItemCommand { get; set; }
+        public ICommand BuyItemCommand { get; set; }
 
-        public ICommand ShowBeltCategory { get; set; }
-        public ICommand ShowBootsCategory { get; set; }
-        public ICommand ShowChestCategory { get; set; }
-        public ICommand ShowLegsCategory { get; set; }
-        public ICommand ShowShouldersCategory { get; set; }
+        public ICommand ShowBeltCategoryCommand { get; set; }
+        public ICommand ShowBootsCategoryCommand { get; set; }
+        public ICommand ShowChestCategoryCommand { get; set; }
+        public ICommand ShowLegsCategoryCommand { get; set; }
+        public ICommand ShowShouldersCategoryCommand { get; set; }
 
-        public ICommand ShowHeadCategory { get; set; }
 
 
         public ShopVM(NinjaListVM ninjaListVM, InventoryListVM inventoryListVM)
@@ -44,35 +40,39 @@ namespace LeagueOfNinja.ViewModel
             this.NinjaVM = _ninjaListVM.SelectedNinja;
 
             this._inventoryListVM = inventoryListVM;
-            
+
 
 
             using (var context = new NinjaEntities())
             {
-   
+
                 var equipment = context.Equipments.ToList();
                 ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Select(e => new EquipmentVM(e)));
             }
 
 
-            //ShowAllItemsFromEquipmentTypeCommand = new RelayCommand(ShowAllItemsFromEquipmentType);
-            ShowEquipmentDetailCommand = new RelayCommand(ShowEquipmentDetail);
-            BuyEquipmentTypeCommand = new RelayCommand(BuyEquipmentType);
+
             ShowInventoryCommand = new RelayCommand(ShowInventory);
-            BugItemCommand = new RelayCommand(BuyItem, CanBuyItem);
+            BuyItemCommand = new RelayCommand(BuyItem);
 
 
-            ShowHeadCategory = new RelayCommand(RetrieveHeadItems);
-            ShowLegsCategory = new RelayCommand(RetrieveLegsItems);
-            ShowBeltCategory = new RelayCommand(RetrieveBeltItems);
-            ShowChestCategory = new RelayCommand(RetrieveChestItems);
-            ShowBootsCategory = new RelayCommand(RetrieveBootsItems);
-            ShowShouldersCategory = new RelayCommand(RetrieveShouldersItems);
+
+            ShowLegsCategoryCommand = new RelayCommand(RetrieveLegsItems);
+            ShowBeltCategoryCommand = new RelayCommand(RetrieveBeltItems);
+            ShowChestCategoryCommand = new RelayCommand(RetrieveChestItems);
+            ShowBootsCategoryCommand = new RelayCommand(RetrieveBootsItems);
+            ShowShouldersCategoryCommand = new RelayCommand(RetrieveShouldersItems);
+   
         }
+
+  
 
         private void BuyItem()
         {
-           
+
+            if (SelectedEquipment != null && NinjaVM.Money > SelectedEquipment.EquipmentValue)
+            {
+
                 var InventoryItemVM = new InventoryVM();
 
                 var inventoryItem = InventoryItemVM.ToModel();
@@ -81,22 +81,34 @@ namespace LeagueOfNinja.ViewModel
                 inventoryItem.IsUsingEquitment = false;
                 inventoryItem.EquipmentId = SelectedEquipment.EquipmentId;
 
+
                 using (var context = new NinjaEntities())
                 {
+
+                    EquipmentVM items = new EquipmentVM(context.Equipments.Where(e => e.EquipmentId == inventoryItem.EquipmentId).First());
+
+
+
+                    NinjaVM.Money -= items.EquipmentValue;
+
+                    var ninja = NinjaVM.ToModel();
+                    context.Entry(ninja).State = EntityState.Modified;
 
                     context.InventoryItems.Add(inventoryItem);
                     context.Entry(inventoryItem).State = EntityState.Added;
                     context.SaveChanges();
                 }
 
-            
+
+                this.RaisePropertyChanged();
+                ShopItemsOC.Remove(SelectedEquipment);
+
+            }
+
 
         }
 
-        private bool CanBuyItem()
-        {
-            return NinjaVM.Money > SelectedEquipment.EquipmentValue;
-        }
+
 
         private void ShowInventory()
         {
@@ -108,14 +120,8 @@ namespace LeagueOfNinja.ViewModel
 
         private void BuyEquipmentType()
         {
-  
 
-            using (var context = new NinjaEntities())
-            {
-                var equipment = context.Equipments.ToList();
-                ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Select(e => new EquipmentVM(e)).Where(e => e.EquipmentType == _equipment.EquipmentType));
-                //ShopItemsOC = new ObservableCollection<EquipmentVM>(equipment.Select(e => new EquipmentVM(e)).Where(e => e.EquipmentType == _equipmentType.EquipmentType));
-            }
+
         }
 
         private void ShowEquipmentDetail()
@@ -138,22 +144,40 @@ namespace LeagueOfNinja.ViewModel
 
 
 
-        public void RetrieveCategoryItems(String categoryName)
+        public void RetrieveCategoryItems(string equipmentType)
         {
+
+
+
             ShopItemsOC.Clear();
 
-            foreach (var item in ShopItemsOC)
+            using (var context = new NinjaEntities())
             {
-                if (item.EquipmentType.ToLower().Equals(categoryName.ToLower()))
-                {
-                    ShopItemsOC.Add(item);
-                }
-            }
-        }
 
-        private void RetrieveHeadItems()
-        {
-            this.RetrieveCategoryItems("Head");
+                var equipment = context.Equipments.ToList();
+
+                foreach (var e in equipment)
+                {
+
+
+                    if (e.EquipmentType == equipmentType)
+                    {
+                        ShopItemsOC.Add(new EquipmentVM(e));
+                    }
+
+                }
+
+
+            }
+
+
+
+            this.RaisePropertyChanged();
+
+
+
+
+
         }
 
         private void RetrieveShouldersItems()
@@ -181,5 +205,5 @@ namespace LeagueOfNinja.ViewModel
             this.RetrieveCategoryItems("Boots");
         }
 
-        }
+    }
 }

@@ -38,7 +38,7 @@ namespace LeagueOfNinja.ViewModel
         public ICommand ShowVisualGearCommand { get; set; }
 
         public ICommand EquipItemCommand { get; set; }
-        public ICommand UnEquipItemCommand { get; set; }
+
 
         public ICommand SellEverythingCommand { get; set; }
         public InventoryListVM(NinjaListVM ninjaListVM)
@@ -66,7 +66,7 @@ namespace LeagueOfNinja.ViewModel
             ShowShopCommand = new RelayCommand(ShowShop);
             ShowVisualGearCommand = new RelayCommand(ShowVisualGear);
             EquipItemCommand = new RelayCommand(EquipItem);
-            UnEquipItemCommand = new RelayCommand(UnEquipItem);
+
             SellEverythingCommand = new RelayCommand(SellEverything);
 
         }
@@ -78,14 +78,12 @@ namespace LeagueOfNinja.ViewModel
 
         private void EquipItem()
         {
-            throw new NotImplementedException();
+
+
+
         }
 
-        private void UnEquipItem()
-        {
-            throw new NotImplementedException();
-        }
-
+  
         private void SellEverything()
         {
 
