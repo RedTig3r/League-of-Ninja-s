@@ -74,12 +74,14 @@ namespace LeagueOfNinja.ViewModel
             {
 
                 var InventoryItemVM = new InventoryVM();
-
                 var inventoryItem = InventoryItemVM.ToModel();
+
 
                 inventoryItem.NinjaId = NinjaVM.NinjaId;
                 inventoryItem.IsUsingEquitment = false;
                 inventoryItem.EquipmentId = SelectedEquipment.EquipmentId;
+
+                _inventoryListVM.EquipmentInventoryOC.Add(SelectedEquipment);
 
 
                 using (var context = new NinjaEntities())
@@ -102,6 +104,7 @@ namespace LeagueOfNinja.ViewModel
 
                 this.RaisePropertyChanged();
                 ShopItemsOC.Remove(SelectedEquipment);
+
 
             }
 
